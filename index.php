@@ -178,7 +178,11 @@ switch (ENVIRONMENT)
  */
 	// $assign_to_config['name_of_config_item'] = 'value of config item';
 
-
+/*
+ * Configura o fuso horário padrão utilizado por todas as funções de data e hora em um script
+ * Adicionado por Carlu P. Azevedo - 16/06/2016
+ */
+date_default_timezone_set('America/Sao_Paulo');
 
 // --------------------------------------------------------------------
 // END OF USER CONFIGURABLE SETTINGS.  DO NOT EDIT BELOW THIS LINE

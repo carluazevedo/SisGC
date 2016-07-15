@@ -1,0 +1,46 @@
+/*
+body {
+	padding-top: 40px;
+}
+*/
+legend {
+	border-bottom-color: #999;
+	padding-left: 15px;
+}
+
+.custom-error {
+	color: #a94442;
+}
+
+.custom-label {
+	padding-right: 5px;
+}
+
+.form-horizontal .form-group {
+	margin-right: 0;
+	margin-left: 0;
+}
+
+.navbar-right {
+	margin-right: 0;
+}
+
+.panel-default {
+	border-color: #ccc;
+}
+
+.panel-default .info-title {
+	display: inline-block;
+	text-align: right;
+	width: 58px;
+}
+
+.panel-default .info-link {
+	color: #FFF;
+	text-decoration: underline;
+}
+
+.panel-default .info-link:hover {
+	color: #BDBDBD;
+	text-decoration: none;
+}
