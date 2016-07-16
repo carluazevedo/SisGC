@@ -44,3 +44,30 @@ legend {
 	color: #BDBDBD;
 	text-decoration: none;
 }
+
+/**
+ * IDs personalizadas
+ */
+a#acao-editar {
+	color: #337ab7;
+}
+
+a#acao-editar:hover {
+	color: #286090;
+}
+
+a#acao-editar:active {
+	color: #204d74;
+}
+
+a#acao-remover {
+	color: #d9534f;
+}
+
+a#acao-remover:hover {
+	color: #c9302c;
+}
+
+a#acao-remover:active {
+	color: #ac2925;
+}

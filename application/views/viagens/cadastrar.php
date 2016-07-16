@@ -10,7 +10,7 @@
 					<div class="col-sm-3 col-md-2">
 						<div>
 							<span class="info-title">Status</span>
-							<span class="label <?php if (isset($status_rotulo)) echo $status_rotulo[$status_viagem]; ?>">
+							<span class="label <?php if (isset($status_contexto)) echo $status_contexto[$status_viagem]; ?>">
 								<?php if (isset($status_texto)) echo $status_texto[$status_viagem]; ?>
 							</span>
 						</div>
@@ -90,7 +90,7 @@
 
 				<label for="motorista_nome" class="control-label sr-only">Nome</label>
 				<div class="col-sm-3">
-					<input type="text" name="motorista_nome" id="motorista_nome" class="form-control input-sm" placeholder="Nome" readonly value="<?php echo set_value('motorista_nome'); ?>" />
+					<input type="text" name="motorista_nome" id="motorista_nome" class="form-control input-sm" placeholder="Nome" value="<?php echo set_value('motorista_nome'); ?>" /><!-- readonly -->
 				</div>
 				<div class="col-sm-4 col-md-3 custom-error">
 					<?php echo form_error('motorista_cpf'),PHP_EOL; ?>
@@ -138,7 +138,7 @@
 
 			<label for="transp_unidade" class="control-label sr-only">Unidade</label>
 			<div class="col-sm-3">
-				<input type="text" name="transp_unidade" id="transp_unidade" class="form-control input-sm" placeholder="Unidade" readonly value="<?php echo set_value('transp_unidade'); ?>" />
+				<input type="text" name="transp_unidade" id="transp_unidade" class="form-control input-sm" placeholder="Unidade" value="<?php echo set_value('transp_unidade'); ?>" /><!-- readonly -->
 			</div>
 			<div class="col-sm-4 col-md-3 custom-error">
 				<?php echo form_error('transp_nome'),PHP_EOL; ?>
@@ -156,7 +156,7 @@
 
 			<label for="operacao_unidade" class="control-label sr-only">Unidade</label>
 			<div class="col-sm-3">
-				<input type="text" name="operacao_unidade" id="operacao_unidade" class="form-control input-sm" placeholder="Unidade" readonly value="<?php echo set_value('operacao_unidade'); ?>" />
+				<input type="text" name="operacao_unidade" id="operacao_unidade" class="form-control input-sm" placeholder="Unidade" value="<?php echo set_value('operacao_unidade'); ?>" /><!-- readonly -->
 			</div>
 			<div class="col-sm-4 col-md-3 custom-error">
 				<?php echo form_error('operacao_nome'),PHP_EOL; ?>
@@ -170,6 +170,7 @@
 			<label for="entrega_tipo" class="col-sm-2 control-label">Tipo de entrega</label>
 			<div class="col-sm-3">
 				<select name="entrega_tipo" class="form-control input-sm">
+					<option value=""></option>
 					<option value="ent_unic" <?php echo set_select('entrega_tipo', 'ent_unic'); ?>>ENTREGA ÚNICA</option>
 					<option value="ent_frac" <?php echo set_select('entrega_tipo', 'ent_frac'); ?>>ENTREGA FRACIONADA</option>
 					<option value="transfer" <?php echo set_select('entrega_tipo', 'transfer'); ?>>TRANSFERÊNCIA</option>
@@ -182,6 +183,7 @@
 			<label for="mercadoria_tipo" class="col-sm-2 control-label">Tipo de mercadoria</label>
 			<div class="col-sm-3">
 				<select name="mercadoria_tipo" class="form-control input-sm">
+					<option value=""></option>
 					<option value="hpc" <?php echo set_select('mercadoria_tipo', 'hpc'); ?>>HPC</option>
 					<option value="foods" <?php echo set_select('mercadoria_tipo', 'foods'); ?>>FOODS</option>
 					<option value="hpc_foods" <?php echo set_select('mercadoria_tipo', 'hpc_foods'); ?>>HPC/FOODS</option>

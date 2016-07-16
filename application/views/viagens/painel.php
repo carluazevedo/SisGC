@@ -1,31 +1,54 @@
 <?php $this->load->view('templates/navbar'); ?>
 <section>
 	<h1><?php echo $titulo_pagina; ?></h1>
+
 	<div class="table-responsive">
 		<table class="table table-condensed table-hover"><!-- table-bordered -->
-			<tr>
-				<th>NÚMERO DT</th>
-				<th>DATA ENTRADA</th>
-				<th>USUÁRIO ENTRADA</th>
-				<th>DATA SAÍDA</th>
-				<th>USUÁRIO SAÍDA</th>
-			</tr>
-			<?php foreach ($viagens as $col) :
-					$entrada_data = date_format(date_create($col->entrada_data), 'd/m/Y H:i:s');
-
-					if ($col->saida_data == 0) :
-						$saida_data = '-';
-					else :
-						$saida_data = date_format(date_create($col->saida_data), 'd/m/Y H:i:s');
-					endif; ?>
-			<tr>
-				<td><?php echo $col->dt_num; ?></td>
-				<td><?php echo $entrada_data; ?></td>
-				<td><?php echo $col->entrada_usuario; ?></td>
-				<td><?php echo $saida_data; ?></td>
-				<td><?php echo $col->saida_usuario; ?></td>
-			</tr>
-			<?php endforeach; ?>
+			<thead>
+				<tr class="active">
+					<th>NÚMERO DT</th>
+					<th>STATUS</th>
+					<th>DATA ENTRADA</th>
+					<th>DATA SAÍDA</th>
+					<th>MOTORISTA</th>
+					<th>TRATOR</th>
+					<th>REBOQUE</th>
+					<th>TRANSPORTADORA</th>
+					<th>ORIGEM</th>
+					<th colspan="2">AÇÕES</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($viagens as $col) : ?>
+				<tr>
+					<td><?php echo $col->dt_num; ?></td>
+					<?php echo $this->viagens_model->status_viagem_tb($col->status_viagem); ?>
+					<td><?php echo $this->viagens_model->formata_data_mysql($col->entrada_data); ?></td>
+					<td><?php echo $this->viagens_model->formata_data_mysql($col->saida_data); ?></td>
+					<td><?php echo $col->motorista_nome; ?></td>
+					<td><?php echo $col->placa_trator; ?></td>
+					<td><?php echo $col->placa_reboque_1; ?></td>
+					<td><?php echo $col->transp_nome; ?></td>
+					<td><?php echo $col->operacao_nome.' - '.$col->operacao_unidade; ?></td>
+					<td class="text-center info">
+						<a href="#" title="Editar" id="acao-editar">
+							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+						</a>
+					</td>
+					<td class="text-center danger">
+						<a href="#" title="Remover" id="acao-remover">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						</a>
+					</td>
+				</tr>
+				<?php endforeach; ?>
+			</tbody>
+			<tfoot>
+				<!-- Última linha em branco da tabela -->
+				<tr>
+					<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+				</tr>
+			</tfoot>
 		</table>
-	</div>
+	</div><!-- .table-responsive -->
 </section>

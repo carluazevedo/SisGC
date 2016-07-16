@@ -29,6 +29,7 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li><a href="#">Editar perfil</a></li>
+								<li><?php echo anchor(base_url('user_guide'), 'Guia CodeIgniter', 'target="_blank"'); ?></li>
 								<li role="separator" class="divider"></li>
 								<li><a href="<?php echo site_url('auth/logout'); ?>">Desconectar</a></li>
 							</ul>

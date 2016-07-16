@@ -13,31 +13,38 @@ class Viagens extends CI_Controller {
 	}
 
 	public function index() {
-		/* Informações básicas para visualização */
-		$data['titulo']         = $this->titulo;
-		$data['titulo_pagina']  = 'Sistema de Gestão de Cargas';
-		$data['incluir']        = array(link_tag('styles/custom/geral.css'));
-		$data['view']           = 'viagens/painel';
+		/* Informações para 'header.php' */
+		$data['titulo']  = $this->titulo;
+		$data['incluir'] = array(link_tag('styles/custom/geral.css'));
+		$data['view']    = 'viagens/painel';
+
+		/* Informações para 'view' */
+		$data['titulo_pagina'] = 'Sistema de Gestão de Cargas';
 
 		/* Lógica do controlador */
-		$data['viagens'] = $this->viagens_model->listar('cad_cargas');
+		$data['viagens'] = $this->viagens_model->listar_obj('cad_cargas',
+			'dt_num,status_viagem,entrada_data,saida_data,motorista_nome,placa_trator,placa_reboque_1,transp_nome,operacao_nome,operacao_unidade'
+		);
 
+		/* Conclusão */
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/footer');
 	}
 
 	public function cadastrar() {
-		/* Informações básicas para visualização */
-		$data['titulo']        = $this->titulo.' - Cadastrar';
+		/* Informações para 'header.php' */
+		$data['titulo']  = $this->titulo.' - Cadastrar';
+		$data['incluir'] = array(link_tag('styles/custom/geral.css'));
+
+		/* Informações para 'view' */
 		$data['titulo_pagina'] = 'Cadastrar viagem';
-		$data['incluir']       = array(link_tag('styles/custom/geral.css'));
 		$data['nav_cadastrar'] = true;
 
 		/* Lógica do controlador */
-		$data['status_viagem'] = 0;
-		$data['status_rotulo'] = array('label-info','label-warning','label-success','label-danger');
-		$data['status_texto']  = array('NOVA VIAGEM','EM PÁTIO','FINALIZADA','CANCELADA');
-		$data['alto_risco']    = 0; /* opções [1 || 0] */
+		$data['status_viagem']   = 0;
+		$data['status_contexto'] = array('label-info','label-warning','label-success','label-danger');
+		$data['status_texto']    = array('NOVA VIAGEM','EM PÁTIO','FINALIZADA','CANCELADA');
+		$data['alto_risco']      = 0; /* opções [1 || 0] */
 
 		/* Validação de formulário */
 		$this->load->library('form_validation');
@@ -64,8 +71,8 @@ class Viagens extends CI_Controller {
 					'transp_unidade'       => set_value('transp_unidade'),
 					'operacao_nome'        => set_value('operacao_nome'),
 					'operacao_unidade'     => set_value('operacao_unidade'),
-					'entrega_tipo'         => set_select('entrega_tipo'),
-					'mercadoria_tipo'      => set_select('mercadoria_tipo'),
+					'entrega_tipo'         => $this->input->post('entrega_tipo'),
+					'mercadoria_tipo'      => $this->input->post('mercadoria_tipo'),
 					'notas_fiscais'        => set_value('notas_fiscais'),
 					'valor'                => set_value('valor'),
 					'peso'                 => set_value('peso'),
@@ -82,6 +89,7 @@ class Viagens extends CI_Controller {
 			}
 		}
 
+		/* Conclusão */
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/footer');
 	}
