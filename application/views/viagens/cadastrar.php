@@ -72,7 +72,7 @@
 		<div class="form-group">
 			<label for="dt_num" class="col-sm-2 control-label">Número DT</label>
 			<div class="col-sm-3">
-				<input type="text" name="dt_num" id="dt_num" class="form-control input-sm" autofocus value="<?php echo set_value('dt_num'); ?>" />
+				<input type="text" name="dt_num" id="dt_num" class="form-control input-sm" autofocus value="<?php echo set_value('dt_num'); ?>" onblur="textoMaiusculo(this)" />
 			</div>
 			<div class="col-sm-5 col-md-4 custom-error">
 				<?php echo form_error('dt_num'),PHP_EOL; ?>
@@ -90,7 +90,7 @@
 
 				<label for="motorista_nome" class="control-label sr-only">Nome</label>
 				<div class="col-sm-3">
-					<input type="text" name="motorista_nome" id="motorista_nome" class="form-control input-sm" placeholder="Nome" value="<?php echo set_value('motorista_nome'); ?>" /><!-- readonly -->
+					<input type="text" name="motorista_nome" id="motorista_nome" class="form-control input-sm" placeholder="Nome" value="<?php echo set_value('motorista_nome'); ?>" onblur="textoMaiusculo(this)" /><!-- readonly -->
 				</div>
 				<div class="col-sm-4 col-md-3 custom-error">
 					<?php echo form_error('motorista_cpf'),PHP_EOL; ?>
@@ -103,7 +103,7 @@
 		<div class="form-group">
 			<label for="placa_trator" class="col-sm-2 control-label">Trator</label>
 			<div class="col-sm-3">
-				<input type="text" name="placa_trator" id="placa_trator" class="form-control input-sm" value="<?php echo set_value('placa_trator'); ?>" />
+				<input type="text" name="placa_trator" id="placa_trator" class="form-control input-sm" value="<?php echo set_value('placa_trator'); ?>" onblur="textoMaiusculo(this)" />
 			</div>
 			<div class="col-sm-5 col-md-4 custom-error">
 				<?php echo form_error('placa_trator'),PHP_EOL; ?>
@@ -113,7 +113,7 @@
 		<div class="form-group">
 			<label for="placa_reboque_1" class="col-sm-2 control-label">Reboque 1</label>
 			<div class="col-sm-3">
-				<input type="text" name="placa_reboque_1" id="placa_reboque_1" class="form-control input-sm" value="<?php echo set_value('placa_reboque_1'); ?>" />
+				<input type="text" name="placa_reboque_1" id="placa_reboque_1" class="form-control input-sm" value="<?php echo set_value('placa_reboque_1'); ?>" onblur="textoMaiusculo(this)" />
 			</div>
 			<div class="col-sm-5 col-md-4 custom-error">
 				<?php echo form_error('placa_reboque_1'),PHP_EOL; ?>
@@ -123,7 +123,7 @@
 		<div class="form-group">
 			<label for="placa_reboque_2" class="col-sm-2 control-label">Reboque 2</label>
 			<div class="col-sm-3">
-				<input type="text" name="placa_reboque_2" id="placa_reboque_2" class="form-control input-sm" value="<?php echo set_value('placa_reboque_2'); ?>" />
+				<input type="text" name="placa_reboque_2" id="placa_reboque_2" class="form-control input-sm" value="<?php echo set_value('placa_reboque_2'); ?>" onblur="textoMaiusculo(this)" />
 			</div>
 		</div><!-- .form-group -->
 	</fieldset><!-- Veículo -->
@@ -133,12 +133,12 @@
 		<div class="form-group row">
 			<label for="transp_nome" class="col-sm-2 control-label">Nome</label>
 			<div class="col-sm-3">
-				<input type="text" name="transp_nome" id="transp_nome" class="form-control input-sm" value="<?php echo set_value('transp_nome'); ?>" />
+				<input type="text" name="transp_nome" id="transp_nome" class="form-control input-sm" value="<?php echo set_value('transp_nome'); ?>" onblur="textoMaiusculo(this)" />
 			</div>
 
 			<label for="transp_unidade" class="control-label sr-only">Unidade</label>
 			<div class="col-sm-3">
-				<input type="text" name="transp_unidade" id="transp_unidade" class="form-control input-sm" placeholder="Unidade" value="<?php echo set_value('transp_unidade'); ?>" /><!-- readonly -->
+				<input type="text" name="transp_unidade" id="transp_unidade" class="form-control input-sm" placeholder="Unidade" value="<?php echo set_value('transp_unidade'); ?>" onblur="textoMaiusculo(this)" /><!-- readonly -->
 			</div>
 			<div class="col-sm-4 col-md-3 custom-error">
 				<?php echo form_error('transp_nome'),PHP_EOL; ?>
@@ -151,12 +151,12 @@
 		<div class="form-group row">
 			<label for="operacao_nome" class="col-sm-2 control-label">Nome</label>
 			<div class="col-sm-3">
-				<input type="text" name="operacao_nome" id="operacao_nome" class="form-control input-sm" value="<?php echo set_value('operacao_nome'); ?>" />
+				<input type="text" name="operacao_nome" id="operacao_nome" class="form-control input-sm" value="<?php echo set_value('operacao_nome'); ?>" onblur="textoMaiusculo(this)" />
 			</div>
 
 			<label for="operacao_unidade" class="control-label sr-only">Unidade</label>
 			<div class="col-sm-3">
-				<input type="text" name="operacao_unidade" id="operacao_unidade" class="form-control input-sm" placeholder="Unidade" value="<?php echo set_value('operacao_unidade'); ?>" /><!-- readonly -->
+				<input type="text" name="operacao_unidade" id="operacao_unidade" class="form-control input-sm" placeholder="Unidade" value="<?php echo set_value('operacao_unidade'); ?>" onblur="textoMaiusculo(this)" /><!-- readonly -->
 			</div>
 			<div class="col-sm-4 col-md-3 custom-error">
 				<?php echo form_error('operacao_nome'),PHP_EOL; ?>
@@ -194,7 +194,7 @@
 		<div class="form-group">
 			<label for="notas_fiscais" class="col-sm-2 control-label">Notas fiscais</label>
 			<div class="col-sm-3">
-				<input type="text" name="notas_fiscais" id="notas_fiscais" class="form-control input-sm" value="<?php echo set_value('notas_fiscais'); ?>" />
+				<input type="text" name="notas_fiscais" id="notas_fiscais" class="form-control input-sm" value="<?php echo set_value('notas_fiscais'); ?>" onblur="textoMaiusculo(this)" />
 			</div>
 			<div class="col-sm-5 col-md-4 custom-error">
 				<?php echo form_error('notas_fiscais'),PHP_EOL; ?>
@@ -247,7 +247,7 @@
 		<div class="form-group">
 			<label for="rota" class="col-sm-2 control-label">Rota</label>
 			<div class="col-sm-3">
-				<input type="text" name="rota" id="rota" class="form-control input-sm" value="<?php echo set_value('rota'); ?>" />
+				<input type="text" name="rota" id="rota" class="form-control input-sm" value="<?php echo set_value('rota'); ?>" onblur="textoMaiusculo(this)" />
 			</div>
 			<div class="col-sm-5 col-md-4 custom-error">
 				<?php echo form_error('rota'),PHP_EOL; ?>
@@ -260,7 +260,7 @@
 		<div class="form-group">
 			<label for="observacoes" class="col-sm-2 control-label">Observações</label>
 			<div class="col-sm-3">
-				<input type="text" name="observacoes" id="observacoes" class="form-control input-sm" value="<?php echo set_value('observacoes'); ?>" />
+				<input type="text" name="observacoes" id="observacoes" class="form-control input-sm" value="<?php echo set_value('observacoes'); ?>" onblur="textoMaiusculo(this)" />
 			</div>
 		</div><!-- .form-group -->
 	</fieldset><!-- Informações adicionais -->
@@ -272,8 +272,13 @@
 			<button type="button" class="btn btn-primary" onclick="location.href='<?php echo site_url('viagens'); ?>'">Voltar</button>
 		</div>
 	</div><!-- .form-group -->
-</form><!-- .form-horizontal -->
+<?php echo form_close('<!-- .form-horizontal -->').PHP_EOL; ?>
 <pre><?php print_r($_POST); ?></pre>
 		</div><!-- .row -->
 	</div><!-- .container-fluid -->
 </section>
+<script>
+	function textoMaiusculo(campo) {
+		campo.value = campo.value.toUpperCase();
+	}
+</script>
