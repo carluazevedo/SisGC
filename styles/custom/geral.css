@@ -48,26 +48,42 @@ legend {
 /**
  * IDs personalizadas
  */
-a#acao-editar {
+#acao-editar, #acao-remover, #acao-visualizar {
+	width: 31px;
+}
+
+#acao-editar a {
 	color: #337ab7;
 }
 
-a#acao-editar:hover {
+#acao-editar a:hover {
 	color: #286090;
 }
 
-a#acao-editar:active {
+#acao-editar a:active {
 	color: #204d74;
 }
 
-a#acao-remover {
+#acao-remover a {
 	color: #d9534f;
 }
 
-a#acao-remover:hover {
+#acao-remover a:hover {
 	color: #c9302c;
 }
 
-a#acao-remover:active {
+#acao-remover a:active {
 	color: #ac2925;
+}
+
+#acao-visualizar a {
+	color: #5cb85c;
+}
+
+#acao-visualizar a:hover {
+	color: #449d44;
+}
+
+#acao-visualizar a:active {
+	color: #398439;
 }

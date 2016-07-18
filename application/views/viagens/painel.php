@@ -15,7 +15,7 @@
 					<th>REBOQUE</th>
 					<th>TRANSPORTADORA</th>
 					<th>ORIGEM</th>
-					<th colspan="2">AÇÕES</th>
+					<th colspan="3">AÇÕES</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -30,14 +30,19 @@
 					<td><?php echo $col->placa_reboque_1; ?></td>
 					<td><?php echo $col->transp_nome; ?></td>
 					<td><?php echo $col->operacao_nome.' - '.$col->operacao_unidade; ?></td>
-					<td class="text-center info">
-						<a href="#" title="Editar" id="acao-editar">
-							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					<td class="text-center info" id="acao-editar">
+						<a href="#" title="Editar">
+							<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 						</a>
 					</td>
-					<td class="text-center danger">
-						<a href="#" title="Remover" id="acao-remover">
+					<td class="text-center danger" id="acao-remover">
+						<a href="#" title="Remover">
 							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						</a>
+					</td>
+					<td class="text-center success" id="acao-visualizar">
+						<a href="#" title="Remover">
+							<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 						</a>
 					</td>
 				</tr>
@@ -46,7 +51,7 @@
 			<tfoot>
 				<!-- Última linha em branco da tabela -->
 				<tr>
-					<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+					<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 				</tr>
 			</tfoot>
 		</table>
