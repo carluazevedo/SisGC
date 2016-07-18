@@ -74,11 +74,11 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> 'mysql:host=localhost;dbname=u815726647_sisgc;charset=UTF8',
+	'dsn'	=> 'mysql:host=localhost;dbname=sisgc;charset=UTF8',
 	'hostname' => 'localhost',
-	'username' => 'u815726647_sisgc',
-	'password' => '225785_db',
-	'database' => 'u815726647_sisgc',
+	'username' => 'mysql_user',
+	'password' => '',
+	'database' => 'sisgc',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
