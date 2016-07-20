@@ -51,7 +51,7 @@ class Viagens extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<p class="form-control-static">', '</p>');
 
 		if ($this->form_validation->run('cadastrar_entrada') == false) {
-			$data['view'] = 'viagens/cadastrar';
+			$data['view'] = 'viagens/formulario';
 		} else {
 			$dados_viagem = array(
 					'status_viagem'        => 1,
