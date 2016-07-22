@@ -1,5 +1,5 @@
 <?php $this->load->view('templates/navbar'); ?>
-<section>
+<main>
 	<h1><?php echo $titulo_pagina; ?></h1>
 
 	<div class="table-responsive">
@@ -41,7 +41,7 @@
 						</a>
 					</td>
 					<td class="text-center success" id="acao-visualizar">
-						<a href="#" title="Remover">
+						<a href="#" title="Visualizar">
 							<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 						</a>
 					</td>
@@ -56,4 +56,4 @@
 			</tfoot>
 		</table>
 	</div><!-- .table-responsive -->
-</section>
+</main>
