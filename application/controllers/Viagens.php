@@ -15,7 +15,7 @@ class Viagens extends CI_Controller {
 	public function index() {
 		/* Informações para 'header.php' */
 		$data['titulo']  = $this->titulo;
-		$data['incluir'] = array(link_tag('styles/custom/geral.css'));
+		$data['incluir'] = array(link_tag('styles/custom.css'));
 		$data['view']    = 'viagens/painel';
 
 		/* Informações para 'view' */
@@ -34,7 +34,7 @@ class Viagens extends CI_Controller {
 	public function cadastrar() {
 		/* Informações para 'header.php' */
 		$data['titulo']  = $this->titulo.' - Cadastrar';
-		$data['incluir'] = array(link_tag('styles/custom/geral.css'));
+		$data['incluir'] = array(link_tag('styles/custom.css'));
 
 		/* Informações para 'view' */
 		$data['titulo_pagina'] = 'Cadastrar viagem';
