@@ -10,12 +10,8 @@
 
 		<!-- Bootstrap -->
 		<link href="<?php echo base_url('styles/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet">
-		<!-- Optional theme -->
+		<!-- Bootstrap Theme -->
 		<!--<link href="<?php echo base_url('styles/bootstrap/css/bootstrap-theme.min.css'); ?>" rel="stylesheet">-->
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="<?php echo base_url('js/jquery/jquery.min.js'); ?>"></script>
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="<?php echo base_url('styles/bootstrap/js/bootstrap.min.js'); ?>"></script>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,5 +29,6 @@
 	</head>
 
 	<body>
+		<main>
 <!-- END HEADER -->
 <?php isset($view) ? $this->load->view($view) : show_404('', FALSE); ?>

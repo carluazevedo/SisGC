@@ -1,89 +1,92 @@
 /*
-body {
-	padding-top: 40px;
-}
+  body {
+	  padding-top: 40px;
+  }
 */
-legend {
-	border-bottom-color: #999;
-	padding-left: 15px;
-}
 
+/**
+ * < Erro de validação de formulário >
+ */
 .custom-error {
-	color: #a94442;
-}
-
-.custom-label {
-	padding-right: 5px;
-}
-
-.form-horizontal .form-group {
-	margin-right: 0;
-	margin-left: 0;
-}
-
-.navbar-right {
-	margin-right: 0;
-}
-
-.panel-default {
-	border-color: #ccc;
-}
-
-.panel-default .info-title {
-	display: inline-block;
-	text-align: right;
-	width: 58px;
-}
-
-.panel-default .info-link {
-	color: #FFF;
-	text-decoration: underline;
-}
-
-.panel-default .info-link:hover {
-	color: #BDBDBD;
-	text-decoration: none;
+  color: #a94442;
 }
 
 /**
- * IDs personalizadas
+ * < Decoração das legendas do formulário > 
  */
-#acao-editar, #acao-remover, #acao-visualizar {
-	width: 31px;
+legend {
+  border-bottom-color: #999;
 }
 
-#acao-editar a {
-	color: #337ab7;
+/**
+ * < Painel de informações >
+ */
+.panel-default {
+  border-color: #ccc;
 }
 
-#acao-editar a:hover {
-	color: #286090;
+.panel-default .info-title {
+  display: inline-block;
+  text-align: right;
+  width: 58px;
 }
 
-#acao-editar a:active {
-	color: #204d74;
+.panel-default .info-link {
+  color: #FFF;
+  text-decoration: underline;
 }
 
-#acao-remover a {
-	color: #d9534f;
+.panel-default .info-link:hover {
+  color: #BDBDBD;
+  text-decoration: none;
+}
+/**
+ * </ Painel de informações >
+ */
+
+/**
+ * < Painel inicial >
+ */
+#acao-editar, #acao-excluir, #acao-visualizar {
+  width: 31px;
+  vertical-align: middle;
 }
 
-#acao-remover a:hover {
-	color: #c9302c;
-}
-
-#acao-remover a:active {
-	color: #ac2925;
-}
-
-#acao-visualizar a {
-	color: #5cb85c;
+#acao-visualizar a, .glyphicon-eye-open {
+  color: #5cb85c;
 }
 
 #acao-visualizar a:hover {
-	color: #449d44;
+  color: #449d44;
 }
 
 #acao-visualizar a:active {
-	color: #398439;
+  color: #398439;
 }
+
+#acao-editar a {
+  color: #337ab7;
+}
+
+#acao-editar a:hover {
+  color: #286090;
+}
+
+#acao-editar a:active {
+  color: #204d74;
+}
+
+#acao-excluir a, .glyphicon-remove-sign {
+  color: #d9534f;
+}
+
+#acao-excluir a:hover {
+  color: #c9302c;
+}
+
+#acao-excluir a:active {
+  color: #ac2925;
+}
+/**
+ * </ Painel inicial >
+ */

@@ -60,4 +60,18 @@ class Viagens_model extends CI_Model {
 
 		return $status_retorno.PHP_EOL;
 	}
+
+	public function status_viagem_pn($status, $elemento) {
+		$status_contexto = array('label-info','label-warning','label-success','label-danger');
+		$status_texto    = array('NOVA VIAGEM','EM PÁTIO','FINALIZADA','CANCELADA');
+
+		switch ($elemento) {
+			case 'contexto':
+				return $status_contexto[$status];
+				break;
+			case 'texto':
+				return $status_texto[$status];
+				break;
+		}
+	}
 }
