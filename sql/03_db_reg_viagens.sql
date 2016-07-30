@@ -3,10 +3,10 @@
 ##########################
 
 #
-# Table structure for table 'cad_cargas'
+# Table structure for table 'reg_viagens'
 #
 
-CREATE TABLE IF NOT EXISTS `cad_cargas` (
+CREATE TABLE IF NOT EXISTS `reg_viagens` (
 	`id` int(8) NOT NULL AUTO_INCREMENT COMMENT 'ID',
 	`status_viagem` tinyint(1) NOT NULL COMMENT 'STATUS',
 	`entrada_data` datetime NOT NULL COMMENT 'DATA ENTRADA',
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `cad_cargas` (
 	`carga_risco` tinyint(1) NOT NULL COMMENT 'RISCO',
 	`carga_escolta` tinyint(1) NOT NULL COMMENT 'ESCOLTA',
 	`dt_num` varchar(64) NOT NULL COMMENT 'NÚMERO DT',
-	`motorista_cpf` varchar(11) NOT NULL COMMENT 'CPF',
+	`motorista_cpf` varchar(14) NOT NULL COMMENT 'CPF',
 	`motorista_nome` varchar(128) NOT NULL COMMENT 'MOTORISTA',
 	`placa_trator` varchar(7) NOT NULL COMMENT 'TRATOR',
 	`placa_reboque_1` varchar(7) NOT NULL COMMENT 'REBOQUE 1',
@@ -28,72 +28,12 @@ CREATE TABLE IF NOT EXISTS `cad_cargas` (
 	`entrega_tipo` varchar(20) NOT NULL COMMENT 'ENTREGA',
 	`mercadoria_tipo` varchar(10) NOT NULL COMMENT 'MERCADORIA',
 	`notas_fiscais` varchar(128) NOT NULL COMMENT 'NOTAS FISCAIS',
-	`valor` decimal(10,2) NOT NULL COMMENT 'VALOR',
+	`valor` decimal(11,2) NOT NULL COMMENT 'VALOR',
 	`peso` decimal(11,3) NOT NULL COMMENT 'PESO',
-	`destinatario_cnpj` varchar(14) NOT NULL COMMENT 'CNPJ',
+	`destinatario_cnpj` varchar(18) NOT NULL COMMENT 'CNPJ',
 	`destinatario_nome` varchar(128) NOT NULL COMMENT 'CLIENTE',
 	`destinatario_unidade` varchar(64) NOT NULL COMMENT 'UNIDADE',
 	`rota` varchar(256) NOT NULL COMMENT 'ROTA',
 	`observacoes` varchar(256) NOT NULL COMMENT 'OBSERVAÇÕES',
 	PRIMARY KEY (`id`)
 ) DEFAULT CHARSET=utf8;
-
-INSERT INTO `cad_cargas` (
-	`id`,
-	`status_viagem`,
-	`entrada_data`,
-	`entrada_usuario`,
-	`saida_data`,
-	`saida_usuario`,
-	`carga_risco`,
-	`carga_escolta`,
-	`dt_num`,
-	`motorista_cpf`,
-	`motorista_nome`,
-	`placa_trator`,
-	`placa_reboque_1`,
-	`placa_reboque_2`,
-	`transp_nome`,
-	`transp_unidade`,
-	`operacao_nome`,
-	`operacao_unidade`,
-	`entrega_tipo`,
-	`mercadoria_tipo`,
-	`notas_fiscais`,
-	`valor`,
-	`peso`,
-	`destinatario_cnpj`,
-	`destinatario_nome`,
-	`destinatario_unidade`,
-	`rota`,
-	`observacoes`
-) VALUES (
-	1,
-	1,
-	CURRENT_TIMESTAMP,
-	'unilever.carlu',
-	'',
-	'',
-	'',
-	'',
-	'9871234',
-	'01549517480',
-	'',
-	'AZN0123',
-	'APL5522',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	''
-);

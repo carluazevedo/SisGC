@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config = array(
-		'cadastrar_entrada' => array(
+		'registrar_entrada' => array(
 				array(
 						'field' => 'dt_num',
 						'label' => '<strong>'.'Número DT'.'</strong>',
@@ -34,7 +34,7 @@ $config = array(
 						'rules' => 'required'
 				)
 		),
-		'cadastrar_saida' => array(
+		'registrar_saida' => array(
 				array(
 						'field' => 'notas_fiscais',
 						'label' => '<strong>'.'Notas fiscais'.'</strong>',

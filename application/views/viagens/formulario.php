@@ -61,7 +61,7 @@
 				</div><!-- /.panel-default -->
 
 				<!-- Formulário de cadastro -->
-				<?php echo form_open('', array('class' => 'form-horizontal', 'onsubmit' => 'valueUpperCase()')); ?>
+				<?php echo form_open('', array('class' => 'form-horizontal', 'onsubmit' => 'converterCaixaAlta()')); ?>
 					<fieldset id="dt">
 						<legend>DT</legend>
 						<div class="form-group">
@@ -80,7 +80,7 @@
 							<div class="form-group row">
 								<label for="motorista_cpf" class="col-sm-2 control-label">CPF</label>
 								<div class="col-sm-3">
-									<input type="text" name="motorista_cpf" id="motorista_cpf" class="form-control input-sm" value="<?php echo set_value('motorista_cpf'); ?>" />
+									<input type="text" name="motorista_cpf" id="motorista_cpf" class="form-control input-sm" maxlength="14" value="<?php echo set_value('motorista_cpf'); ?>" />
 								</div>
 
 								<label for="motorista_nome" class="control-label sr-only">Nome</label>
@@ -199,7 +199,7 @@
 						<div class="form-group">
 							<label for="valor" class="col-sm-2 control-label">Valor total</label>
 							<div class="col-sm-3">
-								<input type="text" name="valor" id="valor" class="form-control input-sm" value="<?php echo set_value('valor'); ?>" />
+								<input type="text" name="valor" id="valor" class="form-control input-sm" maxlength="14" value="<?php echo set_value('valor', '000'); ?>" />
 							</div>
 							<div class="col-sm-5 col-md-4 custom-error">
 								<?php echo form_error('valor'),PHP_EOL; ?>
@@ -209,7 +209,7 @@
 						<div class="form-group">
 							<label for="peso" class="col-sm-2 control-label">Peso total</label>
 							<div class="col-sm-3">
-								<input type="text" name="peso" id="peso" class="form-control input-sm" value="<?php echo set_value('peso'); ?>" />
+								<input type="text" name="peso" id="peso" class="form-control input-sm" maxlength="15" value="<?php echo set_value('peso', '0000'); ?>" />
 							</div>
 							<div class="col-sm-5 col-md-4 custom-error">
 								<?php echo form_error('peso'),PHP_EOL; ?>
@@ -222,7 +222,7 @@
 						<div class="form-group row">
 							<label for="destinatario_cnpj" class="col-sm-2 control-label">CNPJ</label>
 							<div class="col-sm-3">
-								<input type="text" name="destinatario_cnpj" id="destinatario_cnpj" class="form-control input-sm" value="<?php echo set_value('destinatario_cnpj'); ?>" />
+								<input type="text" name="destinatario_cnpj" id="destinatario_cnpj" class="form-control input-sm" maxlength="18" value="<?php echo set_value('destinatario_cnpj'); ?>" data-toggle="tooltip" data-placement="top" title="Formato: 00.000.000/0000-00" />
 							</div>
 
 							<label for="destinatario_nome" class="control-label sr-only">Nome</label>
@@ -261,27 +261,21 @@
 					</fieldset><!-- Informações adicionais -->
 
 					<div class="form-group row">
-						<label class="control-label sr-only">Cadastrar</label>
+						<label class="control-label sr-only">Registrar</label>
 						<div class="col-sm-offset-2 col-sm-3 col-md-2">
-							<button type="submit" name="cadastrar" value="ok" class="btn btn-success form-control">Cadastrar</button>
+							<button type="submit" name="registrar" value="ok" class="btn btn-success form-control">
+								<small><span class="glyphicon glyphicon-plus"></span></small> Registrar
+							</button>
 						</div>
 						<div class="col-sm-3 col-md-2">
-							<button type="button" class="btn btn-primary form-control" onclick="location.href='<?php echo site_url('viagens'); ?>'">Voltar</button>
+							<button type="button" class="btn btn-primary form-control" onclick="location.href='<?php echo site_url('viagens'); ?>'">
+								<small><span class="glyphicon glyphicon-arrow-left"></span></small> Voltar
+							</button>
 						</div>
 					</div><!-- /.form-group -->
 				<?php echo form_close('<!-- .form-horizontal -->').PHP_EOL; ?>
-				<pre><?php #print_r($_POST); ?></pre>
+				<!-- <pre><?php print_r($_POST); ?></pre> -->
 			</div><!-- /.col-sm-12 -->
 		</div><!-- /.row -->
 	</div><!-- /.container-fluid -->
 </section>
-
-<script>
-	var i_text = document.querySelectorAll('input[type=text]');
-
-	function valueUpperCase() {
-		for (i = 0; i < i_text.length; i++) {
-			i_text[i].value = i_text[i].value.toUpperCase();
-		}
-	}
-</script>

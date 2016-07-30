@@ -20,8 +20,8 @@
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<?php
-		if (isset($incluir)) :
-			foreach ($incluir as $i) : echo $i; endforeach;
+		if (isset($incluir_header)) :
+			foreach ($incluir_header as $i) : echo $i; endforeach;
 		else :
 			echo PHP_EOL;
 		endif;

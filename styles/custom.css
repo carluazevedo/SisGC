@@ -1,26 +1,16 @@
-/*
-  body {
-	  padding-top: 40px;
-  }
-*/
+/* body { padding-top: 40px; } */
 
-/**
- * < Erro de validação de formulário >
- */
+/* < Erro de validação de formulário > */
 .custom-error {
   color: #a94442;
 }
 
-/**
- * < Decoração das legendas do formulário > 
- */
+/* < Decoração das legendas do formulário > */
 legend {
   border-bottom-color: #999;
 }
 
-/**
- * < Painel de informações >
- */
+/* < Painel de informações > */
 .panel-default {
   border-color: #ccc;
 }
@@ -40,14 +30,10 @@ legend {
   color: #BDBDBD;
   text-decoration: none;
 }
-/**
- * </ Painel de informações >
- */
+/* </ Painel de informações > */
 
-/**
- * < Painel inicial >
- */
-#acao-editar, #acao-excluir, #acao-visualizar {
+/* < Painel inicial > */
+#acao-editar, #acao-remover, #acao-visualizar {
   width: 31px;
   vertical-align: middle;
 }
@@ -76,17 +62,20 @@ legend {
   color: #204d74;
 }
 
-#acao-excluir a, .glyphicon-remove-sign {
+#acao-remover a, .glyphicon-remove-sign {
   color: #d9534f;
 }
 
-#acao-excluir a:hover {
+#acao-remover a:hover {
   color: #c9302c;
 }
 
-#acao-excluir a:active {
+#acao-remover a:active {
   color: #ac2925;
 }
-/**
- * </ Painel inicial >
- */
+/* </ Painel inicial > */
+
+/* < Alinhamento de alguns campos no formulário > */
+#motorista_cpf, #valor, #peso, #destinatario_cnpj {
+	text-align: right;
+}

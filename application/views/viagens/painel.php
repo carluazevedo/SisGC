@@ -1,6 +1,6 @@
 <?php $this->load->view('templates/navbar'); ?>
-<!-- Modal 'visualizar' markup -->
-<div class="modal fade bs-example-modal-lg" id="modal-visualizar" tabindex="-1" role="dialog" aria-labelledby="dicasModalVisualizar">
+<!-- Modal 'visualizar' -->
+<div class="modal fade bs-example-modal-lg" id="modal-visualizar" tabindex="-1" role="dialog" aria-labelledby="VisualizarViagem">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -18,29 +18,31 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<!-- /Modal 'visualizar' markup -->
+<!-- /Modal 'visualizar' -->
 
-<!-- Modal 'excluir' markup -->
-<div class="modal fade bs-example-modal-sm" id="modal-excluir" tabindex="-1" role="dialog" aria-labelledby="dicasModalExcluir">
+<!-- Modal 'remover' -->
+<div class="modal fade bs-example-modal-sm" id="modal-remover" tabindex="-1" role="dialog" aria-labelledby="RemoverViagem">
 	<div class="modal-dialog modal-sm" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title">
-					<small><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span></small> Excluir viagem
+					<small><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span></small> Remover viagem
 				</h4>
 			</div>
 			<div class="modal-body">
-				<p>Deseja realmente excluir esta viagem?</p>
+				<p>Deseja realmente remover esta viagem?</p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-				<button type="button" class="btn btn-danger" onclick="excluirViagem()">Excluir</button>
+				<form action="<?php echo site_url('viagens/remover'); ?>" method="post">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+					<button type="submit" class="btn btn-danger">Remover</button>
+				</form>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<!-- /Modal 'excluir' markup -->
+<!-- /Modal 'remover' -->
 <section>
 	<div class="container-fluid">
 		<div class="row">
@@ -84,8 +86,8 @@
 										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 									</a>
 								</td>
-								<td class="text-center danger" id="acao-excluir">
-									<a href="#" id="excluir" data-toggle="modal" data-target="#modal-excluir" title="Excluir">
+								<td class="text-center danger" id="acao-remover">
+									<a href="#" id="remover" data-toggle="modal" data-target="#modal-remover" title="Remover">
 										<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 									</a>
 								</td>
@@ -103,22 +105,3 @@
 		</div><!-- /.row -->
 	</div><!-- /.container-fluid -->
 </section>
-
-<script>
-	function inserirLinhaTabela() {
-		t_length = document.querySelector('tbody tr').childElementCount;
-		t_footer = document.querySelector('tfoot tr');
-
-		for (t = 0; t < t_length; t++) {
-			t_coluns = document.createElement('TD');
-			t_footer.appendChild(t_coluns);
-		}
-	}
-
-	function excluirViagem() {
-		location.href = '<?php echo site_url('viagens/excluir'); ?>';
-	}
-
-	/* Execução da função */
-	inserirLinhaTabela();
-</script>

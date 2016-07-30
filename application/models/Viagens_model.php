@@ -22,7 +22,7 @@ class Viagens_model extends CI_Model {
 		return $query->result_array();
 	}
 
-	public function cadastrar($tabela, $dados) {
+	public function registrar($tabela, $dados) {
 		$this->db->insert($tabela, $dados);
 
 		if ($this->db->affected_rows() == '1') {
@@ -32,15 +32,17 @@ class Viagens_model extends CI_Model {
 		return false;
 	}
 
-	/**
-	 * Funções para tratamento de exibição de dados
-	 */
+	public function remover($tabela, $id) {
+		$this->db->where();
+	}
+
+	/* < Funções para tratamento de exibição de dados > */
 	public function usuario_atual() {
 		$string = $this->session->userdata('identity');
+		$exploded = explode('@', $string);
+		$identidade = array_shift($exploded);
 
-		$identidade = explode('@', $string);
-
-		return $identidade[0];
+		return $identidade;
 	}
 
 	public function formata_data_mysql($data_mysql) {
