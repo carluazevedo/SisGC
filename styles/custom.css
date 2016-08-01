@@ -1,13 +1,20 @@
-/* body { padding-top: 40px; } */
+body {
+  padding-bottom: 51px;
+}
 
-/* < Erro de validação de formulário > */
-.custom-error {
-  color: #a94442;
+.page-header {
+	margin-top: 0;
+	margin-bottom: 10px;
 }
 
 /* < Decoração das legendas do formulário > */
 legend {
   border-bottom-color: #999;
+}
+
+/* < Erro de validação de formulário > */
+.custom-error {
+  color: #a94442;
 }
 
 /* < Painel de informações > */
@@ -22,60 +29,62 @@ legend {
 }
 
 .panel-default .info-link {
-  color: #FFF;
+  color: #fff;
   text-decoration: underline;
 }
 
 .panel-default .info-link:hover {
-  color: #BDBDBD;
+  color: #bdbdbd;
   text-decoration: none;
 }
-/* </ Painel de informações > */
-
-/* < Painel inicial > */
-#acao-editar, #acao-remover, #acao-visualizar {
-  width: 31px;
-  vertical-align: middle;
-}
-
-#acao-visualizar a, .glyphicon-eye-open {
-  color: #5cb85c;
-}
-
-#acao-visualizar a:hover {
-  color: #449d44;
-}
-
-#acao-visualizar a:active {
-  color: #398439;
-}
-
-#acao-editar a {
-  color: #337ab7;
-}
-
-#acao-editar a:hover {
-  color: #286090;
-}
-
-#acao-editar a:active {
-  color: #204d74;
-}
-
-#acao-remover a, .glyphicon-remove-sign {
-  color: #d9534f;
-}
-
-#acao-remover a:hover {
-  color: #c9302c;
-}
-
-#acao-remover a:active {
-  color: #ac2925;
-}
-/* </ Painel inicial > */
 
 /* < Alinhamento de alguns campos no formulário > */
 #motorista_cpf, #valor, #peso, #destinatario_cnpj {
-	text-align: right;
+  text-align: right;
+}
+
+/* < Barra de navegação do rodapé > */
+@media (min-width: 768px) {
+  #navbar-bottom .navbar-form {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  #navbar-bottom .btn {
+    width: 167px;
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 85px;
+	}
+
+  #navbar-bottom {
+    border: none
+  }
+
+	.navbar-form {
+	  border: none;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+/* < Painel inicial > */
+.modal .glyphicon-eye-open {
+  color: #5cb85c;
+}
+
+.modal .glyphicon-remove-sign {
+  color: #d9534f;
+}
+
+.table tbody>tr>td {
+  vertical-align: middle;
+}
+
+.table tbody>tr>td.acoes {
+  padding-right: 0;
+  padding-left: 0;
 }

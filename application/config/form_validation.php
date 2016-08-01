@@ -36,6 +36,36 @@ $config = array(
 		),
 		'registrar_saida' => array(
 				array(
+						'field' => 'dt_num',
+						'label' => '<strong>'.'Número DT'.'</strong>',
+						'rules' => 'required'
+				),
+				array(
+						'field' => 'motorista_cpf',
+						'label' => '<strong>'.'CPF'.'</strong>',
+						'rules' => 'required'
+				),
+				array(
+						'field' => 'placa_trator',
+						'label' => '<strong>'.'Trator'.'</strong>',
+						'rules' => 'required'
+				),
+				array(
+						'field' => 'placa_reboque_1',
+						'label' => '<strong>'.'Reboque 1'.'</strong>',
+						'rules' => 'required'
+				),
+				array(
+						'field' => 'transp_nome',
+						'label' => '<strong>'.'Nome'.'</strong>',
+						'rules' => 'required'
+				),
+				array(
+						'field' => 'operacao_nome',
+						'label' => '<strong>'.'Nome'.'</strong>',
+						'rules' => 'required'
+				),
+				array(
 						'field' => 'notas_fiscais',
 						'label' => '<strong>'.'Notas fiscais'.'</strong>',
 						'rules' => 'required'

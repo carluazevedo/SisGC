@@ -1,3 +1,13 @@
+$(document).ready(function() {
+	$('.acao-visualizar').click(function() {
+		$('#modal-visualizar').modal('toggle');
+	});
+
+	$('.acao-remover').click(function() {
+		$('#modal-remover').modal('toggle');
+	});
+});
+
 function inserirLinhaTabela() {
 	t_length = document.querySelector('tbody tr').childElementCount;
 	t_footer = document.querySelector('tfoot tr');
@@ -8,5 +18,20 @@ function inserirLinhaTabela() {
 	}
 }
 
-/* Função será executada quando o arquivo for carregado */
 inserirLinhaTabela();
+
+function editarViagem(elemento) {
+	location.href = location.href + '/editar/' + elemento.value;
+}
+
+function removerViagem(elemento) {
+	document.getElementsByTagName('button')['remover'].value = 'ok';
+	document.forms['remover-viagem'].setAttribute(
+			'method',
+			'post'
+	);
+	document.forms['remover-viagem'].setAttribute(
+			'action',
+			location.href + '/remover/' + elemento.value
+	);
+}

@@ -8,18 +8,12 @@ class Viagens_model extends CI_Model {
 		$this->load->database();
 	}
 
-	public function listar_obj($tabela, $colunas = '') {
+	public function listar($tabela, $colunas = '') {
 		$this->db->select($colunas);
 		$query = $this->db->get($tabela);
 
 		return $query->result();
-	}
-
-	public function listar_arr($tabela, $colunas = '') {
-		$this->db->select($colunas);
-		$query = $this->db->get($tabela);
-
-		return $query->result_array();
+		/* return $query->result_array(); */
 	}
 
 	public function registrar($tabela, $dados) {
@@ -32,8 +26,21 @@ class Viagens_model extends CI_Model {
 		return false;
 	}
 
+	public function buscar_registro($tabela, $id) {
+		$this->db->where('id', $id);
+		$query = $this->db->get($tabela);
+		return $query->result();
+	}
+
 	public function remover($tabela, $id) {
-		$this->db->where();
+		$this->db->where('id', $id);
+		$this->db->delete($tabela);
+
+		if ($this->db->affected_rows() == '1') {
+			return true;
+		}
+
+		return false;		
 	}
 
 	/* < Funções para tratamento de exibição de dados > */
@@ -49,7 +56,7 @@ class Viagens_model extends CI_Model {
 		if ($data_mysql == 0) {
 			return '-';
 		} else {
-			$data = date_format(date_create($data_mysql), 'd/m/Y H:i:s');
+			$data = date_format(date_create($data_mysql), 'd/m/Y H:i');
 			return $data;
 		}
 	}
