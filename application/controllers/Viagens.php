@@ -38,7 +38,7 @@ class Viagens extends CI_Controller {
 				'operacao_nome',
 				'operacao_unidade'
 		);
-		$data['registros'] = $this->viagens_model->listar('reg_viagens', $colunas);
+		$data['registros'] = $this->viagens_model->listar_registros('reg_viagens', $colunas);
 
 		/* Conclusão */
 		$this->load->view('templates/header', $data);
@@ -162,8 +162,8 @@ class Viagens extends CI_Controller {
 			$data['view'] = 'viagens/formulario';
 		}
 
-		$registro = $this->viagens_model->buscar_registro('reg_viagens', $id);
-		foreach ($registro as $reg) {
+		$reg = $this->viagens_model->buscar_registro('reg_viagens', $id);
+		if (isset($reg)) {
 			$data['status_viagem']        = $reg->status_viagem;
 			$data['entrada_data']         = $this->viagens_model->formata_data_mysql($reg->entrada_data);
 			$data['entrada_usuario']      = $reg->entrada_usuario;
@@ -211,11 +211,10 @@ class Viagens extends CI_Controller {
 		$data['id'] = $id;
 		
 		if ($this->input->post('remover') == 'ok' && $this->viagens_model->remover('reg_viagens', $id) == true) {
-			$data['retorno'] = 'Registro removido com sucesso.';
+			redirect('viagens');
 		} else {
 			$data['retorno'] = 'Falha ao remover registro.';
+			$this->load->view('viagens/remover', $data);
 		}
-
-		$this->load->view('viagens/remover', $data);
 	}
 }

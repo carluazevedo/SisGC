@@ -8,7 +8,7 @@ class Viagens_model extends CI_Model {
 		$this->load->database();
 	}
 
-	public function listar($tabela, $colunas = '') {
+	public function listar_registros($tabela, $colunas = '') {
 		$this->db->select($colunas);
 		$query = $this->db->get($tabela);
 
@@ -29,7 +29,8 @@ class Viagens_model extends CI_Model {
 	public function buscar_registro($tabela, $id) {
 		$this->db->where('id', $id);
 		$query = $this->db->get($tabela);
-		return $query->result();
+
+		return $query->row();
 	}
 
 	public function remover($tabela, $id) {
