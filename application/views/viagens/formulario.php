@@ -166,6 +166,36 @@
 					<fieldset id="entrega">
 						<legend>Entrega</legend>
 						<div class="form-group">
+							<label for="valor" class="col-sm-2 control-label">Valor total</label>
+							<div class="col-sm-3">
+								<input type="text" name="valor" id="valor" class="form-control input-sm" maxlength="14" value="<?php echo set_value('valor', $valor); ?>" />
+							</div>
+							<div class="col-sm-5 col-md-4 custom-error">
+								<?php echo form_error('valor'),PHP_EOL; ?>
+							</div>
+						</div><!-- /.form-group -->
+
+						<div class="form-group">
+							<label for="peso" class="col-sm-2 control-label">Peso total</label>
+							<div class="col-sm-3">
+								<input type="text" name="peso" id="peso" class="form-control input-sm" maxlength="15" value="<?php echo set_value('peso', $peso); ?>" />
+							</div>
+							<div class="col-sm-5 col-md-4 custom-error">
+								<?php echo form_error('peso'),PHP_EOL; ?>
+							</div>
+						</div><!-- /.form-group -->
+
+						<div class="form-group">
+							<label for="notas_fiscais" class="col-sm-2 control-label">Notas fiscais</label>
+							<div class="col-sm-3">
+								<input type="text" name="notas_fiscais" id="notas_fiscais" class="form-control input-sm" value="<?php echo set_value('notas_fiscais', $notas_fiscais); ?>" />
+							</div>
+							<div class="col-sm-5 col-md-4 custom-error">
+								<?php echo form_error('notas_fiscais'),PHP_EOL; ?>
+							</div>
+						</div><!-- /.form-group -->
+
+						<div class="form-group">
 							<label for="entrega_tipo" class="col-sm-2 control-label">Tipo de entrega</label>
 							<div class="col-sm-3">
 								<select name="entrega_tipo" class="form-control input-sm">
@@ -187,36 +217,6 @@
 									<option value="foods" <?php echo set_select('mercadoria_tipo', 'foods', $foods); ?>>FOODS</option>
 									<option value="hpc_foods" <?php echo set_select('mercadoria_tipo', 'hpc_foods', $hpc_foods); ?>>HPC/FOODS</option>
 								</select>
-							</div>
-						</div><!-- /.form-group -->
-
-						<div class="form-group">
-							<label for="notas_fiscais" class="col-sm-2 control-label">Notas fiscais</label>
-							<div class="col-sm-3">
-								<input type="text" name="notas_fiscais" id="notas_fiscais" class="form-control input-sm" value="<?php echo set_value('notas_fiscais', $notas_fiscais); ?>" />
-							</div>
-							<div class="col-sm-5 col-md-4 custom-error">
-								<?php echo form_error('notas_fiscais'),PHP_EOL; ?>
-							</div>
-						</div><!-- /.form-group -->
-
-						<div class="form-group">
-							<label for="valor" class="col-sm-2 control-label">Valor total</label>
-							<div class="col-sm-3">
-								<input type="text" name="valor" id="valor" class="form-control input-sm" maxlength="14" value="<?php echo set_value('valor', $valor); ?>" />
-							</div>
-							<div class="col-sm-5 col-md-4 custom-error">
-								<?php echo form_error('valor'),PHP_EOL; ?>
-							</div>
-						</div><!-- /.form-group -->
-
-						<div class="form-group">
-							<label for="peso" class="col-sm-2 control-label">Peso total</label>
-							<div class="col-sm-3">
-								<input type="text" name="peso" id="peso" class="form-control input-sm" maxlength="15" value="<?php echo set_value('peso', $peso); ?>" />
-							</div>
-							<div class="col-sm-5 col-md-4 custom-error">
-								<?php echo form_error('peso'),PHP_EOL; ?>
 							</div>
 						</div><!-- /.form-group -->
 					</fieldset><!-- Entrega -->
@@ -264,8 +264,7 @@
 						</div><!-- /.form-group -->
 					</fieldset><!-- Informações adicionais -->
 
-					<!--
-					<div class="form-group row">
+					<!-- <div class="form-group row">
 						<label class="control-label sr-only">Registrar</label>
 						<div class="col-sm-offset-2 col-sm-3 col-md-2">
 							<button type="submit" name="registrar" value="ok" class="btn btn-success form-control">
@@ -277,8 +276,7 @@
 								<small><span class="glyphicon glyphicon-arrow-left"></span></small> Voltar
 							</button>
 						</div>
-					</div><!-- /.form-group
-					-->
+					</div><!-- /.form-group -->
 				<?php echo form_close('<!-- .form-horizontal -->').PHP_EOL; ?>
 			</div><!-- /.col-sm-12 -->
 		</div><!-- /.row -->
@@ -287,8 +285,12 @@
 <nav id="navbar-bottom" class="navbar navbar-inverse navbar-fixed-bottom">
 	<div class="container-fluid">
 		<div class="navbar-form navbar-left">
-			<button type="submit" name="registrar" value="ok" class="btn btn-success form-control" form="registro">
-				<small><span class="glyphicon glyphicon-plus"></span></small> <?php echo (isset($operacao) && $operacao == 'editar') ? 'Gravar' : 'Registrar' ; ?>
+			<button type="submit" class="btn btn-success form-control" form="registro" value="ok" name="<?php echo (isset($operacao) && $operacao == 'editar') ? 'gravar' : 'registrar' ; ?>">
+			<?php if (isset($operacao) && $operacao == 'editar') : ?>
+				<small><span class="glyphicon glyphicon-ok"></span></small> Gravar
+			<?php else : ?>
+				<small><span class="glyphicon glyphicon-plus"></span></small> Registrar
+			<?php endif; ?>
 			</button>
 			<button type="button" class="btn btn-primary form-control" onclick="location.href='<?php echo site_url('viagens'); ?>'">
 				<small><span class="glyphicon glyphicon-arrow-left"></span></small> Voltar
@@ -296,3 +298,4 @@
 		</div>
 	</div>
 </nav>
+<!-- <?php print_r($_POST); ?> -->

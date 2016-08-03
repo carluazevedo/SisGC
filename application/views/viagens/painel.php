@@ -82,7 +82,7 @@
 									<td><?php echo $reg->placa_trator; ?></td>
 									<td><?php echo $reg->placa_reboque_1; ?></td>
 									<td><?php echo $reg->transp_nome; ?></td>
-									<td><?php echo $reg->operacao_nome.' - '.$reg->operacao_unidade; ?></td>
+									<td><?php echo $reg->operacao_nome, ($reg->operacao_unidade != '') ? ' - '.$reg->operacao_unidade : '' ; ?></td>
 									<td class="acoes">
 										<button type="button" class="btn btn-sm btn-success acao-visualizar" title="Visualizar">
 											<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
