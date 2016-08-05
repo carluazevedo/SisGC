@@ -16,6 +16,13 @@
 		else :
 			echo PHP_EOL;
 		endif;
+
+		if (isset($scripts_footer)) :
+			$this->load->view($scripts_footer);
+			echo PHP_EOL;
+		else :
+			echo PHP_EOL;
+		endif;
 		?>
 	</body>
 </html>

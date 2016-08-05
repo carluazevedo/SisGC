@@ -64,6 +64,14 @@
 				</div><!-- /.panel-default -->
 				<?php endif; ?>
 
+				<?php if ($this->session->flashdata('reg_sucesso') != null) : ?>
+				<!-- Alerta de sucesso ao registrar viagem -->
+				<div class="alert alert-success alert-dismissible fade in" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<?php echo $this->session->flashdata('reg_sucesso'); ?>
+				</div>
+				<?php endif; ?>
+
 				<!-- Formulário de registro -->
 				<?php echo form_open('', array('class' => 'form-horizontal','id' => 'registro' ,'onsubmit' => 'converterCaixaAlta()')); ?>
 					<fieldset id="dt">
@@ -231,12 +239,12 @@
 
 							<label for="destinatario_nome" class="control-label sr-only">Nome</label>
 							<div class="col-sm-3">
-								<input type="text" name="destinatario_nome" id="destinatario_nome" class="form-control input-sm" placeholder="Nome" readonly value="<?php echo set_value('destinatario_nome', $destinatario_nome); ?>" />
+								<input type="text" name="destinatario_nome" id="destinatario_nome" class="form-control input-sm" placeholder="Nome" value="<?php echo set_value('destinatario_nome', $destinatario_nome); ?>" /><!-- readonly -->
 							</div>
 
 							<label for="destinatario_unidade" class="control-label sr-only">Unidade</label>
 							<div class="col-sm-3">
-								<input type="text" name="destinatario_unidade" id="destinatario_unidade" class="form-control input-sm" placeholder="Unidade" readonly value="<?php echo set_value('destinatario_unidade', $destinatario_unidade); ?>" />
+								<input type="text" name="destinatario_unidade" id="destinatario_unidade" class="form-control input-sm" placeholder="Unidade" value="<?php echo set_value('destinatario_unidade', $destinatario_unidade); ?>" /><!-- readonly -->
 							</div>
 							<div class="col-sm-offset-2 col-sm-5 col-md-4 custom-error">
 								<?php echo form_error('destinatario_cnpj'),PHP_EOL; ?>
@@ -247,9 +255,6 @@
 							<label for="rota" class="col-sm-2 control-label">Rota</label>
 							<div class="col-sm-3">
 								<input type="text" name="rota" id="rota" class="form-control input-sm" value="<?php echo set_value('rota', $rota); ?>" />
-							</div>
-							<div class="col-sm-5 col-md-4 custom-error">
-								<?php echo form_error('rota'),PHP_EOL; ?>
 							</div>
 						</div><!-- /.form-group -->
 					</fieldset><!-- Destinatário -->
@@ -282,7 +287,7 @@
 		</div><!-- /.row -->
 	</div><!-- /.container-fluid -->
 </section>
-<nav id="navbar-bottom" class="navbar navbar-inverse navbar-fixed-bottom">
+<nav id="navbar-bottom" class="navbar navbar-inverse navbar-static-bottom">
 	<div class="container-fluid">
 		<div class="navbar-form navbar-left">
 			<button type="submit" class="btn btn-success form-control" form="registro" value="ok" name="<?php echo (isset($operacao) && $operacao == 'editar') ? 'gravar' : 'registrar' ; ?>">
@@ -298,4 +303,3 @@
 		</div>
 	</div>
 </nav>
-<!-- <?php print_r($_POST); ?> -->

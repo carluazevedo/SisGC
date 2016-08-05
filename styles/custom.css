@@ -1,6 +1,8 @@
+/*
 body {
   padding-bottom: 51px;
 }
+*/
 
 .page-header {
 	margin-top: 0;
@@ -56,9 +58,11 @@ legend {
 }
 
 @media (max-width: 767px) {
-  body {
+/*
+	body {
     padding-bottom: 85px;
 	}
+*/
 
   #navbar-bottom {
     border: none

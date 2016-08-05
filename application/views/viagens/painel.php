@@ -10,7 +10,12 @@
 				</h4>
 			</div>
 			<div class="modal-body">
-				<p></p>
+			<?php
+				$data['registros'] = $this->viagens_model->buscar_registro('reg_viagens', 14);
+				if (isset($data['registros'])) {
+					$this->load->view('viagens/visualizar', $data);
+				}
+			?>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
@@ -35,8 +40,8 @@
 			</div>
 			<div class="modal-footer">
 				<form id="remover-viagem"></form>
-				<button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
 				<button type="submit" class="btn btn-danger" id="remover" name="remover" form="remover-viagem">Remover</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
@@ -84,7 +89,7 @@
 									<td><?php echo $reg->transp_nome; ?></td>
 									<td><?php echo $reg->operacao_nome, ($reg->operacao_unidade != '') ? ' - '.$reg->operacao_unidade : '' ; ?></td>
 									<td class="acoes">
-										<button type="button" class="btn btn-sm btn-success acao-visualizar" title="Visualizar">
+										<button type="button" class="btn btn-sm btn-success acao-visualizar" title="Visualizar" value="<?php echo $reg->id; ?>">
 											<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 										</button>
 									</td>

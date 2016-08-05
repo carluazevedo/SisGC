@@ -84,11 +84,6 @@ $config = array(
 						'field' => 'destinatario_cnpj',
 						'label' => '<strong>'.'CNPJ'.'</strong>',
 						'rules' => 'required'
-				),
-				array(
-						'field' => 'rota',
-						'label' => '<strong>'.'Rota'.'</strong>',
-						'rules' => 'required'
 				)
 		)
 );

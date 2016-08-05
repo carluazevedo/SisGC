@@ -1,3 +1,4 @@
+<script>
 $(document).ready(function() {
 	$('.acao-visualizar').click(function() {
 		$('#modal-visualizar').modal('toggle');
@@ -21,7 +22,7 @@ function inserirLinhaTabela() {
 inserirLinhaTabela();
 
 function editarViagem(elemento) {
-	location.href = location.href + '/editar/' + elemento.value;
+	location.href = '<?php echo html_entity_decode(site_url('viagens&#47;editar&#47;')); ?>' + elemento.value;
 }
 
 function removerViagem(elemento) {
@@ -32,6 +33,7 @@ function removerViagem(elemento) {
 	);
 	document.forms['remover-viagem'].setAttribute(
 			'action',
-			location.href + '/remover/' + elemento.value
+			'<?php echo html_entity_decode(site_url('viagens&#47;remover&#47;')); ?>' + elemento.value
 	);
 }
+</script>

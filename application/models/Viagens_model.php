@@ -84,6 +84,16 @@ class Viagens_model extends CI_Model {
 		}
 	}
 
+	public function ultimo_id() {
+		if ($this->db->insert_id() != 0) {
+			return $this->db->insert_id();
+		} else {
+			$query = $this->db->query('SELECT LAST_INSERT_ID()');
+			$row = $query->row_array();
+			return $row['LAST_INSERT_ID()'];
+		}
+	}
+
 	/* Funções para exibição dos dados no formulário */
 	public function inicializar_valores() {
 		$valores_em_branco = array(

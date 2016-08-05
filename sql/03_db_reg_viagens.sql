@@ -7,7 +7,7 @@
 #
 
 CREATE TABLE IF NOT EXISTS `reg_viagens` (
-	`id` int(8) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+	`id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'ID',
 	`status_viagem` tinyint(1) NOT NULL COMMENT 'STATUS',
 	`entrada_data` datetime NOT NULL COMMENT 'DATA ENTRADA',
 	`entrada_usuario` varchar(64) NOT NULL COMMENT 'USUÁRIO ENTRADA',
@@ -18,9 +18,9 @@ CREATE TABLE IF NOT EXISTS `reg_viagens` (
 	`dt_num` varchar(64) NOT NULL COMMENT 'NÚMERO DT',
 	`motorista_cpf` varchar(14) NOT NULL COMMENT 'CPF',
 	`motorista_nome` varchar(128) NOT NULL COMMENT 'MOTORISTA',
-	`placa_trator` varchar(7) NOT NULL COMMENT 'TRATOR',
-	`placa_reboque_1` varchar(7) NOT NULL COMMENT 'REBOQUE 1',
-	`placa_reboque_2` varchar(7) DEFAULT NULL COMMENT 'REBOQUE 2',
+	`placa_trator` varchar(8) NOT NULL COMMENT 'TRATOR',
+	`placa_reboque_1` varchar(8) NOT NULL COMMENT 'REBOQUE 1',
+	`placa_reboque_2` varchar(8) DEFAULT NULL COMMENT 'REBOQUE 2',
 	`transp_nome` varchar(128) NOT NULL COMMENT 'TRANSPORTADORA',
 	`transp_unidade` varchar(64) NOT NULL COMMENT 'UNIDADE',
 	`operacao_nome` varchar(128) NOT NULL COMMENT 'ORIGEM',

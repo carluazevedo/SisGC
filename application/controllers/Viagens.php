@@ -21,7 +21,7 @@ class Viagens extends CI_Controller {
 		/* Informações para 'view' */
 		$data['titulo_pagina'] = 'Viagens registradas';
 		/* Informações para 'footer.php' */
-		$data['incluir_footer'] = array('<script src="'.base_url('scripts/assets_painel.js').'"></script>');
+		$data['scripts_footer'] = 'viagens/painel_scripts';
 		/* Lógica do controlador */
 		$colunas = array(
 			'id',
@@ -39,7 +39,7 @@ class Viagens extends CI_Controller {
 		$data['registros'] = $this->viagens_model->listar_registros('reg_viagens', $colunas);
 		/* Conclusão */
 		$this->load->view('templates/header', $data);
-		$this->load->view('templates/footer');
+		$this->load->view('templates/footer', $data);
 	}
 
 	public function registrar()
@@ -52,10 +52,8 @@ class Viagens extends CI_Controller {
 		$data['nav_registrar'] = true;
 		$data['operacao']      = 'registrar';
 		/* Informações para 'footer.php' */
-		$data['incluir_footer'] = array(
-			'<script src="'.base_url('scripts/jquery-mask/jquery.mask.min.js').'"></script>',
-			'<script src="'.base_url('scripts/assets_formulario.js').'"></script>'
-		);
+		$data['incluir_footer'] = array('<script src="'.base_url('scripts/jquery-mask/jquery.mask.min.js').'"></script>');
+		$data['scripts_footer'] = 'viagens/formulario_scripts';
 		/* Lógica do controlador */
 		/* ->Inicialização dos valores dos campos */
 		$dados = $this->viagens_model->inicializar_valores();
@@ -103,7 +101,9 @@ class Viagens extends CI_Controller {
 				'observacoes'          => $this->input->post('observacoes')
 			);
 			if ($this->input->post('registrar') == 'ok' && $this->viagens_model->registrar('reg_viagens', $dados_viagem) == true) :
-				redirect('viagens');
+				$this->session->set_flashdata('reg_sucesso', 'Viagem registrada com sucesso.');
+				$ultimo_id = $this->viagens_model->ultimo_id();
+				redirect('viagens/editar/'.$ultimo_id);
 			else :
 				$data['view'] = 'viagens/formulario';
 			endif;
@@ -123,10 +123,8 @@ class Viagens extends CI_Controller {
 		$data['titulo_pagina'] = 'Editar viagem';
 		$data['operacao']      = 'editar';
 		/* Informações para 'footer.php' */
-		$data['incluir_footer'] = array(
-			'<script src="'.base_url('scripts/jquery-mask/jquery.mask.min.js').'"></script>',
-			'<script src="'.base_url('scripts/assets_formulario.js').'"></script>'
-		);
+		$data['incluir_footer'] = array('<script src="'.base_url('scripts/jquery-mask/jquery.mask.min.js').'"></script>',);
+		$data['scripts_footer'] = 'viagens/formulario_scripts';
 		/* Lógica do controlador */
 		/* ->Preenchimento dos valores dos campos */
 		$dados = $this->viagens_model->preencher_valores('reg_viagens', $id);
@@ -179,6 +177,14 @@ class Viagens extends CI_Controller {
 		/* Conclusão */
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/footer');
+	}
+
+	public function visualizar($id = '')
+	{
+		$data['registros'] = $this->viagens_model->buscar_registro('reg_viagens', $id);
+		if (isset($data['registros'])) {
+			$this->load->view('viagens/visualizar', $data);
+		}
 	}
 
 	public function remover($id = '')
