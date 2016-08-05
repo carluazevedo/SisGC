@@ -107,9 +107,9 @@ class Viagens_model extends CI_Model {
 			'transp_unidade'       => '',
 			'operacao_nome'        => '',
 			'operacao_unidade'     => '',
+			'notas_fiscais'        => '',
 			'valor'                => '000',
 			'peso'                 => '0000',
-			'notas_fiscais'        => '',
 			'ent_unic'             => '',
 			'ent_frac'             => '',
 			'transfer'             => '',
@@ -129,6 +129,7 @@ class Viagens_model extends CI_Model {
 	public function preencher_valores($tabela, $id) {
 		$valores = $this->buscar_registro($tabela, $id);
 		if (isset($valores)) {
+			$valores_preenchidos['id']                   = $valores->id;
 			$valores_preenchidos['status_viagem']        = $valores->status_viagem;
 			$valores_preenchidos['entrada_data']         = $this->formata_data_mysql($valores->entrada_data);
 			$valores_preenchidos['entrada_usuario']      = $valores->entrada_usuario;
@@ -146,9 +147,9 @@ class Viagens_model extends CI_Model {
 			$valores_preenchidos['transp_unidade']       = $valores->transp_unidade;
 			$valores_preenchidos['operacao_nome']        = $valores->operacao_nome;
 			$valores_preenchidos['operacao_unidade']     = $valores->operacao_unidade;
+			$valores_preenchidos['notas_fiscais']        = $valores->notas_fiscais;
 			$valores_preenchidos['valor']                = $valores->valor;
 			$valores_preenchidos['peso']                 = $valores->peso;
-			$valores_preenchidos['notas_fiscais']        = $valores->notas_fiscais;
 			$valores_preenchidos['ent_unic']             = ($valores->entrega_tipo == 'ent_unic') ? true : '' ;
 			$valores_preenchidos['ent_frac']             = ($valores->entrega_tipo == 'ent_frac') ? true : '' ;
 			$valores_preenchidos['transfer']             = ($valores->entrega_tipo == 'transfer') ? true : '' ;

@@ -64,11 +64,21 @@
 				</div><!-- /.panel-default -->
 				<?php endif; ?>
 
-				<?php if ($this->session->flashdata('reg_sucesso') != null) : ?>
-				<!-- Alerta de sucesso ao registrar viagem -->
+				<?php if ($this->session->flashdata('sucesso') != null) : ?>
 				<div class="alert alert-success alert-dismissible fade in" role="alert">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-					<?php echo $this->session->flashdata('reg_sucesso'); ?>
+					<span class="glyphicon glyphicon-ok-sign"></span> <?php echo $this->session->flashdata('sucesso'); ?>
+					<button class="btn btn-xs btn-success" onclick="location.href='<?php echo site_url('viagens'); ?>'">
+						<small><span class="glyphicon glyphicon-arrow-left"></span></small> Voltar
+					</button>
+				</div>
+				<?php elseif ($this->session->flashdata('erro') != null) : ?>
+				<div class="alert alert-warning alert-dismissible fade in" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<span class="glyphicon glyphicon-alert"></span> <?php echo $this->session->flashdata('erro'); ?>
+					<button class="btn btn-xs btn-warning" onclick="location.href='<?php echo site_url('viagens'); ?>'">
+						<small><span class="glyphicon glyphicon-arrow-left"></span></small> Voltar
+					</button>
 				</div>
 				<?php endif; ?>
 
@@ -174,6 +184,16 @@
 					<fieldset id="entrega">
 						<legend>Entrega</legend>
 						<div class="form-group">
+							<label for="notas_fiscais" class="col-sm-2 control-label">Notas fiscais</label>
+							<div class="col-sm-3">
+								<input type="text" name="notas_fiscais" id="notas_fiscais" class="form-control input-sm" value="<?php echo set_value('notas_fiscais', $notas_fiscais); ?>" />
+							</div>
+							<div class="col-sm-5 col-md-4 custom-error">
+								<?php echo form_error('notas_fiscais'),PHP_EOL; ?>
+							</div>
+						</div><!-- /.form-group -->
+
+						<div class="form-group">
 							<label for="valor" class="col-sm-2 control-label">Valor total</label>
 							<div class="col-sm-3">
 								<input type="text" name="valor" id="valor" class="form-control input-sm" maxlength="14" value="<?php echo set_value('valor', $valor); ?>" />
@@ -190,16 +210,6 @@
 							</div>
 							<div class="col-sm-5 col-md-4 custom-error">
 								<?php echo form_error('peso'),PHP_EOL; ?>
-							</div>
-						</div><!-- /.form-group -->
-
-						<div class="form-group">
-							<label for="notas_fiscais" class="col-sm-2 control-label">Notas fiscais</label>
-							<div class="col-sm-3">
-								<input type="text" name="notas_fiscais" id="notas_fiscais" class="form-control input-sm" value="<?php echo set_value('notas_fiscais', $notas_fiscais); ?>" />
-							</div>
-							<div class="col-sm-5 col-md-4 custom-error">
-								<?php echo form_error('notas_fiscais'),PHP_EOL; ?>
 							</div>
 						</div><!-- /.form-group -->
 
@@ -287,16 +297,21 @@
 		</div><!-- /.row -->
 	</div><!-- /.container-fluid -->
 </section>
-<nav id="navbar-bottom" class="navbar navbar-inverse navbar-static-bottom">
+<nav id="navbar-bottom" class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-form navbar-left">
-			<button type="submit" class="btn btn-success form-control" form="registro" value="ok" name="<?php echo (isset($operacao) && $operacao == 'editar') ? 'gravar' : 'registrar' ; ?>">
-			<?php if (isset($operacao) && $operacao == 'editar') : ?>
+			<button type="submit" class="btn btn-success form-control" id="registro" form="registro" name="registrar" value="ok">
+				<?php if (isset($operacao) && $operacao == 'editar') : ?>
 				<small><span class="glyphicon glyphicon-ok"></span></small> Gravar
-			<?php else : ?>
+				<?php else : ?>
 				<small><span class="glyphicon glyphicon-plus"></span></small> Registrar
-			<?php endif; ?>
+				<?php endif; ?>
 			</button>
+			<?php if (isset($operacao) && $operacao == 'editar') : ?>
+			<button type="submit" class="btn btn-success form-control" form="registro" name="finalizar" value="ok"> <!-- formmethod="post" formaction="<?php #echo site_url('viagens/finalizar/'.$id); ?>" -->
+				<small><span class="glyphicon glyphicon-save"></span></small> Finalizar
+			</button>
+			<?php endif; ?>
 			<button type="button" class="btn btn-primary form-control" onclick="location.href='<?php echo site_url('viagens'); ?>'">
 				<small><span class="glyphicon glyphicon-arrow-left"></span></small> Voltar
 			</button>

@@ -8,8 +8,12 @@ $(document).ready(function(){
 	$('#destinatario_cnpj').tooltip();
 });
 
-var i_text = document.querySelectorAll('input[type=text]');
+<?php if (isset($operacao) && $operacao == 'editar') :  ?>
+document.getElementsByTagName('button')['registro'].name = 'gravar';
+document.getElementsByTagName('button')['registro'].setAttribute('class', 'btn btn-info form-control');
+<?php endif; ?>
 
+var i_text = document.querySelectorAll('input[type=text]');
 function converterCaixaAlta() {
 	for (i = 0; i < i_text.length; i++) {
 		i_text[i].value = i_text[i].value.toUpperCase();

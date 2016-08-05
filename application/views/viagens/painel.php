@@ -55,6 +55,13 @@
 				<div class="page-header">
 					<h1><?php echo $titulo_pagina; ?></h1>
 				</div>
+				<?php if ($this->session->flashdata('remover_sucesso') != null) : ?>
+				<!-- Alerta de sucesso -->
+				<div class="alert alert-success alert-dismissible fade in" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+					<span class="glyphicon glyphicon-ok-sign"></span> <?php echo $this->session->flashdata('remover_sucesso'); ?>
+				</div>
+				<?php endif; ?>
 				<div class="table-responsive">
 					<table class="table table-condensed table-hover"><!-- table-bordered -->
 						<thead>
