@@ -169,22 +169,25 @@ class Viagens extends CI_Controller {
 				);
 				if ($this->viagens_model->editar_registro('reg_viagens', $id, $dados_viagem) == true) {
 					$this->session->set_flashdata('sucesso', 'Viagem alterada com sucesso.');
-					$data['view'] = 'viagens/formulario';
+					redirect('viagens/editar/'.$id);
 				} elseif ($this->viagens_model->editar_registro('reg_viagens', $id, $dados_viagem) == false) {
 					$this->session->set_flashdata('erro', 'Não houve alterações no registro.');
-					$data['view'] = 'viagens/formulario';
+					redirect('viagens/editar/'.$id);
 				}
 			}
 		} elseif ($this->input->post('finalizar') == 'ok') {
-			if ($this->form_validation->run('registrar_saida') == false) {
+			if ($data['status_viagem'] == 2) {
+				$this->session->set_flashdata('erro', 'Viagem já finalizada.');
+				redirect('viagens/editar/'.$id);
+			} elseif ($this->form_validation->run('registrar_saida') == false) {
 				$data['view'] = 'viagens/formulario';
 			} else {
 				$str_search = array('.', ',');
 				$str_replace = array('', '.');
 				$dados_viagem = array(
 					'status_viagem'        => 2,
-					'saida_data'         => date('Y-m-d H:i:s'),
-					'saida_usuario'      => $this->viagens_model->usuario_atual(),
+					'saida_data'           => date('Y-m-d H:i:s'),
+					'saida_usuario'        => $this->viagens_model->usuario_atual(),
 					'carga_risco'          => $this->input->post('carga_risco'),
 					'carga_escolta'        => $this->input->post('carga_escolta'),
 					'dt_num'               => $this->input->post('dt_num'),
@@ -210,10 +213,10 @@ class Viagens extends CI_Controller {
 				);
 				if ($this->viagens_model->editar_registro('reg_viagens', $id, $dados_viagem) == true) {
 					$this->session->set_flashdata('sucesso', 'Viagem finalizada com sucesso.');
-					$data['view'] = 'viagens/formulario';
+					redirect('viagens/editar/'.$id);
 				} elseif ($this->viagens_model->editar_registro('reg_viagens', $id, $dados_viagem) == false) {
 					$this->session->set_flashdata('erro', 'Viagem não finalizada.');
-					$data['view'] = 'viagens/formulario';
+					redirect('viagens/editar/'.$id);
 				}
 			}
 		}

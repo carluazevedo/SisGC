@@ -308,7 +308,7 @@
 				<?php endif; ?>
 			</button>
 			<?php if (isset($operacao) && $operacao == 'editar') : ?>
-			<button type="submit" class="btn btn-success form-control" form="registro" name="finalizar" value="ok"> <!-- formmethod="post" formaction="<?php #echo site_url('viagens/finalizar/'.$id); ?>" -->
+			<button type="submit" class="btn btn-success form-control" form="registro" name="finalizar" value="ok">
 				<small><span class="glyphicon glyphicon-save"></span></small> Finalizar
 			</button>
 			<?php endif; ?>

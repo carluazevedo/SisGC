@@ -8,25 +8,26 @@ class Viagens_model extends CI_Model {
 		$this->load->database();
 	}
 
-	public function listar_registros($tabela, $colunas = '') {
-		$this->db->select($colunas);
-		$query = $this->db->get($tabela);
-		return $query->result();
-		/* return $query->result_array(); */
-	}
-
-	public function buscar_registro($tabela, $id) {
-		$this->db->where('id', $id);
-		$query = $this->db->get($tabela);
-		return $query->row();
-	}
-
 	public function registrar($tabela, $dados) {
 		$this->db->insert($tabela, $dados);
 		if ($this->db->affected_rows() == '1') {
 			return true;
 		}
 		return false;
+	}
+
+	public function listar_registros($tabela, $campos = '') {
+		$this->db->select($campos);
+		$query = $this->db->get($tabela);
+		return $query->result();
+		#return $query->result_array();
+	}
+
+	public function buscar_registro($tabela, $id, $campos = '') {
+		$this->db->select($campos);
+		$this->db->where('id', $id);
+		$query = $this->db->get($tabela);
+		return $query->row();
 	}
 
 	public function editar_registro($tabela, $id, $dados) {
