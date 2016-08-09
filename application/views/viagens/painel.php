@@ -11,7 +11,7 @@
 			</div>
 			<div class="modal-body">
 			<?php
-				$data['registros'] = $this->viagens_model->buscar_registro('reg_viagens', 14);
+				$data['registros'] = $this->viagens_model->buscar_registro('reg_viagens', 1);
 				if (isset($data['registros'])) {
 					$this->load->view('viagens/visualizar', $data);
 				}
@@ -55,11 +55,11 @@
 				<div class="page-header">
 					<h1><?php echo $titulo_pagina; ?></h1>
 				</div>
-				<?php if ($this->session->flashdata('remover_sucesso') != null) : ?>
+				<?php if ($this->session->flashdata('sucesso') != null) : ?>
 				<!-- Alerta de sucesso -->
 				<div class="alert alert-success alert-dismissible fade in" role="alert">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-					<span class="glyphicon glyphicon-ok-sign"></span> <?php echo $this->session->flashdata('remover_sucesso'); ?>
+					<span class="glyphicon glyphicon-ok-sign"></span> <?php echo $this->session->flashdata('sucesso'); ?>
 				</div>
 				<?php endif; ?>
 				<div class="table-responsive">

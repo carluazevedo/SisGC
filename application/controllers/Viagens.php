@@ -232,7 +232,7 @@ class Viagens extends CI_Controller {
 	public function remover($id)
 	{
 		if ($this->input->post('remover') == 'ok' && $this->viagens_model->remover('reg_viagens', $id) == true) :
-			$this->session->set_flashdata('remover_sucesso', 'Viagem removida com sucesso.');
+			$this->session->set_flashdata('sucesso', 'Viagem removida com sucesso.');
 			redirect('viagens');
 		else :
 			show_404('', FALSE);

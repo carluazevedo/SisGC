@@ -73,7 +73,10 @@ $config = array(
 				array(
 						'field' => 'valor',
 						'label' => '<strong>'.'Valor total'.'</strong>',
-						'rules' => 'required|regex_match[/[^0,00]/]'
+						'rules' => 'required|regex_match[/[^0,00]/]',
+						'errors' => array(
+								'regex_match' => "Informe um <strong>valor</strong> maior que <strong>'0,00'</strong>."
+						)
 				),
 				array(
 						'field' => 'peso',
