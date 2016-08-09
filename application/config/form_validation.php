@@ -73,12 +73,28 @@ $config = array(
 				array(
 						'field' => 'valor',
 						'label' => '<strong>'.'Valor total'.'</strong>',
-						'rules' => 'required'
+						'rules' => 'required|regex_match[/[^0,00]/]'
 				),
 				array(
 						'field' => 'peso',
 						'label' => '<strong>'.'Peso total'.'</strong>',
 						'rules' => 'required'
+				),
+				array(
+						'field' => 'entrega_tipo',
+						'label' => '<strong>'.'Tipo de entrega'.'</strong>',
+						'rules' => 'required',
+						'errors' => array(
+								'required' => 'Selecione o %s.'
+						)
+				),
+				array(
+						'field' => 'mercadoria_tipo',
+						'label' => '<strong>'.'Tipo de mercadoria'.'</strong>',
+						'rules' => 'required',
+						'errors' => array(
+								'required' => 'Selecione o %s.'
+						)
 				),
 				array(
 						'field' => 'destinatario_cnpj',

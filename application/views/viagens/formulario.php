@@ -224,6 +224,9 @@
 									<option value="circ_est" <?php echo set_select('entrega_tipo', 'circ_est', $circ_est); ?>>CIRCUITO ESTÁTICO</option>
 								</select>
 							</div>
+							<div class="col-sm-5 col-md-4 custom-error">
+								<?php echo form_error('entrega_tipo'),PHP_EOL; ?>
+							</div>
 						</div><!-- /.form-group -->
 
 						<div class="form-group">
@@ -235,6 +238,9 @@
 									<option value="foods" <?php echo set_select('mercadoria_tipo', 'foods', $foods); ?>>FOODS</option>
 									<option value="hpc_foods" <?php echo set_select('mercadoria_tipo', 'hpc_foods', $hpc_foods); ?>>HPC/FOODS</option>
 								</select>
+							</div>
+							<div class="col-sm-5 col-md-4 custom-error">
+								<?php echo form_error('mercadoria_tipo'),PHP_EOL; ?>
 							</div>
 						</div><!-- /.form-group -->
 					</fieldset><!-- Entrega -->

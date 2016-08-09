@@ -144,8 +144,6 @@ class Viagens extends CI_Controller {
 				$str_search = array('.', ',');
 				$str_replace = array('', '.');
 				$dados_viagem = array(
-					'carga_risco'          => $this->input->post('carga_risco'),
-					'carga_escolta'        => $this->input->post('carga_escolta'),
 					'dt_num'               => $this->input->post('dt_num'),
 					'motorista_cpf'        => $this->input->post('motorista_cpf'),
 					'motorista_nome'       => $this->input->post('motorista_nome'),
@@ -171,13 +169,13 @@ class Viagens extends CI_Controller {
 					$this->session->set_flashdata('sucesso', 'Viagem alterada com sucesso.');
 					redirect('viagens/editar/'.$id);
 				} elseif ($this->viagens_model->editar_registro('reg_viagens', $id, $dados_viagem) == false) {
-					$this->session->set_flashdata('erro', 'Não houve alterações no registro.');
+					$this->session->set_flashdata('erro', '<strong>Atenção:</strong> Não houve alterações no registro.');
 					redirect('viagens/editar/'.$id);
 				}
 			}
 		} elseif ($this->input->post('finalizar') == 'ok') {
 			if ($data['status_viagem'] == 2) {
-				$this->session->set_flashdata('erro', 'Viagem já finalizada.');
+				$this->session->set_flashdata('erro', '<strong>Atenção:</strong> Viagem já finalizada.');
 				redirect('viagens/editar/'.$id);
 			} elseif ($this->form_validation->run('registrar_saida') == false) {
 				$data['view'] = 'viagens/formulario';
@@ -188,8 +186,6 @@ class Viagens extends CI_Controller {
 					'status_viagem'        => 2,
 					'saida_data'           => date('Y-m-d H:i:s'),
 					'saida_usuario'        => $this->viagens_model->usuario_atual(),
-					'carga_risco'          => $this->input->post('carga_risco'),
-					'carga_escolta'        => $this->input->post('carga_escolta'),
 					'dt_num'               => $this->input->post('dt_num'),
 					'motorista_cpf'        => $this->input->post('motorista_cpf'),
 					'motorista_nome'       => $this->input->post('motorista_nome'),
@@ -215,7 +211,7 @@ class Viagens extends CI_Controller {
 					$this->session->set_flashdata('sucesso', 'Viagem finalizada com sucesso.');
 					redirect('viagens/editar/'.$id);
 				} elseif ($this->viagens_model->editar_registro('reg_viagens', $id, $dados_viagem) == false) {
-					$this->session->set_flashdata('erro', 'Viagem não finalizada.');
+					$this->session->set_flashdata('erro', '<strong>Atenção:</strong> Viagem não finalizada.');
 					redirect('viagens/editar/'.$id);
 				}
 			}
@@ -223,12 +219,6 @@ class Viagens extends CI_Controller {
 		/* Conclusão */
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/footer');
-	}
-
-	public function finalizar($id)
-	{
-		$data['id'] = $id;
-		$this->load->view('viagens/teste', $data);
 	}
 
 	public function visualizar($id)
