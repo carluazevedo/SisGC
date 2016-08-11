@@ -139,12 +139,17 @@ class Viagens extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<p class="form-control-static">', '</p>');
 		/* ->Finalizar viagem */
 		if ($this->input->post('finalizar') == 'ok' && $this->form_validation->run('registrar_saida') == false) {
-			$data['finalizar_status'] = false; /* Ativa o 'modal-editar' */
-			$this->session->set_flashdata('sem_opcao_voltar', 'ok');
-			$this->session->set_flashdata('erro', '<strong>Atenção:</strong> Verificar campos não preenchidos.');
-			$data['view'] = 'viagens/formulario';
+			if ($data['status_viagem'] == 2) {
+				$this->session->set_flashdata('erro', '<strong>Atenção:</strong> Viagem já finalizada.');
+				redirect('viagens/editar/'.$id.'/'.$data['status_viagem']);
+			} else {
+				$data['finalizar_status'] = false; /* Ativa o 'modal-editar' */
+				$this->session->set_flashdata('sem_opcao_voltar', 'ok');
+				$this->session->set_flashdata('erro', '<strong>Atenção:</strong> Verificar campos não preenchidos.');
+				$data['view'] = 'viagens/formulario';
+			}
 		} elseif ($this->input->post('finalizar') == 'ok' && $this->form_validation->run('registrar_saida') == true) {
-			if ($data['status_viagem'] == 2) { /* Tratativa redundante para viagem finalizada */
+			if ($data['status_viagem'] == 2) {
 				$this->session->set_flashdata('erro', '<strong>Atenção:</strong> Viagem já finalizada.');
 				redirect('viagens/editar/'.$id.'/'.$data['status_viagem']);
 			} else {

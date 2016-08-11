@@ -178,7 +178,13 @@
 							<div class="form-group row">
 								<label for="motorista_cpf" class="col-sm-2 control-label">CPF</label>
 								<div class="col-sm-3">
-									<input type="text" name="motorista_cpf" id="motorista_cpf" class="form-control input-sm" maxlength="14" value="<?php echo set_value('motorista_cpf', $motorista_cpf); ?>" />
+									<div class="input-group input-group-sm">
+										<input type="text" name="motorista_cpf" id="motorista_cpf" class="form-control" maxlength="14" value="<?php echo set_value('motorista_cpf', $motorista_cpf); ?>" />
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="button" title="Buscar cadastro" disabled><span class="glyphicon glyphicon-search"></span></button>
+											<button class="btn btn-default" type="button" title="Editar cadastro" disabled><span class="glyphicon glyphicon-edit"></span></button>
+										</span>
+									</div>
 								</div>
 
 								<label for="motorista_nome" class="control-label sr-only">Nome</label>
