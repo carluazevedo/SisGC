@@ -69,15 +69,22 @@ legend {
   }
 }
 
-/* < Painel inicial > */
-.modal .glyphicon-eye-open {
-  color: #5cb85c;
-}
-
-.modal .glyphicon-remove-sign {
+/* < Modais > */
+#modal-remover .glyphicon-remove-sign {
   color: #d9534f;
 }
 
+#modal-visualizar .glyphicon-eye-open,
+#modal-editar .glyphicon-edit,
+#modal-finalizar .glyphicon-save {
+	color: #5cb85c;
+}
+
+#modal-ajuda .glyphicon-question-sign {
+	color: #5bc0de;
+}
+
+/* < Painel inicial > */
 .table tbody>tr>td {
   vertical-align: middle;
 }

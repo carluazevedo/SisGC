@@ -1,5 +1,5 @@
 <script>
-$(document).ready(function(){
+$(document).ready(function() {
 	$('#motorista_cpf').mask('000.000.000-00');
 	$('#placa_trator, #placa_reboque_1, #placa_reboque_2').mask('SSS-0000');
 	$('#valor').mask('000.000.000,00', {reverse: true});
@@ -9,8 +9,26 @@ $(document).ready(function(){
 });
 
 <?php if (isset($operacao) && $operacao == 'editar') :  ?>
-document.getElementsByTagName('button')['registro'].name = 'gravar';
-document.getElementsByTagName('button')['registro'].setAttribute('class', 'btn btn-info form-control');
+document.getElementsByTagName('button')['registrar'].name = 'finalizar';
+<?php endif; ?>
+
+<?php if (isset($finalizar_status) && $finalizar_status == false) : ?>
+$(document).ready(function() {
+	$('#modal-editar').modal('show');
+	$('#modal-editar').on('shown.bs.modal', function() {
+		$('#editar').focus();
+	});
+	$('#ajuda').click(function() {
+		$('#modal-ajuda').modal('toggle');
+	});
+});
+<?php elseif (isset($finalizar_status) && $finalizar_status == true) : ?>
+$(document).ready(function() {
+	$('#modal-finalizar').modal('show');
+	$('#modal-finalizar').on('shown.bs.modal', function() {
+		$('#confirma-finalizar').focus();
+	});
+});
 <?php endif; ?>
 
 var i_text = document.querySelectorAll('input[type=text]');

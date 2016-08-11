@@ -103,7 +103,7 @@ class Viagens extends CI_Controller {
 			if ($this->input->post('registrar') == 'ok' && $this->viagens_model->registrar('reg_viagens', $dados_viagem) == true) :
 				$this->session->set_flashdata('sucesso', 'Viagem registrada com sucesso.');
 				$ultimo_id = $this->viagens_model->ultimo_id();
-				redirect('viagens/editar/'.$ultimo_id);
+				redirect('viagens/editar/'.$ultimo_id.'/1');
 			else :
 				$data['view'] = 'viagens/formulario';
 			endif;
@@ -113,7 +113,7 @@ class Viagens extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
-	public function editar($id)
+	public function editar($id, $status_viagem = '')
 	{
 		/* Informações para 'header.php' */
 		$data['titulo']         = $this->titulo.' - Editar';
@@ -137,52 +137,25 @@ class Viagens extends CI_Controller {
 		/* ->Validação de formulário */
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<p class="form-control-static">', '</p>');
-		if ($this->input->post('gravar') == 'ok') {
-			if ($this->form_validation->run('registrar_entrada') == false) {
-				$data['view'] = 'viagens/formulario';
-			} else {
-				$str_search = array('.', ',');
-				$str_replace = array('', '.');
-				$dados_viagem = array(
-					'dt_num'               => $this->input->post('dt_num'),
-					'motorista_cpf'        => $this->input->post('motorista_cpf'),
-					'motorista_nome'       => $this->input->post('motorista_nome'),
-					'placa_trator'         => $this->input->post('placa_trator'),
-					'placa_reboque_1'      => $this->input->post('placa_reboque_1'),
-					'placa_reboque_2'      => $this->input->post('placa_reboque_2'),
-					'transp_nome'          => $this->input->post('transp_nome'),
-					'transp_unidade'       => $this->input->post('transp_unidade'),
-					'operacao_nome'        => $this->input->post('operacao_nome'),
-					'operacao_unidade'     => $this->input->post('operacao_unidade'),
-					'notas_fiscais'        => $this->input->post('notas_fiscais'),
-					'valor'                => str_replace($str_search, $str_replace, $this->input->post('valor')),
-					'peso'                 => str_replace($str_search, $str_replace, $this->input->post('peso')),
-					'entrega_tipo'         => $this->input->post('entrega_tipo'),
-					'mercadoria_tipo'      => $this->input->post('mercadoria_tipo'),
-					'destinatario_cnpj'    => $this->input->post('destinatario_cnpj'),
-					'destinatario_nome'    => $this->input->post('destinatario_nome'),
-					'destinatario_unidade' => $this->input->post('destinatario_unidade'),
-					'rota'                 => $this->input->post('rota'),
-					'observacoes'          => $this->input->post('observacoes')
-				);
-				if ($this->viagens_model->editar_registro('reg_viagens', $id, $dados_viagem) == true) {
-					$this->session->set_flashdata('sucesso', 'Viagem alterada com sucesso.');
-					redirect('viagens/editar/'.$id);
-				} elseif ($this->viagens_model->editar_registro('reg_viagens', $id, $dados_viagem) == false) {
-					$this->session->set_flashdata('erro', '<strong>Atenção:</strong> Não houve alterações no registro.');
-					redirect('viagens/editar/'.$id);
-				}
-			}
-		} elseif ($this->input->post('finalizar') == 'ok') {
-			if ($data['status_viagem'] == 2) {
+		/* ->Finalizar viagem */
+		if ($this->input->post('finalizar') == 'ok' && $this->form_validation->run('registrar_saida') == false) {
+			$data['finalizar_status'] = false; /* Ativa o 'modal-editar' */
+			$this->session->set_flashdata('sem_opcao_voltar', 'ok');
+			$this->session->set_flashdata('erro', '<strong>Atenção:</strong> Verificar campos não preenchidos.');
+			$data['view'] = 'viagens/formulario';
+		} elseif ($this->input->post('finalizar') == 'ok' && $this->form_validation->run('registrar_saida') == true) {
+			if ($data['status_viagem'] == 2) { /* Tratativa redundante para viagem finalizada */
 				$this->session->set_flashdata('erro', '<strong>Atenção:</strong> Viagem já finalizada.');
-				redirect('viagens/editar/'.$id);
-			} elseif ($this->form_validation->run('registrar_saida') == false) {
-				$data['view'] = 'viagens/formulario';
+				redirect('viagens/editar/'.$id.'/'.$data['status_viagem']);
 			} else {
-				$str_search = array('.', ',');
-				$str_replace = array('', '.');
-				$dados_viagem = array(
+				$data['finalizar_status'] = true; /* Ativa o 'modal-finalizar' */
+				$data['view'] = 'viagens/formulario';
+			}
+		}
+		if ($this->input->post('confirma-finalizar') == 'ok' && $data['status_viagem'] == 1) {
+			$str_search = array('.', ',');
+			$str_replace = array('', '.');
+			$dados_viagem = array(
 					'status_viagem'        => 2,
 					'saida_data'           => date('Y-m-d H:i:s'),
 					'saida_usuario'        => $this->viagens_model->usuario_atual(),
@@ -206,14 +179,49 @@ class Viagens extends CI_Controller {
 					'destinatario_unidade' => $this->input->post('destinatario_unidade'),
 					'rota'                 => $this->input->post('rota'),
 					'observacoes'          => $this->input->post('observacoes')
-				);
-				if ($this->viagens_model->editar_registro('reg_viagens', $id, $dados_viagem) == true) {
-					$this->session->set_flashdata('sucesso', 'Viagem finalizada com sucesso.');
-					redirect('viagens/editar/'.$id);
-				} elseif ($this->viagens_model->editar_registro('reg_viagens', $id, $dados_viagem) == false) {
-					$this->session->set_flashdata('erro', '<strong>Atenção:</strong> Viagem não finalizada.');
-					redirect('viagens/editar/'.$id);
-				}
+			);
+			if ($this->viagens_model->editar_registro('reg_viagens', $id, $dados_viagem) == true) {
+				$this->session->set_flashdata('sucesso', 'Viagem finalizada com sucesso.');
+				redirect('viagens/editar/'.$id.'/2');
+			} elseif ($this->viagens_model->editar_registro('reg_viagens', $id, $dados_viagem) == false) {
+				$this->session->set_flashdata('erro', '<strong>Atenção:</strong> Viagem não finalizada.');
+				redirect('viagens/editar/'.$id.'/'.$data['status_viagem']);
+			}
+		}
+		/* ->Editar viagem */
+		if (($this->input->post('editar') == 'ok' || $this->input->post('confirma-editar') == 'ok') && $this->form_validation->run('registrar_entrada') == false) {
+			$data['view'] = 'viagens/formulario';
+		} elseif (($this->input->post('editar') == 'ok' || $this->input->post('confirma-editar') == 'ok') && $this->form_validation->run('registrar_entrada') == true) {
+			$str_search = array('.', ',');
+			$str_replace = array('', '.');
+			$dados_viagem = array(
+				'dt_num'               => $this->input->post('dt_num'),
+				'motorista_cpf'        => $this->input->post('motorista_cpf'),
+				'motorista_nome'       => $this->input->post('motorista_nome'),
+				'placa_trator'         => $this->input->post('placa_trator'),
+				'placa_reboque_1'      => $this->input->post('placa_reboque_1'),
+				'placa_reboque_2'      => $this->input->post('placa_reboque_2'),
+				'transp_nome'          => $this->input->post('transp_nome'),
+				'transp_unidade'       => $this->input->post('transp_unidade'),
+				'operacao_nome'        => $this->input->post('operacao_nome'),
+				'operacao_unidade'     => $this->input->post('operacao_unidade'),
+				'notas_fiscais'        => $this->input->post('notas_fiscais'),
+				'valor'                => str_replace($str_search, $str_replace, $this->input->post('valor')),
+				'peso'                 => str_replace($str_search, $str_replace, $this->input->post('peso')),
+				'entrega_tipo'         => $this->input->post('entrega_tipo'),
+				'mercadoria_tipo'      => $this->input->post('mercadoria_tipo'),
+				'destinatario_cnpj'    => $this->input->post('destinatario_cnpj'),
+				'destinatario_nome'    => $this->input->post('destinatario_nome'),
+				'destinatario_unidade' => $this->input->post('destinatario_unidade'),
+				'rota'                 => $this->input->post('rota'),
+				'observacoes'          => $this->input->post('observacoes')
+			);
+			if ($this->viagens_model->editar_registro('reg_viagens', $id, $dados_viagem) == true) {
+				$this->session->set_flashdata('sucesso', 'Viagem alterada com sucesso.');
+				redirect('viagens/editar/'.$id.'/'.$data['status_viagem']);
+			} elseif ($this->viagens_model->editar_registro('reg_viagens', $id, $dados_viagem) == false) {
+				$this->session->set_flashdata('erro', '<strong>Atenção:</strong> Não houve alterações no registro.');
+				redirect('viagens/editar/'.$id.'/'.$data['status_viagem']);
 			}
 		}
 		/* Conclusão */

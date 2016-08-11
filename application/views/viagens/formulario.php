@@ -1,4 +1,76 @@
 <?php $this->load->view('templates/navbar.php'); ?>
+<!-- Modal 'editar' -->
+<div class="modal fade bs-example-modal-sm" id="modal-editar" tabindex="-1" role="dialog" aria-labelledby="EditarViagem">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">
+					<small><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></small> Editar registro incompleto
+				</h4>
+			</div>
+			<div class="modal-body">
+				<p>Deseja confirmar a edição dos dados antes de finalizar a viagem?</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-info" id="ajuda" title="Ajuda"><span class="glyphicon glyphicon-question-sign"></span></button>
+				<button type="submit" class="btn btn-success" id="editar" name="editar" value="ok" form="registrar-viagem">Sim</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Não</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- /Modal 'editar' -->
+
+<!-- Modal 'ajuda' -->
+<div class="modal fade" id="modal-ajuda" tabindex="-1" role="dialog" aria-labelledby="AjudaEditarViagem">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">
+					<small><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></small> Ajuda
+				</h4>
+			</div>
+			<div class="modal-body">
+				<p class="lead">Por que estou vendo esta mensagem?</p>
+				<p>Isto acontece porque o formulário de registro está <strong>parcialmente preenchido</strong>.</p>
+				<p>Se todos os campos estiverem preenchidos a viagem será <strong>finalizada</strong>, caso contrário aparecerá esta mensagem.</p>
+				<p>
+					Mas &mdash; <strong>para fins de correção</strong>, alterações feitas no registro podem ser gravadas antes de finalizar a viagem,
+					bastando apenas confirmar a edição clicando em <strong>'Sim'</strong>.
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- /Modal 'ajuda' -->
+
+<!-- Modal 'finalizar' -->
+<div class="modal fade bs-example-modal-sm" id="modal-finalizar" tabindex="-1" role="dialog" aria-labelledby="FinalizarViagem">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">
+					<small><span class="glyphicon glyphicon-save"></span></small> Finalizar viagem
+				</h4>
+			</div>
+			<div class="modal-body">
+				<p>Deseja realmente finalizar esta viagem?</p>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-success" id="confirma-finalizar" name="confirma-finalizar" value="ok" form="registrar-viagem">Sim</button>
+				<button type="submit" class="btn btn-primary" id="confirma-editar" name="confirma-editar" value="ok" form="registrar-viagem">Não</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- /Modal 'finalizar' -->
+
 <section>
 	<div class="container-fluid">
 		<div class="row">
@@ -68,22 +140,26 @@
 				<div class="alert alert-success alert-dismissible fade in" role="alert">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
 					<span class="glyphicon glyphicon-ok-sign"></span> <?php echo $this->session->flashdata('sucesso'); ?>
+					<?php if ($this->session->flashdata('sem_opcao_voltar') != 'ok') : ?>
 					<button class="btn btn-xs btn-success" onclick="location.href='<?php echo site_url('viagens'); ?>'">
 						<small><span class="glyphicon glyphicon-arrow-left"></span></small> Voltar
 					</button>
+					<?php endif; ?>
 				</div>
 				<?php elseif ($this->session->flashdata('erro') != null) : ?>
 				<div class="alert alert-warning alert-dismissible fade in" role="alert">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
 					<span class="glyphicon glyphicon-alert"></span> <?php echo $this->session->flashdata('erro'); ?>
+					<?php if ($this->session->flashdata('sem_opcao_voltar') != 'ok') : ?>
 					<button class="btn btn-xs btn-warning" onclick="location.href='<?php echo site_url('viagens'); ?>'">
 						<small><span class="glyphicon glyphicon-arrow-left"></span></small> Voltar
 					</button>
+					<?php endif; ?>
 				</div>
 				<?php endif; ?>
 
 				<!-- Formulário de registro -->
-				<?php echo form_open('', array('class' => 'form-horizontal','id' => 'registro' ,'onsubmit' => 'converterCaixaAlta()')); ?>
+				<?php echo form_open('', array('class' => 'form-horizontal','id' => 'registrar-viagem' ,'onsubmit' => 'converterCaixaAlta()')); ?>
 					<fieldset id="dt">
 						<legend>DT</legend>
 						<div class="form-group">
@@ -306,18 +382,13 @@
 <nav id="navbar-bottom" class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-form navbar-left">
-			<button type="submit" class="btn btn-success form-control" id="registro" form="registro" name="registrar" value="ok">
-				<?php if (isset($operacao) && $operacao == 'editar') : ?>
-				<small><span class="glyphicon glyphicon-ok"></span></small> Gravar
-				<?php else : ?>
-				<small><span class="glyphicon glyphicon-plus"></span></small> Registrar
-				<?php endif; ?>
-			</button>
+			<button type="submit" class="btn btn-success form-control" id="registrar" name="registrar" value="ok" form="registrar-viagem">
 			<?php if (isset($operacao) && $operacao == 'editar') : ?>
-			<button type="submit" class="btn btn-success form-control" form="registro" name="finalizar" value="ok">
 				<small><span class="glyphicon glyphicon-save"></span></small> Finalizar
-			</button>
+			<?php else : ?>
+				<small><span class="glyphicon glyphicon-plus"></span></small> Registrar
 			<?php endif; ?>
+			</button>
 			<button type="button" class="btn btn-primary form-control" onclick="location.href='<?php echo site_url('viagens'); ?>'">
 				<small><span class="glyphicon glyphicon-arrow-left"></span></small> Voltar
 			</button>

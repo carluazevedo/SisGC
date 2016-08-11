@@ -85,6 +85,10 @@
 							</tr>
 							<?php else : ?>
 								<?php foreach ($registros as $reg) : ?>
+								<?php
+									#$json_values = array($reg->id, $reg->status_viagem);
+									#$json_editar = json_encode($json_values);
+								?>
 								<tr>
 									<td><?php echo $reg->dt_num; ?></td>
 									<?php echo $this->viagens_model->status_viagem_tb($reg->status_viagem); ?>
@@ -101,7 +105,7 @@
 										</button>
 									</td>
 									<td class="acoes">
-										<button type="button" class="btn btn-sm btn-info acao-editar" title="Editar" value="<?php echo $reg->id; ?>" onclick="editarViagem(this)">
+										<button type="button" class="btn btn-sm btn-info acao-editar" title="Editar" value='<?php echo $reg->id; ?>' onclick="editarViagem(this)">
 											<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 										</button>
 									</td>
