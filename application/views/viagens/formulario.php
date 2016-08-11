@@ -177,7 +177,7 @@
 						<legend>Motorista</legend>
 							<div class="form-group row">
 								<label for="motorista_cpf" class="col-sm-2 control-label">CPF</label>
-								<div class="col-sm-3">
+								<div class="col-sm-4 col-md-3">
 									<div class="input-group input-group-sm">
 										<input type="text" name="motorista_cpf" id="motorista_cpf" class="form-control" maxlength="14" value="<?php echo set_value('motorista_cpf', $motorista_cpf); ?>" />
 										<span class="input-group-btn">
@@ -188,7 +188,7 @@
 								</div>
 
 								<label for="motorista_nome" class="control-label sr-only">Nome</label>
-								<div class="col-sm-3">
+								<div class="col-sm-4 col-md-3">
 									<input type="text" name="motorista_nome" id="motorista_nome" class="form-control input-sm" placeholder="Nome" value="<?php echo set_value('motorista_nome', $motorista_nome); ?>" /><!-- readonly -->
 								</div>
 								<div class="col-sm-4 col-md-3 custom-error">
@@ -298,7 +298,7 @@
 						<div class="form-group">
 							<label for="entrega_tipo" class="col-sm-2 control-label">Tipo de entrega</label>
 							<div class="col-sm-3">
-								<select name="entrega_tipo" class="form-control input-sm">
+								<select name="entrega_tipo" id="entrega_tipo" class="form-control input-sm">
 									<option value=""></option>
 									<option value="ent_unic" <?php echo set_select('entrega_tipo', 'ent_unic', $ent_unic); ?>>ENTREGA ÚNICA</option>
 									<option value="ent_frac" <?php echo set_select('entrega_tipo', 'ent_frac', $ent_frac); ?>>ENTREGA FRACIONADA</option>
@@ -314,7 +314,7 @@
 						<div class="form-group">
 							<label for="mercadoria_tipo" class="col-sm-2 control-label">Tipo de mercadoria</label>
 							<div class="col-sm-3">
-								<select name="mercadoria_tipo" class="form-control input-sm">
+								<select name="mercadoria_tipo" id="mercadoria_tipo" class="form-control input-sm">
 									<option value=""></option>
 									<option value="hpc" <?php echo set_select('mercadoria_tipo', 'hpc', $hpc); ?>>HPC</option>
 									<option value="foods" <?php echo set_select('mercadoria_tipo', 'foods', $foods); ?>>FOODS</option>

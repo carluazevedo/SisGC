@@ -6,7 +6,7 @@
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title">
-					<small><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></small> Visualizar viagem
+					<span class="glyphicon glyphicon-eye-open small" aria-hidden="true"></span> Visualizar viagem
 				</h4>
 			</div>
 			<div class="modal-body">
@@ -32,7 +32,7 @@
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title">
-					<small><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span></small> Remover viagem
+					<span class="glyphicon glyphicon-remove-sign small" aria-hidden="true"></span> Remover viagem
 				</h4>
 			</div>
 			<div class="modal-body">
@@ -63,13 +63,14 @@
 				</div>
 				<?php endif; ?>
 				<div class="table-responsive">
-					<table class="table table-condensed table-hover"><!-- table-bordered -->
+					<table class="table table-condensed table-hover small"><!-- table-bordered -->
 						<thead>
 							<tr class="active">
-								<th>NÚMERO DT</th>
+								<th title="Número do DT">NÚM. DT</th>
 								<th>STATUS</th>
 								<th>DATA ENTRADA</th>
 								<th>DATA SAÍDA</th>
+								<th title="Permanência em pátio">PERMAN.</th>
 								<th>MOTORISTA</th>
 								<th>TRATOR</th>
 								<th>REBOQUE</th>
@@ -92,20 +93,21 @@
 								<tr>
 									<td><?php echo $reg->dt_num; ?></td>
 									<?php echo $this->viagens_model->status_viagem_tb($reg->status_viagem); ?>
-									<td><?php echo $this->viagens_model->formata_data_mysql($reg->entrada_data); ?></td>
-									<td><?php echo $this->viagens_model->formata_data_mysql($reg->saida_data); ?></td>
+									<td><?php echo $this->viagens_model->formata_data_mysql($reg->entrada_data).' h'; ?></td>
+									<td><?php echo $this->viagens_model->formata_data_mysql($reg->saida_data).' h'; ?></td>
+									<td>00:00 h</td>
 									<td><?php echo $reg->motorista_nome; ?></td>
 									<td><?php echo $reg->placa_trator; ?></td>
 									<td><?php echo $reg->placa_reboque_1; ?></td>
 									<td><?php echo $reg->transp_nome; ?></td>
 									<td><?php echo $reg->operacao_nome, ($reg->operacao_unidade != '') ? ' - '.$reg->operacao_unidade : '' ; ?></td>
 									<td class="acoes">
-										<button type="button" class="btn btn-sm btn-success acao-visualizar" title="Visualizar" value="<?php echo $reg->id; ?>">
+										<button type="button" class="btn btn-sm btn-info acao-visualizar" title="Visualizar" value="<?php echo $reg->id; ?>">
 											<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 										</button>
 									</td>
 									<td class="acoes">
-										<button type="button" class="btn btn-sm btn-info acao-editar" title="Editar" value='<?php echo $reg->id; ?>' onclick="editarViagem(this)">
+										<button type="button" class="btn btn-sm btn-success acao-editar" title="Editar" value="<?php echo $reg->id; ?>" onclick="editarViagem(this)">
 											<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
 										</button>
 									</td>

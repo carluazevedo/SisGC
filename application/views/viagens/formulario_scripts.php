@@ -8,7 +8,17 @@ $(document).ready(function() {
 	$('#destinatario_cnpj').tooltip();
 });
 
-<?php if (isset($operacao) && $operacao == 'editar') :  ?>
+<?php if (isset($operacao) && $operacao == 'registrar') : ?>
+notas_fiscais.disabled = true;
+valor.disabled = true;
+peso.disabled = true;
+entrega_tipo.disabled = true;
+mercadoria_tipo.disabled = true;
+destinatario_cnpj.disabled = true;
+rota.disabled = true;
+<?php endif; ?>
+
+<?php if (isset($operacao) && $operacao == 'editar') : ?>
 document.getElementsByTagName('button')['registrar'].name = 'finalizar';
 <?php endif; ?>
 
@@ -29,6 +39,24 @@ $(document).ready(function() {
 		$('#confirma-finalizar').focus();
 	});
 });
+<?php endif; ?>
+
+<?php if (isset($status_viagem) && $status_viagem == 2) : ?>
+           dt_num.readOnly = true;
+    motorista_cpf.readOnly = true;
+     placa_trator.readOnly = true;
+  placa_reboque_1.readOnly = true;
+  placa_reboque_2.readOnly = true;
+      transp_nome.readOnly = true;
+    operacao_nome.readOnly = true;
+    notas_fiscais.readOnly = true;
+            valor.readOnly = true;
+             peso.readOnly = true;
+     entrega_tipo.disabled = true;
+  mercadoria_tipo.disabled = true;
+destinatario_cnpj.readOnly = true;
+             rota.readOnly = true;
+      observacoes.readOnly = true;
 <?php endif; ?>
 
 var i_text = document.querySelectorAll('input[type=text]');
