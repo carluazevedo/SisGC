@@ -165,7 +165,7 @@
 						<div class="form-group">
 							<label for="dt_num" class="col-sm-2 control-label">Número DT</label>
 							<div class="col-sm-3">
-								<input type="text" name="dt_num" id="dt_num" class="form-control input-sm" value="<?php echo set_value('dt_num', $dt_num); ?>" />
+								<input type="text" name="dt_num" id="dt_num" class="form-control input-sm" value="<?php echo set_value('dt_num', $dt_num); ?>" autofocus/>
 							</div>
 							<div class="col-sm-5 col-md-4 custom-error">
 								<?php echo form_error('dt_num'),PHP_EOL; ?>

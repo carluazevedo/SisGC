@@ -93,8 +93,8 @@
 								<tr>
 									<td><?php echo $reg->dt_num; ?></td>
 									<?php echo $this->viagens_model->status_viagem_tb($reg->status_viagem); ?>
-									<td><?php echo $this->viagens_model->formata_data_mysql($reg->entrada_data).' h'; ?></td>
-									<td><?php echo $this->viagens_model->formata_data_mysql($reg->saida_data).' h'; ?></td>
+									<td><?php echo $this->viagens_model->formata_data_mysql($reg->entrada_data); ?></td>
+									<td><?php echo $this->viagens_model->formata_data_mysql($reg->saida_data); ?></td>
 									<td>00:00 h</td>
 									<td><?php echo $reg->motorista_nome; ?></td>
 									<td><?php echo $reg->placa_trator; ?></td>
