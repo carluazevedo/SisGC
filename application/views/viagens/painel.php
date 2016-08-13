@@ -10,12 +10,7 @@
 				</h4>
 			</div>
 			<div class="modal-body">
-			<?php
-				$data['registros'] = $this->viagens_model->buscar_registro('reg_viagens', 1);
-				if (isset($data['registros'])) {
-					$this->load->view('viagens/visualizar', $data);
-				}
-			?>
+
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
@@ -102,7 +97,7 @@
 									<td><?php echo $reg->transp_nome; ?></td>
 									<td><?php echo $reg->operacao_nome, ($reg->operacao_unidade != '') ? ' - '.$reg->operacao_unidade : '' ; ?></td>
 									<td class="acoes">
-										<button type="button" class="btn btn-sm btn-info acao-visualizar" title="Visualizar" value="<?php echo $reg->id; ?>">
+										<button type="button" class="btn btn-sm btn-info acao-visualizar" title="Visualizar" value="<?php echo $reg->id; ?>" onclick="visualizarViagem()">
 											<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 										</button>
 									</td>

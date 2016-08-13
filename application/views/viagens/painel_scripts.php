@@ -21,12 +21,12 @@ function inserirLinhaTabela() {
 
 inserirLinhaTabela();
 
+function visualizarViagem() {
+	
+}
+
 function editarViagem(elemento) {
 	location.href = '<?php echo html_entity_decode(site_url('viagens&#47;editar&#47;')); ?>' + elemento.value;
-	/*
-	var values = JSON.parse(elemento.value);
-	location.href = '<?php #echo html_entity_decode(site_url('viagens&#47;editar&#47;')); ?>' + values[0] + '/' + values[1];
-	*/
 }
 
 function removerViagem(elemento) {

@@ -52,7 +52,10 @@ class Viagens extends CI_Controller {
 		$data['nav_registrar'] = true;
 		$data['operacao']      = 'registrar';
 		/* Informações para 'footer.php' */
-		$data['incluir_footer'] = array('<script src="'.base_url('scripts/jquery-mask/jquery.mask.min.js').'"></script>');
+		$data['incluir_footer'] = array(
+			'<script src="'.base_url('scripts/jquery-mask/jquery.mask.min.js').'"></script>',
+			'<script src="'.base_url('scripts/ajax_motorista.js').'"></script>'
+		);
 		$data['scripts_footer'] = 'viagens/formulario_scripts';
 		/* Lógica do controlador */
 		/* ->Inicialização dos valores dos campos */
@@ -110,7 +113,7 @@ class Viagens extends CI_Controller {
 		}
 		/* Conclusão */
 		$this->load->view('templates/header', $data);
-		$this->load->view('templates/footer');
+		$this->load->view('templates/footer', $data);
 	}
 
 	public function editar($id, $status_viagem = '')
@@ -123,11 +126,11 @@ class Viagens extends CI_Controller {
 		$data['titulo_pagina'] = 'Editar viagem';
 		$data['operacao']      = 'editar';
 		/* Informações para 'footer.php' */
-		$data['incluir_footer'] = array('<script src="'.base_url('scripts/jquery-mask/jquery.mask.min.js').'"></script>',);
+		$data['incluir_footer'] = array('<script src="'.base_url('scripts/jquery-mask/jquery.mask.min.js').'"></script>');
 		$data['scripts_footer'] = 'viagens/formulario_scripts';
 		/* Lógica do controlador */
 		/* ->Preenchimento dos valores dos campos */
-		$dados = $this->viagens_model->preencher_valores('reg_viagens', $id);
+		$dados = $this->viagens_model->preencher_valores('reg_viagens', 'id', $id);
 		$dados_length = count($dados);
 		$dados_keys = array_keys($dados);
 		$dados_vals = array_values($dados);
@@ -231,7 +234,7 @@ class Viagens extends CI_Controller {
 		}
 		/* Conclusão */
 		$this->load->view('templates/header', $data);
-		$this->load->view('templates/footer');
+		$this->load->view('templates/footer', $data);
 	}
 
 	public function visualizar($id)

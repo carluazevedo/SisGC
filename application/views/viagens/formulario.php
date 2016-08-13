@@ -189,7 +189,7 @@
 
 								<label for="motorista_nome" class="control-label sr-only">Nome</label>
 								<div class="col-sm-4 col-md-3">
-									<input type="text" name="motorista_nome" id="motorista_nome" class="form-control input-sm" placeholder="Nome" value="<?php echo set_value('motorista_nome', $motorista_nome); ?>" /><!-- readonly -->
+									<input type="text" name="motorista_nome" id="motorista_nome" class="form-control input-sm" placeholder="Nome" value="<?php echo set_value('motorista_nome', $motorista_nome); ?>" readonly/>
 								</div>
 								<div class="col-sm-4 col-md-3 custom-error">
 									<?php echo form_error('motorista_cpf'),PHP_EOL; ?>
