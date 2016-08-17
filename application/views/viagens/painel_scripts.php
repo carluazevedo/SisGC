@@ -24,19 +24,7 @@ inserirLinhaTabela();
 
 function visualizarViagem(e)
 {
-	var requestObj = false;
-	requestObj = new XMLHttpRequest();
-	if (requestObj) {
-		var obj = document.querySelector('#modal-visualizar .modal-body');
-		requestObj.open('GET', '<?php echo html_entity_decode(site_url('buscar&#47;viagem&#47;')); ?>' + e.value);
-		requestObj.onreadystatechange = function ()
-		{
-			if (requestObj.readyState == 4 && requestObj.status == 200) {
-				obj.innerHTML = requestObj.responseText;
-			}
-		}
-		requestObj.send(null);
-	}
+	ajax_get('<?php echo html_entity_decode(site_url('buscar&#47;viagem&#47;')); ?>' + e.value, '#modal-visualizar .modal-body');
 }
 
 function editarViagem(e)

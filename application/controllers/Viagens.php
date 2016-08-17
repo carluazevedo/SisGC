@@ -21,6 +21,7 @@ class Viagens extends CI_Controller {
 		/* Informações para 'view' */
 		$data['titulo_pagina'] = 'Viagens registradas';
 		/* Informações para 'rodape.php' */
+		$data['incluir_rodape'] = array('<script src="'.base_url('scripts/ajax_lib.js').'"></script>');
 		$data['scripts_rodape'] = 'viagens/painel_scripts';
 		/* Lógica do controlador */
 		$colunas = array(
