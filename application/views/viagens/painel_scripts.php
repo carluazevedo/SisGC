@@ -9,7 +9,8 @@ $(document).ready(function() {
 	});
 });
 
-function inserirLinhaTabela() {
+function inserirLinhaTabela()
+{
 	t_length = document.querySelector('tbody tr').childElementCount;
 	t_footer = document.querySelector('tfoot tr');
 
@@ -21,15 +22,30 @@ function inserirLinhaTabela() {
 
 inserirLinhaTabela();
 
-function visualizarViagem() {
-	
+function visualizarViagem(e)
+{
+	var requestObj = false;
+	requestObj = new XMLHttpRequest();
+	if (requestObj) {
+		var obj = document.querySelector('#modal-visualizar .modal-body');
+		requestObj.open('GET', '<?php echo html_entity_decode(site_url('buscar&#47;viagem&#47;')); ?>' + e.value);
+		requestObj.onreadystatechange = function ()
+		{
+			if (requestObj.readyState == 4 && requestObj.status == 200) {
+				obj.innerHTML = requestObj.responseText;
+			}
+		}
+		requestObj.send(null);
+	}
 }
 
-function editarViagem(elemento) {
-	location.href = '<?php echo html_entity_decode(site_url('viagens&#47;editar&#47;')); ?>' + elemento.value;
+function editarViagem(e)
+{
+	location.href = '<?php echo html_entity_decode(site_url('viagens&#47;editar&#47;')); ?>' + e.value;
 }
 
-function removerViagem(elemento) {
+function removerViagem(e)
+{
 	document.getElementsByTagName('button')['remover'].value = 'ok';
 	document.forms['remover-viagem'].setAttribute(
 			'method',
@@ -37,7 +53,7 @@ function removerViagem(elemento) {
 	);
 	document.forms['remover-viagem'].setAttribute(
 			'action',
-			'<?php echo html_entity_decode(site_url('viagens&#47;remover&#47;')); ?>' + elemento.value
+			'<?php echo html_entity_decode(site_url('viagens&#47;remover&#47;')); ?>' + e.value
 	);
 }
 </script>

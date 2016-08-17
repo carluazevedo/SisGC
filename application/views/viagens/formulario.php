@@ -1,75 +1,9 @@
-<?php $this->load->view('templates/navbar.php'); ?>
-<!-- Modal 'editar' -->
-<div class="modal fade bs-example-modal-sm" id="modal-editar" tabindex="-1" role="dialog" aria-labelledby="EditarViagem">
-	<div class="modal-dialog modal-sm" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title">
-					<small><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></small> Editar registro incompleto
-				</h4>
-			</div>
-			<div class="modal-body">
-				<p>Deseja confirmar a edição dos dados antes de finalizar a viagem?</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-info" id="ajuda" title="Ajuda"><span class="glyphicon glyphicon-question-sign"></span></button>
-				<button type="submit" class="btn btn-success" id="editar" name="editar" value="ok" form="registrar-viagem">Sim</button>
-				<button type="button" class="btn btn-primary" data-dismiss="modal">Não</button>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<!-- /Modal 'editar' -->
+<?php $this->load->view('modelos/barra_nav'); ?>
 
-<!-- Modal 'ajuda' -->
-<div class="modal fade" id="modal-ajuda" tabindex="-1" role="dialog" aria-labelledby="AjudaEditarViagem">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title">
-					<small><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></small> Ajuda
-				</h4>
-			</div>
-			<div class="modal-body">
-				<p class="lead">Por que estou vendo esta mensagem?</p>
-				<p>Isto acontece porque o formulário de registro está <strong>parcialmente preenchido</strong>.</p>
-				<p>Se todos os campos estiverem preenchidos a viagem será <strong>finalizada</strong>, caso contrário aparecerá esta mensagem.</p>
-				<p>
-					Mas &mdash; <strong>para fins de correção</strong>, alterações feitas no registro podem ser gravadas antes de finalizar a viagem,
-					bastando apenas confirmar a edição clicando em <strong>'Sim'</strong>.
-				</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<!-- /Modal 'ajuda' -->
-
-<!-- Modal 'finalizar' -->
-<div class="modal fade bs-example-modal-sm" id="modal-finalizar" tabindex="-1" role="dialog" aria-labelledby="FinalizarViagem">
-	<div class="modal-dialog modal-sm" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title">
-					<small><span class="glyphicon glyphicon-save"></span></small> Finalizar viagem
-				</h4>
-			</div>
-			<div class="modal-body">
-				<p>Deseja realmente finalizar esta viagem?</p>
-			</div>
-			<div class="modal-footer">
-				<button type="submit" class="btn btn-success" id="confirma-finalizar" name="confirma-finalizar" value="ok" form="registrar-viagem">Sim</button>
-				<button type="submit" class="btn btn-primary" id="confirma-editar" name="confirma-editar" value="ok" form="registrar-viagem">Não</button>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<!-- /Modal 'finalizar' -->
+<?php $this->load->view('modelos/modal/formulario_editar'); ?>
+<?php $this->load->view('modelos/modal/formulario_ajuda'); ?>
+<?php $this->load->view('modelos/modal/formulario_finalizar'); ?>
+<?php $this->load->view('modelos/modal/formulario_buscar'); ?>
 
 <section>
 	<div class="container-fluid">
@@ -142,7 +76,7 @@
 					<span class="glyphicon glyphicon-ok-sign"></span> <?php echo $this->session->flashdata('sucesso'); ?>
 					<?php if ($this->session->flashdata('sem_opcao_voltar') != 'ok') : ?>
 					<button class="btn btn-xs btn-success" onclick="location.href='<?php echo site_url('viagens'); ?>'">
-						<small><span class="glyphicon glyphicon-arrow-left"></span></small> Voltar
+						<span class="glyphicon glyphicon-arrow-left small"></span> Voltar
 					</button>
 					<?php endif; ?>
 				</div>
@@ -152,7 +86,7 @@
 					<span class="glyphicon glyphicon-alert"></span> <?php echo $this->session->flashdata('erro'); ?>
 					<?php if ($this->session->flashdata('sem_opcao_voltar') != 'ok') : ?>
 					<button class="btn btn-xs btn-warning" onclick="location.href='<?php echo site_url('viagens'); ?>'">
-						<small><span class="glyphicon glyphicon-arrow-left"></span></small> Voltar
+						<span class="glyphicon glyphicon-arrow-left small"></span> Voltar
 					</button>
 					<?php endif; ?>
 				</div>
@@ -165,7 +99,7 @@
 						<div class="form-group">
 							<label for="dt_num" class="col-sm-2 control-label">Número DT</label>
 							<div class="col-sm-3">
-								<input type="text" name="dt_num" id="dt_num" class="form-control input-sm" value="<?php echo set_value('dt_num', $dt_num); ?>" autofocus/>
+								<input type="text" name="dt_num" id="dt_num" class="form-control input-sm" value="<?php echo set_value('dt_num', $dt_num); ?>" <?php echo (isset($operacao) && $operacao == 'registrar') ? 'autofocus' : '' ; ?> />
 							</div>
 							<div class="col-sm-5 col-md-4 custom-error">
 								<?php echo form_error('dt_num'),PHP_EOL; ?>
@@ -181,7 +115,7 @@
 									<div class="input-group input-group-sm">
 										<input type="text" name="motorista_cpf" id="motorista_cpf" class="form-control" maxlength="14" value="<?php echo set_value('motorista_cpf', $motorista_cpf); ?>" />
 										<span class="input-group-btn">
-											<button class="btn btn-default" type="button" title="Buscar cadastro" disabled><span class="glyphicon glyphicon-search"></span></button>
+											<button class="btn btn-default" type="button" title="Buscar cadastro" id="buscar-motorista"><span class="glyphicon glyphicon-search"></span></button>
 											<button class="btn btn-default" type="button" title="Editar cadastro" disabled><span class="glyphicon glyphicon-edit"></span></button>
 										</span>
 									</div>
@@ -189,7 +123,7 @@
 
 								<label for="motorista_nome" class="control-label sr-only">Nome</label>
 								<div class="col-sm-4 col-md-3">
-									<input type="text" name="motorista_nome" id="motorista_nome" class="form-control input-sm" placeholder="Nome" value="<?php echo set_value('motorista_nome', $motorista_nome); ?>" readonly/>
+									<input type="text" name="motorista_nome" id="motorista_nome" class="form-control input-sm" placeholder="Nome" value="<?php echo set_value('motorista_nome', $motorista_nome); ?>" readonly />
 								</div>
 								<div class="col-sm-4 col-md-3 custom-error">
 									<?php echo form_error('motorista_cpf'),PHP_EOL; ?>
@@ -371,12 +305,12 @@
 						<label class="control-label sr-only">Registrar</label>
 						<div class="col-sm-offset-2 col-sm-3 col-md-2">
 							<button type="submit" name="registrar" value="ok" class="btn btn-success form-control">
-								<small><span class="glyphicon glyphicon-plus"></span></small> Registrar
+								<span class="glyphicon glyphicon-plus small"></span> Registrar
 							</button>
 						</div>
 						<div class="col-sm-3 col-md-2">
 							<button type="button" class="btn btn-primary form-control" onclick="location.href='<?php #echo site_url('viagens'); ?>'">
-								<small><span class="glyphicon glyphicon-arrow-left"></span></small> Voltar
+								<span class="glyphicon glyphicon-arrow-left small"></span> Voltar
 							</button>
 						</div>
 					</div><!-- /.form-group -->
@@ -390,13 +324,13 @@
 		<div class="navbar-form navbar-left">
 			<button type="submit" class="btn btn-success form-control" id="registrar" name="registrar" value="ok" form="registrar-viagem">
 			<?php if (isset($operacao) && $operacao == 'editar') : ?>
-				<small><span class="glyphicon glyphicon-save"></span></small> Finalizar
+				<span class="glyphicon glyphicon-save small"></span> Finalizar
 			<?php else : ?>
-				<small><span class="glyphicon glyphicon-plus"></span></small> Registrar
+				<span class="glyphicon glyphicon-plus small"></span> Registrar
 			<?php endif; ?>
 			</button>
 			<button type="button" class="btn btn-primary form-control" onclick="location.href='<?php echo site_url('viagens'); ?>'">
-				<small><span class="glyphicon glyphicon-arrow-left"></span></small> Voltar
+				<span class="glyphicon glyphicon-arrow-left small"></span> Voltar
 			</button>
 		</div>
 	</div>

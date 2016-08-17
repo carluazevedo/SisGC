@@ -3,7 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Buscar_model extends CI_Model {
 
-	public function __construct() {
+	public function __construct()
+	{
 		parent::__construct();
 		$this->load->database();
 	}
@@ -21,7 +22,8 @@ class Buscar_model extends CI_Model {
 	 * @param    bool     $resultado_matriz   Se falso 'object', se verdadeiro 'array'
 	 * @return   Retorna o resultado em 'array' ou, por padrão, em 'object'
 	 */
-	public function buscar_registro($tabela, $criterio_where, $condicao_where, $colunas = '', $resultado_matriz = false) {
+	public function buscar_registro($tabela, $criterio_where, $condicao_where, $colunas = '', $resultado_matriz = false)
+	{
 		$this->db->select($colunas);
 		$this->db->where($criterio_where, $condicao_where);
 		$query = $this->db->get($tabela);
@@ -29,6 +31,47 @@ class Buscar_model extends CI_Model {
 			return $query->row();
 		} elseif ($resultado_matriz == true) {
 			return $query->row_array();
+		}
+	}
+
+	/* Funções para tratamento de exibição de dados */
+	public function usuario_atual()
+	{
+		$string = $this->session->userdata('identity');
+		$exploded = explode('@', $string);
+		$identidade = array_shift($exploded);
+		return $identidade;
+	}
+	
+	public function formata_data_mysql($data_mysql)
+	{
+		if ($data_mysql == 0) {
+			return '-';
+		} else {
+			$data = date_format(date_create($data_mysql), 'd/m/Y H:i');
+			return $data;
+		}
+	}
+	
+	public function status_viagem_tb($status)
+	{
+		$status_contexto = array('info','warning','success','danger');
+		$status_texto    = array('NOVA VIAGEM','EM PÁTIO','FINALIZADA','CANCELADA');
+		$status_retorno  = sprintf('<td class="%s">%s</td>', $status_contexto[$status], $status_texto[$status]);
+		return $status_retorno.PHP_EOL;
+	}
+	
+	public function status_viagem_pn($status, $elemento)
+	{
+		$status_contexto = array('label-info','label-warning','label-success','label-danger');
+		$status_texto    = array('NOVA VIAGEM','EM PÁTIO','FINALIZADA','CANCELADA');
+		switch ($elemento) {
+			case 'contexto':
+				return $status_contexto[$status];
+				break;
+			case 'texto':
+				return $status_texto[$status];
+				break;
 		}
 	}
 }

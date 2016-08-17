@@ -6,6 +6,15 @@ $(document).ready(function() {
 	$('#peso').mask('000.000.000,000', {reverse: true});
 	$('#destinatario_cnpj').mask('00.000.000/0000-00');
 	$('#destinatario_cnpj').tooltip();
+	$('#buscar-motorista').click(function() {
+		$('#modal-buscar iframe[class=embed-responsive-item]').attr('src', 'http://localhost/sisgc-2/index.php/buscar/motorista');
+		$('#modal-buscar').modal('toggle');
+	});
+	/*
+	$('#modal-buscar').on('hidden.bs.modal', function() {
+		$('#modal-buscar iframe[class=embed-responsive-item]').removeAttr('src');
+	});
+	*/
 });
 
 <?php if (isset($operacao) && $operacao == 'registrar') : ?>

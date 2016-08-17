@@ -14,14 +14,14 @@ class Viagens extends CI_Controller {
 
 	public function index()
 	{
-		/* Informações para 'header.php' */
-		$data['titulo']         = $this->titulo;
-		$data['incluir_header'] = array(link_tag('styles/custom.css'));
-		$data['view']           = 'viagens/painel';
+		/* Informações para 'cabecalho.php' */
+		$data['titulo']            = $this->titulo;
+		$data['incluir_cabecalho'] = array(link_tag('styles/custom.css'));
+		$data['view']              = 'viagens/painel';
 		/* Informações para 'view' */
 		$data['titulo_pagina'] = 'Viagens registradas';
-		/* Informações para 'footer.php' */
-		$data['scripts_footer'] = 'viagens/painel_scripts';
+		/* Informações para 'rodape.php' */
+		$data['scripts_rodape'] = 'viagens/painel_scripts';
 		/* Lógica do controlador */
 		$colunas = array(
 			'id',
@@ -38,25 +38,25 @@ class Viagens extends CI_Controller {
 		);
 		$data['registros'] = $this->viagens_model->listar_registros('reg_viagens', $colunas);
 		/* Conclusão */
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/footer', $data);
+		$this->load->view('modelos/cabecalho', $data);
+		$this->load->view('modelos/rodape', $data);
 	}
 
 	public function registrar()
 	{
-		/* Informações para 'header.php' */
+		/* Informações para 'cabecalho.php' */
 		$data['titulo']         = $this->titulo.' - Registrar';
-		$data['incluir_header'] = array(link_tag('styles/custom.css'));
+		$data['incluir_cabecalho'] = array(link_tag('styles/custom.css'));
 		/* Informações para 'view' */
 		$data['titulo_pagina'] = 'Registrar viagem';
 		$data['nav_registrar'] = true;
 		$data['operacao']      = 'registrar';
-		/* Informações para 'footer.php' */
-		$data['incluir_footer'] = array(
+		/* Informações para 'rodape.php' */
+		$data['incluir_rodape'] = array(
 			'<script src="'.base_url('scripts/jquery-mask/jquery.mask.min.js').'"></script>',
 			'<script src="'.base_url('scripts/ajax_motorista.js').'"></script>'
 		);
-		$data['scripts_footer'] = 'viagens/formulario_scripts';
+		$data['scripts_rodape'] = 'viagens/formulario_scripts';
 		/* Lógica do controlador */
 		/* ->Inicialização dos valores dos campos */
 		$dados = $this->viagens_model->inicializar_valores();
@@ -112,22 +112,22 @@ class Viagens extends CI_Controller {
 			endif;
 		}
 		/* Conclusão */
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/footer', $data);
+		$this->load->view('modelos/cabecalho', $data);
+		$this->load->view('modelos/rodape', $data);
 	}
 
 	public function editar($id, $status_viagem = '')
 	{
-		/* Informações para 'header.php' */
+		/* Informações para 'cabecalho.php' */
 		$data['titulo']         = $this->titulo.' - Editar';
-		$data['incluir_header'] = array(link_tag('styles/custom.css'));
+		$data['incluir_cabecalho'] = array(link_tag('styles/custom.css'));
 		$data['view']           = 'viagens/formulario';
 		/* Informações para 'view' */
 		$data['titulo_pagina'] = 'Editar viagem';
 		$data['operacao']      = 'editar';
-		/* Informações para 'footer.php' */
-		$data['incluir_footer'] = array('<script src="'.base_url('scripts/jquery-mask/jquery.mask.min.js').'"></script>');
-		$data['scripts_footer'] = 'viagens/formulario_scripts';
+		/* Informações para 'rodape.php' */
+		$data['incluir_rodape'] = array('<script src="'.base_url('scripts/jquery-mask/jquery.mask.min.js').'"></script>');
+		$data['scripts_rodape'] = 'viagens/formulario_scripts';
 		/* Lógica do controlador */
 		/* ->Preenchimento dos valores dos campos */
 		$dados = $this->viagens_model->preencher_valores('reg_viagens', 'id', $id);
@@ -233,16 +233,8 @@ class Viagens extends CI_Controller {
 			}
 		}
 		/* Conclusão */
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/footer', $data);
-	}
-
-	public function visualizar($id)
-	{
-		$data['registros'] = $this->viagens_model->buscar_registro('reg_viagens', $id);
-		if (isset($data['registros'])) {
-			$this->load->view('viagens/visualizar', $data);
-		}
+		$this->load->view('modelos/cabecalho', $data);
+		$this->load->view('modelos/rodape', $data);
 	}
 
 	public function remover($id)

@@ -3,6 +3,16 @@
   margin-bottom: 10px;
 }
 
+/* < Painel inicial > */
+.table tbody>tr>td {
+  vertical-align: middle;
+}
+
+.table tbody>tr>td.acoes {
+  padding-right: 0;
+  padding-left: 0;
+}
+
 /* < Decoração das legendas do formulário > */
 legend {
   border-bottom-color: #999;
@@ -84,12 +94,6 @@ legend {
 	color: #5bc0de;
 }
 
-/* < Painel inicial > */
-.table tbody>tr>td {
-  vertical-align: middle;
-}
-
-.table tbody>tr>td.acoes {
-  padding-right: 0;
-  padding-left: 0;
+#modal-buscar .glyphicon-search {
+  color: #337ab7;
 }

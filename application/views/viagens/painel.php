@@ -1,4 +1,4 @@
-<?php $this->load->view('templates/navbar'); ?>
+<?php $this->load->view('modelos/barra_nav'); ?>
 <!-- Modal 'visualizar' -->
 <div class="modal fade bs-example-modal-lg" id="modal-visualizar" tabindex="-1" role="dialog" aria-labelledby="VisualizarViagem">
 	<div class="modal-dialog modal-lg" role="document">
@@ -9,9 +9,7 @@
 					<span class="glyphicon glyphicon-eye-open small" aria-hidden="true"></span> Visualizar viagem
 				</h4>
 			</div>
-			<div class="modal-body">
-
-			</div>
+			<div class="modal-body"></div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
 			</div>
@@ -97,7 +95,7 @@
 									<td><?php echo $reg->transp_nome; ?></td>
 									<td><?php echo $reg->operacao_nome, ($reg->operacao_unidade != '') ? ' - '.$reg->operacao_unidade : '' ; ?></td>
 									<td class="acoes">
-										<button type="button" class="btn btn-sm btn-info acao-visualizar" title="Visualizar" value="<?php echo $reg->id; ?>" onclick="visualizarViagem()">
+										<button type="button" class="btn btn-sm btn-info acao-visualizar" title="Visualizar" value="<?php echo $reg->id; ?>" onclick="visualizarViagem(this)">
 											<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
 										</button>
 									</td>

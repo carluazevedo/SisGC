@@ -20,15 +20,15 @@
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<?php
-		if (isset($incluir_header)) :
-			foreach ($incluir_header as $i) : echo $i; endforeach;
+		if (isset($incluir_cabecalho)) :
+			foreach ($incluir_cabecalho as $i) : echo $i; endforeach;
 		else :
 			echo PHP_EOL;
 		endif;
 		?>
 	</head>
+<!-- END HEADER -->
 
 	<body>
 		<main>
-<!-- END HEADER -->
 <?php isset($view) ? $this->load->view($view) : show_404('', FALSE); ?>
