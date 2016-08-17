@@ -80,20 +80,20 @@ legend {
 }
 
 /* < Modais > */
-#modal-remover .glyphicon-remove-sign {
+#modal-remover .modal-header .glyphicon-remove-sign {
   color: #d9534f;
 }
 
-#modal-visualizar .glyphicon-eye-open,
-#modal-editar .glyphicon-edit,
-#modal-finalizar .glyphicon-save {
+#modal-visualizar .modal-header .glyphicon-eye-open,
+#modal-editar .modal-header .glyphicon-edit,
+#modal-finalizar .modal-header .glyphicon-save {
 	color: #5cb85c;
 }
 
-#modal-ajuda .glyphicon-question-sign {
+#modal-ajuda .modal-header .glyphicon-question-sign {
 	color: #5bc0de;
 }
 
-#modal-buscar .glyphicon-search {
+#modal-buscar .modal-header .glyphicon-search {
   color: #337ab7;
 }

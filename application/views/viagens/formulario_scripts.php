@@ -1,5 +1,8 @@
 <script>
 $(document).ready(function() {
+	$('input[type=text]').on('keypress', function(e) {
+		return e.which !== 13;
+	});
 	$('#motorista_cpf').mask('000.000.000-00');
 	$('#placa_trator, #placa_reboque_1, #placa_reboque_2').mask('SSS-0000');
 	$('#valor').mask('000.000.000,00', {reverse: true});
@@ -7,9 +10,36 @@ $(document).ready(function() {
 	$('#destinatario_cnpj').mask('00.000.000/0000-00');
 	$('#destinatario_cnpj').tooltip();
 	$('#buscar-motorista').click(function() {
+		ajax_get_response('<?php echo html_entity_decode(site_url('buscar&#47;motorista&#47;')); ?>', buscar_motorista_form);
 		$('#modal-buscar').modal('toggle');
 	});
 });
+
+function buscar_motorista_form(callback)
+{
+	node = document.querySelector('#modal-buscar .modal-body');
+	node.innerHTML = callback;
+}
+
+function buscar_motorista()
+{
+	node = document.querySelector('#motorista-cpf-nome');
+	error_node = document.querySelector('#modal-buscar .custom-error')
+	if (node.value == '') {
+		error_node.innerHTML = 'Informe o <strong>CPF</strong> do motorista.';
+	} else {
+		error_node.innerHTML = '';
+		ajax_get_response('<?php echo html_entity_decode(site_url('buscar&#47;motorista&#47;')); ?>' + node.value, buscar_motorista_result);
+		function buscar_motorista_result(callback)
+		{
+			node1 = document.querySelector('#motorista_cpf');
+			node2 = document.querySelector('#motorista_nome');
+			resultado = JSON.parse(callback);
+			node1.value = resultado.cpf;
+			node2.value = resultado.nome;
+		}
+	}
+}
 
 <?php if (isset($operacao) && $operacao == 'registrar') : ?>
 notas_fiscais.disabled = true;
@@ -62,10 +92,18 @@ destinatario_cnpj.readOnly = true;
       observacoes.readOnly = true;
 <?php endif; ?>
 
-var i_text = document.querySelectorAll('input[type=text]');
-function converterCaixaAlta() {
-	for (i = 0; i < i_text.length; i++) {
-		i_text[i].value = i_text[i].value.toUpperCase();
+function preventEnter(e)
+{
+	if (event.which == 13 && e.type == 'text') {
+		return false;
+	}
+}
+
+function converterCaixaAlta()
+{
+	nodes = document.querySelectorAll('input[type=text]');
+	for (i = 0; i < nodes.length; i++) {
+		nodes[i].value = nodes[i].value.toUpperCase();
 	}
 }
 </script>

@@ -8,15 +8,11 @@
 					<span class="glyphicon glyphicon-search small"></span> Buscar registro
 				</h4>
 			</div>
-			<div class="modal-body">
-				<div class="embed-responsive embed-responsive-16by9">
-					<iframe class="embed-responsive-item"></iframe>
-				</div>
-			</div>
+			<div class="modal-body"></div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-primary" data-dismiss="modal" id="fechar-busca">Fechar</button>
 			</div>
-		</div>
-	</div>
-</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <!-- /Modal 'buscar' -->

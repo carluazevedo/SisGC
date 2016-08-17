@@ -20,15 +20,15 @@ class Buscar extends CI_Controller {
 
 	public function motorista($cpf = '')
 	{
-		if ($cpf != '') {
+		if ($cpf == '') {
+			$this->load->view('buscar/motorista');
+		} else {
 			header("Content-Type: application/json; charset=UTF-8");
 			$motorista = $this->buscar_model->buscar_registro('cad_motorista', 'cpf', $cpf, 'cpf,nome', true);
 			if (isset($motorista)) {
 				$jsonMotorista = json_encode($motorista, JSON_UNESCAPED_UNICODE);
 				echo $jsonMotorista;
 			}
-		} else {
-			$this->load->view('buscar/motorista');
 		}
 	}
 }
