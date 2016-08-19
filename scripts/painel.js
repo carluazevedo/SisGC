@@ -22,7 +22,7 @@ inserirLinhaTabela();
 
 function visualizarViagem(e)
 {
-	ajax_get_response(site_url+'buscar/viagem/'+e.value, resultado);
+	ajaxGetResponse(site_url+'buscar/viagem/'+e.value, resultado);
 	function resultado(callback)
 	{
 		node = document.querySelector('#modal-visualizar .modal-body');

@@ -21,17 +21,22 @@ function buscarMotorista()
 	if (node.value == '') {
 		error_node.innerHTML = 'Informe o <strong>CPF</strong> do motorista.';
 	} else {
-		ajaxGetResponse(site_url+'buscar/motorista/'+node.value, resultado);
+		ajaxPostResponse(site_url+'buscar/motorista', node.value, resultado);
 		error_node.innerHTML = '';
-		table_node.hidden = false;
 		function resultado(callback)
 		{
-			resultado = JSON.parse(callback);
-			table_node.tBodies[0].insertRow(0);
-			table_node.tBodies[0].rows[0].insertCell(0);
-			table_node.tBodies[0].rows[0].insertCell(1);
-			table_node.tBodies[0].rows[0].cells[0].innerHTML = resultado.nome;
-			table_node.tBodies[0].rows[0].cells[1].innerHTML = resultado.cpf;
+			motorista = JSON.parse(callback);
+			console.log(callback);
+			console.log(motorista);
+			/*if (resultado.error) {
+			table_node.tBodies[0].innerHTML = resultado.error;
+			} else if (resultado.cpf) {
+				table_node.tBodies[0].insertRow(0);
+				table_node.tBodies[0].rows[0].insertCell(0);
+				table_node.tBodies[0].rows[0].insertCell(1);
+				table_node.tBodies[0].rows[0].cells[0].innerHTML = resultado.nome;
+				table_node.tBodies[0].rows[0].cells[1].innerHTML = resultado.cpf;
+			}*/
 		}
 	}
 }

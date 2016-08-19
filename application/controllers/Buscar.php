@@ -18,17 +18,20 @@ class Buscar extends CI_Controller {
 		}
 	}
 
-	public function motorista($cpf = '')
+	public function motorista()
 	{
-		if ($cpf == '') {
-			$this->load->view('buscar/motorista');
+		$valor = $this->input->post('valor');
+		if (preg_match('/\d{3}\.\d{3}\.\d{3}-\d{2}/', $valor)) {
+			$motorista = $this->buscar_model->buscar_registro('cad_motorista', 'cpf', $valor, 'cpf,nome', true);
+		} elseif (preg_match('/[^\d\.\-]+/', $valor)) {
+			$motorista = $this->buscar_model->pesquisar_registro('cad_motorista', 'nome', $valor, 'cpf,nome', true);
+		}
+		header("Content-Type: application/json; charset=UTF-8");
+		if (isset($motorista)) {
+			$jsonMotorista = json_encode($motorista, JSON_UNESCAPED_UNICODE);
+			echo $jsonMotorista;
 		} else {
-			header("Content-Type: application/json; charset=UTF-8");
-			$motorista = $this->buscar_model->buscar_registro('cad_motorista', 'cpf', $cpf, 'cpf,nome', true);
-			if (isset($motorista)) {
-				$jsonMotorista = json_encode($motorista, JSON_UNESCAPED_UNICODE);
-				echo $jsonMotorista;
-			}
+			echo '{"erro":"falha na busca"}';
 		}
 	}
 }

@@ -12,7 +12,7 @@
 				<div class="container-fluid">
 					<div class="row">
 						<div class="form-group">
-							<label for="cpf">Informe o CPF</label>
+							<label for="cpf">Informe o CPF ou Nome</label>
 							<div class="input-group">
 								<input type="text" class="form-control" id="cpf">
 								<span class="input-group-btn">
@@ -21,9 +21,9 @@
 									</button>
 								</span>
 							</div>
-							<div class="custom-error"></div>
 						</div><!-- /.form-group -->
-						<table class="table table-condensed" id="tabela-resultados" hidden>
+						<p class="custom-error"></p>
+						<table class="table table-condensed" id="tabela-resultados">
 							<thead>
 								<tr class="active">
 									<th>NOME</th>
