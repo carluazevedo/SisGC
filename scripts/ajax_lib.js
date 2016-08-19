@@ -1,7 +1,7 @@
 /**
  * Nesta função, 'callback' retorna o objeto 'XMLHttpRequest()' completo
  */
-function ajax_get(url, callback)
+function ajaxGet(url, callback)
 {
 	var new_request = false;
 	    new_request = new XMLHttpRequest();
@@ -20,7 +20,7 @@ function ajax_get(url, callback)
 /**
  * Nesta função, 'callback' retorna apenas 'responseText'
  */
-function ajax_get_response(url, callback)
+function ajaxGetResponse(url, callback)
 {
 	var new_request = false;
 	new_request = new XMLHttpRequest();

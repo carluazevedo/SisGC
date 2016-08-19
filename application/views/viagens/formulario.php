@@ -3,7 +3,7 @@
 <?php $this->load->view('modelos/modal/formulario_editar'); ?>
 <?php $this->load->view('modelos/modal/formulario_ajuda'); ?>
 <?php $this->load->view('modelos/modal/formulario_finalizar'); ?>
-<?php $this->load->view('modelos/modal/formulario_buscar'); ?>
+<?php $this->load->view('modelos/modal/formulario_buscar_motorista'); ?>
 
 <section>
 	<div class="container-fluid">
@@ -93,7 +93,7 @@
 				<?php endif; ?>
 
 				<!-- Formulário de registro -->
-				<?php echo form_open('', array('class' => 'form-horizontal','id' => 'registrar-viagem' ,'onsubmit' => 'converterCaixaAlta()')); ?>
+				<form action="" method="post" class="form-horizontal" id="registrar-viagem" accept-charset="utf-8" onsubmit="converterCaixaAlta()">
 					<fieldset id="dt">
 						<legend>DT</legend>
 						<div class="form-group">
@@ -113,7 +113,7 @@
 								<label for="motorista_cpf" class="col-sm-2 control-label">CPF</label>
 								<div class="col-sm-4 col-md-3">
 									<div class="input-group input-group-sm">
-										<input type="text" name="motorista_cpf" id="motorista_cpf" class="form-control" maxlength="14" value="<?php echo set_value('motorista_cpf', $motorista_cpf); ?>" />
+										<input type="text" name="motorista_cpf" id="motorista_cpf" class="form-control" maxlength="14" value="<?php echo set_value('motorista_cpf', $motorista_cpf); ?>" readonly />
 										<span class="input-group-btn">
 											<button class="btn btn-default" type="button" title="Buscar cadastro" id="buscar-motorista"><span class="glyphicon glyphicon-search"></span></button>
 											<button class="btn btn-default" type="button" title="Editar cadastro" disabled><span class="glyphicon glyphicon-edit"></span></button>
@@ -314,7 +314,7 @@
 							</button>
 						</div>
 					</div><!-- /.form-group -->
-				<?php echo form_close('<!-- .form-horizontal -->').PHP_EOL; ?>
+				</form><!-- .form-horizontal -->
 			</div><!-- /.col-sm-12 -->
 		</div><!-- /.row -->
 	</div><!-- /.container-fluid -->
