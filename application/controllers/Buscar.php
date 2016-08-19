@@ -22,16 +22,16 @@ class Buscar extends CI_Controller {
 	{
 		$valor = $this->input->post('valor');
 		if (preg_match('/\d{3}\.\d{3}\.\d{3}-\d{2}/', $valor)) {
-			$motorista = $this->buscar_model->buscar_registro('cad_motorista', 'cpf', $valor, 'cpf,nome', true);
+			$motorista = $this->buscar_model->listar_registros('cad_motorista', 'cpf,nome', 'cpf', $valor, true);
 		} elseif (preg_match('/[^\d\.\-]+/', $valor)) {
-			$motorista = $this->buscar_model->pesquisar_registro('cad_motorista', 'nome', $valor, 'cpf,nome', true);
+			$motorista = $this->buscar_model->pesquisar_registros('cad_motorista', 'nome', $valor, 'cpf,nome', true);
 		}
-		header("Content-Type: application/json; charset=UTF-8");
 		if (isset($motorista)) {
+			header("Content-Type: application/json; charset=UTF-8");
 			$jsonMotorista = json_encode($motorista, JSON_UNESCAPED_UNICODE);
 			echo $jsonMotorista;
 		} else {
-			echo '{"erro":"falha na busca"}';
+			show_404('', false);
 		}
 	}
 }

@@ -10,6 +10,33 @@ class Buscar_model extends CI_Model {
 	}
 
 	/**
+	 * Listar Registros
+	 *
+	 * Lista registros com base nos parâmetros informados e retorna os resultados
+	 * em 'array' ou, por padrão, em 'object'.
+	 *
+	 * @param    string   $tabela             Nome da tabela
+	 * @param    mixed    $colunas            Pode ser string ou array
+	 * @param    string   $criterio_where     Se informado, critério da cláusula 'WHERE'
+	 * @param    mixed    $condicao_where     Se informado, condição da cláusula 'WHERE'
+	 * @param    bool     $resultado_matriz   Se falso 'object', se verdadeiro 'array'
+	 * @return   Retorna os resultados em 'array' ou, por padrão, em 'object'
+	 */
+	public function listar_registros($tabela, $colunas = '', $criterio_where = '', $condicao_where = '', $resultado_matriz = false)
+	{
+		$this->db->select($colunas);
+		if ($criterio_where != '' && $condicao_where != '') {
+			$this->db->where($criterio_where, $condicao_where);
+		}
+		$query = $this->db->get($tabela);
+		if ($resultado_matriz == false) {
+			return $query->result();
+		} elseif ($resultado_matriz == true) {
+			return $query->result_array();
+		}
+	}
+
+	/**
 	 * Buscar Registro
 	 *
 	 * Busca um registro com base nos parâmetros informados e retorna o resultado
@@ -28,9 +55,9 @@ class Buscar_model extends CI_Model {
 		$this->db->where($criterio_where, $condicao_where);
 		$query = $this->db->get($tabela);
 		if ($resultado_matriz == false) {
-			return $query->result();
+			return $query->row();
 		} elseif ($resultado_matriz == true) {
-			return $query->result_array();
+			return $query->row_array();
 		}
 	}
 
@@ -48,7 +75,7 @@ class Buscar_model extends CI_Model {
 	 * @param    bool     $resultado_matriz   Se falso 'object', se verdadeiro 'array'
 	 * @return   Retorna o resultado em 'array' ou, por padrão, em 'object'
 	 */
-	public function pesquisar_registro($tabela, $criterio_like, $condicao_like, $colunas = '', $resultado_matriz = false)
+	public function pesquisar_registros($tabela, $criterio_like, $condicao_like, $colunas = '', $resultado_matriz = false)
 	{
 		$this->db->select($colunas);
 		$this->db->like($criterio_like, $condicao_like, 'after');

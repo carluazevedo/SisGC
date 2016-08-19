@@ -252,7 +252,7 @@ class Viagens extends CI_Controller {
 			$this->session->set_flashdata('sucesso', 'Viagem removida com sucesso.');
 			redirect('viagens');
 		else :
-			show_404('', FALSE);
+			show_404('', false);
 		endif;
 	}
 }
