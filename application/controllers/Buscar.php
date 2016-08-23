@@ -20,18 +20,22 @@ class Buscar extends CI_Controller {
 
 	public function motorista()
 	{
-		$valor = $this->input->post('valor');
-		if (preg_match('/\d{3}\.\d{3}\.\d{3}-\d{2}/', $valor)) {
-			$motorista = $this->buscar_model->listar_registros('cad_motorista', 'cpf,nome', 'cpf', $valor, true);
-		} elseif (preg_match('/[^\d\.\-]+/', $valor)) {
-			$motorista = $this->buscar_model->pesquisar_registros('cad_motorista', 'nome', $valor, 'cpf,nome', true);
-		}
-		if (isset($motorista)) {
-			header("Content-Type: application/json; charset=UTF-8");
-			$jsonMotorista = json_encode($motorista, JSON_UNESCAPED_UNICODE);
-			echo $jsonMotorista;
+		if (!$this->input->post('valor')) {
+			exit(show_error('Acesso não permitido.', 403, '403 Forbidden'));
 		} else {
-			show_404('', false);
+			$valor = $this->input->post('valor');
+			if (preg_match('/\d{3}\.\d{3}\.\d{3}-\d{2}/', $valor)) {
+				$motorista = $this->buscar_model->listar_registros('cad_motorista', 'cpf,nome', 'cpf', $valor, true);
+			} elseif (preg_match('/[^\d\.\-]+/', $valor)) {
+				$motorista = $this->buscar_model->pesquisar_registros('cad_motorista', 'nome', $valor, 'cpf,nome', true);
+			}
+			if (isset($motorista)) {
+				header("Content-Type: application/json; charset=UTF-8");
+				$jsonMotorista = json_encode($motorista, JSON_UNESCAPED_UNICODE);
+				echo $jsonMotorista;
+			} else {
+				echo "[]";
+			}
 		}
 	}
 }

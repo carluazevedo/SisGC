@@ -2,7 +2,8 @@ $(document).ready(function() {
 	$('input[type=text]').on('keypress', function(e) {
 		return e.which !== 13;
 	});
-	$('#motorista_cpf, #modal-buscar-motorista #cpf').mask('000.000.000-00');
+	//$('#motorista_cpf').mask('000.000.000-00');
+	$('#modal-buscar-motorista #cpf').mask('000.000.000-00', {placeholder: "000.000.000-00"});
 	$('#placa_trator, #placa_reboque_1, #placa_reboque_2').mask('SSS-0000');
 	$('#valor').mask('000.000.000,00', {reverse: true});
 	$('#peso').mask('000.000.000,000', {reverse: true});
@@ -16,7 +17,7 @@ $(document).ready(function() {
 		$('#modal-buscar-motorista').on('hidden.bs.modal', function() {
 			$('#cpf, #nome').val('');
 			$('#modal-buscar-motorista .custom-error').html('');
-			$('#tabela-resultados tbody').remove()
+			//$('#tabela-resultados tbody').remove();
 		});
 	});
 });
@@ -34,27 +35,29 @@ function buscarMotorista(c)
 		} else if (c == 'nome') {
 			ajaxPostResponse(site_url+'buscar/motorista', nome_node.value, resultado);
 		}
-		function resultado(callback)
-		{
-			dados_motorista = JSON.parse(callback);
-			/*
-			if (dados_motorista[0] == undefined) {
-				error_node.innerHTML = 'Registro não encontrado.';
-			}
-			if (dados_motorista.length == 1) {
-			*/
-			table_node.createTBody();
-			table_node.tBodies[0].insertRow(0);
-			table_node.tBodies[0].rows[0].insertCell(0);
-			table_node.tBodies[0].rows[0].insertCell(1);
-			table_node.tBodies[0].rows[0].cells[0].innerHTML = dados_motorista[0].nome;
-			table_node.tBodies[0].rows[0].cells[1].innerHTML = dados_motorista[0].cpf;
-			dados_motorista = '';
-		}
 		if (table_node.tBodies[0] != undefined) {
 			table_node.tBodies[0].remove();
 		}
 	} else {
 		error_node.innerHTML = 'Informe os dados necessários.';
+	}
+}
+
+function resultado(callback)
+{
+	dados_resultado = JSON.parse(callback);
+	if (dados_resultado.length == 0) {
+		error_node.innerHTML = 'Registro não encontrado.';
+	}
+	if (dados_resultado.length >= 1) {
+		table_node.createTBody();
+		for (i = 0; i < dados_resultado.length; i++) {
+			table_node.tBodies[0].insertRow(0);
+			table_node.tBodies[0].rows[0].insertCell(0);
+			table_node.tBodies[0].rows[0].insertCell(1);
+			table_node.tBodies[0].rows[0].cells[0].innerHTML = dados_resultado[i].nome;
+			table_node.tBodies[0].rows[0].cells[1].innerHTML = dados_resultado[i].cpf;
+			//dados_resultado = '';
+		}
 	}
 }

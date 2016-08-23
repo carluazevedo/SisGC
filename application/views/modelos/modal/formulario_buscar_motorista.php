@@ -43,7 +43,7 @@
 								<thead>
 									<tr class="active">
 										<th>NOME</th>
-										<th>CPF</th>
+										<th style="width:150px;">CPF</th>
 									</tr>
 								</thead>
 							</table>
