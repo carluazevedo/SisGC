@@ -11,35 +11,20 @@
 			<div class="modal-body">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="alert alert-success alert-dismissible fade in" role="alert">
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-							<span class="glyphicon glyphicon-ok-sign small"></span> Informe o CPF <strong>OU</strong> o Nome do motorista.
-						</div>
 						<div class="form-group">
-							<label for="cpf">CPF</label>
+							<label for="dados-motorista">Informe CPF <u>ou</u> NOME do motorista.</label>
 							<div class="input-group">
-								<input type="text" class="form-control" id="cpf">
+								<input type="text" class="form-control" id="dados-motorista">
 								<span class="input-group-btn">
-									<button class="btn btn-primary" type="button" title="Buscar motorista pelo CPF" onclick="buscarMotorista('cpf')">
+									<button class="btn btn-primary" type="button" title="Buscar motorista pelo CPF ou NOME" onclick="buscarMotorista()">
 										<span class="glyphicon glyphicon-search small"></span> Buscar
 									</button>
 								</span>
 							</div>
 						</div><!-- /.form-group -->
-						<div class="form-group">
-							<label for="nome">Nome</label>
-							<div class="input-group">
-								<input type="text" class="form-control" id="nome">
-								<span class="input-group-btn">
-									<button class="btn btn-primary" type="button" title="Buscar motorista pelo Nome" onclick="buscarMotorista('nome')">
-										<span class="glyphicon glyphicon-search small"></span> Buscar
-									</button>
-								</span>
-							</div>
-						</div><!-- /.form-group -->
-						<p class="custom-error"></p>
+						<p class="custom-error" style="height: 20px;"></p>
 						<div class="table-responsive">
-							<table class="table table-hover table-condensed" id="tabela-resultados">
+							<table class="table table-bordered table-hover table-condensed" id="tabela-resultados">
 								<thead>
 									<tr class="active">
 										<th>NOME</th>

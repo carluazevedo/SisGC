@@ -134,7 +134,8 @@ class Viagens extends CI_Controller {
 		/* Informações para 'rodape.php' */
 		$data['incluir_rodape'] = array(
 			'<script src="'.base_url('scripts/jquery-mask/jquery.mask.min.js').'"></script>',
-			'<script src="'.base_url('scripts/ajax_lib.js').'"></script>'
+			'<script src="'.base_url('scripts/ajax_lib.js').'"></script>',
+			'<script src="'.base_url('scripts/formulario.js').'"></script>'
 		);
 		$data['scripts_rodape'] = 'viagens/formulario_scripts';
 		/* Lógica do controlador */
