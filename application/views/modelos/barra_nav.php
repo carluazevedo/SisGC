@@ -37,8 +37,11 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li><a href="#">Editar perfil</a></li>
-								<li><?php echo anchor(base_url('user_guide'), 'CodeIgniter Guide', 'target="_blank"'); ?></li>
-								<li><?php echo anchor('https://getbootstrap.com/css', 'Bootstrap Ref', 'target="_blank"'); ?></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="#"><strong>Referências</strong></a></li>
+								<li><?php echo anchor(base_url('user_guide'), 'CodeIgniter', 'target="_blank"'); ?></li>
+								<li><?php echo anchor('https://getbootstrap.com/css', 'Bootstrap', 'target="_blank"'); ?></li>
+								<li><?php echo anchor('http://www.w3schools.com/', 'W3Schools', 'target="_blank"'); ?></li>
 								<li role="separator" class="divider"></li>
 								<li><a href="<?php echo site_url('auth/logout'); ?>">Desconectar</a></li>
 							</ul>

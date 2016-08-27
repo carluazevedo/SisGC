@@ -115,7 +115,7 @@
 									<div class="input-group input-group-sm">
 										<input type="text" name="motorista_cpf" id="motorista_cpf" class="form-control" maxlength="14" value="<?php echo set_value('motorista_cpf', $motorista_cpf); ?>" readonly />
 										<span class="input-group-btn">
-											<button class="btn btn-default" type="button" title="Buscar cadastro" id="buscar-motorista"><span class="glyphicon glyphicon-search"></span></button>
+											<button class="btn btn-default" type="button" title="Buscar cadastro" id="buscar_motorista"><span class="glyphicon glyphicon-search"></span></button>
 											<button class="btn btn-default" type="button" title="Editar cadastro" disabled><span class="glyphicon glyphicon-edit"></span></button>
 										</span>
 									</div>
@@ -153,7 +153,13 @@
 							</div>
 						</div><!-- /.form-group -->
 
-						<div class="form-group">
+						<div class="form-group" id="informar-reboque-2">
+							<div class="col-sm-offset-2 col-sm-3 col-md-2">
+								<button type="button" class="btn btn-primary btn-sm btn-block" id="botao-reboque-2">Informar reboque 2</button>
+							</div>
+						</div><!-- /.form-group -->
+
+						<div class="form-group" id="reboque-2" hidden>
 							<label for="placa_reboque_2" class="col-sm-2 control-label">Reboque 2</label>
 							<div class="col-sm-3">
 								<input type="text" name="placa_reboque_2" id="placa_reboque_2" class="form-control input-sm" value="<?php echo set_value('placa_reboque_2', $placa_reboque_2); ?>" />

@@ -14,9 +14,9 @@
 						<div class="form-group">
 							<label for="dados-motorista">Informe CPF <u>ou</u> NOME do motorista.</label>
 							<div class="input-group">
-								<input type="text" class="form-control" id="dados-motorista">
+								<input type="text" class="form-control" id="dados_motorista">
 								<span class="input-group-btn">
-									<button class="btn btn-primary" type="button" title="Buscar motorista pelo CPF ou NOME" onclick="buscarMotorista()">
+									<button class="btn btn-primary" type="button" title="Buscar motorista pelo CPF ou NOME" id="buscar_dados_motorista">
 										<span class="glyphicon glyphicon-search small"></span> Buscar
 									</button>
 								</span>
@@ -24,7 +24,7 @@
 						</div><!-- /.form-group -->
 						<p class="custom-error" style="height: 20px;"></p>
 						<div class="table-responsive">
-							<table class="table table-bordered table-hover table-condensed" id="tabela-resultados">
+							<table class="table table-bordered table-hover table-condensed" id="tabela_resultados_motorista">
 								<thead>
 									<tr class="active">
 										<th>NOME</th>
@@ -37,7 +37,7 @@
 				</div><!-- /.container-fluid -->
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal" id="fechar-busca">Fechar</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
