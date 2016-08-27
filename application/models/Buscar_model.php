@@ -79,7 +79,8 @@ class Buscar_model extends CI_Model {
 	{
 		$this->db->select($colunas);
 		$this->db->like($criterio_like, $condicao_like, 'after');
-		$this->db->order_by('nome', 'DESC');
+		$this->db->order_by('nome', 'ASC');
+		$this->db->limit(5);
 		$query = $this->db->get($tabela);
 		if ($resultado_matriz == false) {
 			return $query->result();

@@ -66,15 +66,15 @@ function resultadoBuscarMotorista(callback)
 	if (dados_resultado.length >= 1) {
 		tabela_resultados_motorista.createTBody();
 		for (i = 0; i < dados_resultado.length; i++) {
-			tabela_resultados_motorista.tBodies[0].insertRow(0);
-			tabela_resultados_motorista.tBodies[0].rows[0].setAttribute('id', dados_resultado[i].id);
-			tabela_resultados_motorista.tBodies[0].rows[0].insertCell(0);
-			tabela_resultados_motorista.tBodies[0].rows[0].insertCell(1);
-			tabela_resultados_motorista.tBodies[0].rows[0].cells[0].setAttribute('class', 'nome');
-			tabela_resultados_motorista.tBodies[0].rows[0].cells[0].innerHTML = dados_resultado[i].nome;
-			tabela_resultados_motorista.tBodies[0].rows[0].cells[1].setAttribute('class', 'cpf');
-			tabela_resultados_motorista.tBodies[0].rows[0].cells[1].innerHTML = dados_resultado[i].cpf;
-			tabela_resultados_motorista.tBodies[0].rows[0].addEventListener('click', this.selecionaRegistro);
+			tabela_resultados_motorista.tBodies[0].insertRow(i);
+			tabela_resultados_motorista.tBodies[0].rows[i].setAttribute('id', dados_resultado[i].id);
+			tabela_resultados_motorista.tBodies[0].rows[i].insertCell(0);
+			tabela_resultados_motorista.tBodies[0].rows[i].insertCell(1);
+			tabela_resultados_motorista.tBodies[0].rows[i].cells[0].setAttribute('class', 'nome');
+			tabela_resultados_motorista.tBodies[0].rows[i].cells[0].innerHTML = dados_resultado[i].nome;
+			tabela_resultados_motorista.tBodies[0].rows[i].cells[1].setAttribute('class', 'cpf');
+			tabela_resultados_motorista.tBodies[0].rows[i].cells[1].innerHTML = dados_resultado[i].cpf;
+			tabela_resultados_motorista.tBodies[0].rows[i].addEventListener('click', this.selecionaRegistro);
 		}
 	}
 }
