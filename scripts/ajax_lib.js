@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Nesta função, 'callback' retorna o objeto 'XMLHttpRequest()' completo usando o método 'GET'
  */
 function ajaxGet(url, callback)
