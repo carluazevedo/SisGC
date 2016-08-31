@@ -36,10 +36,10 @@ $('#modal-buscar-motorista').on('shown.bs.modal', function() {
 	dados_motorista.focus();
 });
 
-var error_node  = document.querySelector('#modal-buscar-motorista .custom-error');
+var erro_buscar_motorista = document.querySelector('#modal-buscar-motorista .custom-error');
 var buscarMotorista = new buscarRegistro();
 buscarMotorista.campo_dados = dados_motorista;
-buscarMotorista.elemento_erro = error_node;
+buscarMotorista.elemento_erro = erro_buscar_motorista;
 buscarMotorista.elemento_tabela = tabela_resultados_motorista;
 buscarMotorista.callback = resultadoBuscarMotorista;
 
@@ -61,7 +61,7 @@ function resultadoBuscarMotorista(callback)
 {
 	dados_resultado = JSON.parse(callback);
 	if (dados_resultado.length == 0) {
-		error_node.innerHTML = 'Registro não encontrado';
+		erro_buscar_motorista.innerHTML = 'Registro não encontrado';
 	}
 	if (dados_resultado.length >= 1) {
 		tabela_resultados_motorista.createTBody();
@@ -74,12 +74,12 @@ function resultadoBuscarMotorista(callback)
 			tabela_resultados_motorista.tBodies[0].rows[i].cells[0].innerHTML = dados_resultado[i].nome;
 			tabela_resultados_motorista.tBodies[0].rows[i].cells[1].setAttribute('class', 'cpf');
 			tabela_resultados_motorista.tBodies[0].rows[i].cells[1].innerHTML = dados_resultado[i].cpf;
-			tabela_resultados_motorista.tBodies[0].rows[i].addEventListener('click', this.selecionaRegistro);
+			tabela_resultados_motorista.tBodies[0].rows[i].addEventListener('click', this.selecionaMotorista);
 		}
 	}
 }
 
-function selecionaRegistro()
+function selecionaMotorista()
 {
 	motorista_cpf.value = this.querySelector('.cpf').innerHTML;
 	motorista_nome.value = this.querySelector('.nome').innerHTML;
@@ -101,3 +101,11 @@ $('#valor').mask('000.000.000,00', {reverse: true});
 $('#peso').mask('000.000.000,000', {reverse: true});
 $('#destinatario_cnpj').mask('00.000.000/0000-00');
 $('#destinatario_cnpj').tooltip();
+
+function converterCaixaAlta()
+{
+	nodes = document.querySelectorAll('input[type=text]');
+	for (i = 0; i < nodes.length; i++) {
+		nodes[i].value = nodes[i].value.toUpperCase();
+	}
+}

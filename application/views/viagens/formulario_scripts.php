@@ -52,12 +52,4 @@ destinatario_cnpj.readOnly = true;
              rota.readOnly = true;
       observacoes.readOnly = true;
 <?php endif; ?>
-
-function converterCaixaAlta()
-{
-	nodes = document.querySelectorAll('input[type=text]');
-	for (i = 0; i < nodes.length; i++) {
-		nodes[i].value = nodes[i].value.toUpperCase();
-	}
-}
 </script>

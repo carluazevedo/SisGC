@@ -55,8 +55,8 @@ CREATE TABLE `auth_users` (
 #
 
 INSERT INTO `auth_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-	('1', '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', '', NULL, '1268889823', '1268889823', '1', 'Admin','istrator' ,'ADMIN', '0'),
-	('2', '127.0.0.1', 'carlu pereira azevedo', '$2y$08$.Dm9cihILpwed/WRrz2Nie0MLni3wvZobWArSCaqadeXivaJeTna.', '', 'unilever.carlu@kronamaxxi.com', '', NULL, 1464163604, 1464307710, 1, 'Carlu', 'Pereira Azevedo', 'KronaMaxxi', 0);
+	(1, '127.0.0.1', 'administrator', '$2y$08$BCzSyVQiN6U/Y3KHmpj7AOXCfQSYSWJEaaY1XTBX6dobx6TO/50KW', '', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1472622247, 1, 'Admin', 'istrator', 'ADMIN', '0'),
+	(2, '127.0.0.1', 'carlu pereira azevedo', '$2y$08$.Dm9cihILpwed/WRrz2Nie0MLni3wvZobWArSCaqadeXivaJeTna.', '', 'carluazevedo@sisgc.com', '', NULL, NULL, 'WK5rH3L.CKibl4iwkGljSO', 1464163604, 1472622467, 1, 'Carlu', 'Pereira Azevedo', 'Carlu Informática', '0');
 
 DROP TABLE IF EXISTS `auth_users_groups`;
 
