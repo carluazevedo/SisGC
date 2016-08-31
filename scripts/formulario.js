@@ -1,10 +1,10 @@
-﻿$('input[type=text]').on('keydown', function(e) {
+﻿$('input[type=text]').keydown(function(e) {
 	return e.which !== 13;
 });
 
 /* < Expressões regulares para validação de campos > */
-var pattern_num = /\d/;
-var pattern_str = /[a-z]/i;
+var pattern_num = /\d{1}/;
+var pattern_str = /[a-z]{1}/i;
 
 /**
  * Objeto para realizar uma busca nos registros
