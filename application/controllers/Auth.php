@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth extends CI_Controller {
 
+	public $titulo = 'SisGC';
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -32,23 +34,27 @@ class Auth extends CI_Controller {
 		else
 		{
 			// set the flash data error message if there is one
-			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+			$data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
 			//list the users
-			$this->data['users'] = $this->ion_auth->users()->result();
-			foreach ($this->data['users'] as $k => $user)
+			$data['users'] = $this->ion_auth->users()->result();
+			foreach ($data['users'] as $k => $user)
 			{
-				$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
+				$data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
 			}
 
-			$this->_render_page('auth/index', $this->data);
+			$this->load->view('auth/index', $data);
 		}
 	}
 
 	// log the user in
 	public function login()
 	{
-		$this->data['title'] = $this->lang->line('login_heading');
+		/* Informações para 'cabecalho.php' */
+		$data['titulo']            = $this->titulo;
+		$data['incluir_cabecalho'] = array(link_tag('styles/custom.css'));
+		$data['view']              = 'auth/login';
+		$data['title'] = $this->lang->line('login_heading');
 
 		//validate form input
 		$this->form_validation->set_rules('identity', str_replace(':', '', $this->lang->line('login_identity_label')), 'required');
@@ -79,19 +85,20 @@ class Auth extends CI_Controller {
 		{
 			// the user is not logging in so display the login page
 			// set the flash data error message if there is one
-			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+			$data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
-			$this->data['identity'] = array('name' => 'identity',
+			$data['identity'] = array('name' => 'identity',
 				'id'    => 'identity',
 				'type'  => 'text',
 				'value' => $this->form_validation->set_value('identity'),
 			);
-			$this->data['password'] = array('name' => 'password',
+			$data['password'] = array('name' => 'password',
 				'id'   => 'password',
 				'type' => 'password',
 			);
 
-			$this->_render_page('auth/login', $this->data);
+			$this->load->view('modelos/cabecalho', $data);
+			$this->load->view('modelos/rodape', $data);
 		}
 	}
 
@@ -810,7 +817,7 @@ class Auth extends CI_Controller {
 	public function _render_page($view, $data=null, $returnhtml=false)//I think this makes more sense
 	{
 
-		$this->viewdata = (empty($data)) ? $this->data: $data;
+		$this->viewdata = (empty($data)) ? $this->data : $data;
 
 		$view_html = $this->load->view($view, $this->viewdata, $returnhtml);
 

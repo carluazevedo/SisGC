@@ -19,10 +19,10 @@
 $lang['error_csrf'] = 'O envio desse formulario não atendeu a requisitos de segurança.';
 
 // Login
-$lang['login_heading']         = 'Login';
-$lang['login_subheading']      = 'Por favor entre com seu login/email e senha abaixo.';
-$lang['login_identity_label']  = 'Login/Email:';
-$lang['login_password_label']  = 'Senha:';
+$lang['login_heading']         = 'Sistema de Gestão de Cargas';
+$lang['login_subheading']      = 'Bem vindo<br>Entre com seu usuário e senha';
+$lang['login_identity_label']  = 'Usuário';
+$lang['login_password_label']  = 'Senha';
 $lang['login_remember_label']  = 'Lembre-me:';
 $lang['login_submit_btn']      = 'Login';
 $lang['login_forgot_password'] = 'Esqueceu sua senha?';

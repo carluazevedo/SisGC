@@ -3,7 +3,7 @@
 
 <div id="infoMessage"><?php echo $message;?></div>
 
-<?php echo form_open("auth/login");?>
+<form action="http://localhost/sisgc-2/index.php/auth/login" method="post" accept-charset="utf-8">
 
   <p>
     <?php echo lang('login_identity_label', 'identity');?>
@@ -23,6 +23,6 @@
 
   <p><?php echo form_submit('submit', lang('login_submit_btn'));?></p>
 
-<?php echo form_close();?>
+</form>
 
 <p><a href="forgot_password"><?php echo lang('login_forgot_password');?></a></p>
