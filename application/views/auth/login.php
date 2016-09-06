@@ -1,28 +1,28 @@
-<h1><?php echo lang('login_heading');?></h1>
-<p><?php echo lang('login_subheading');?></p>
-
-<div id="infoMessage"><?php echo $message;?></div>
-
-<form action="http://localhost/sisgc-2/index.php/auth/login" method="post" accept-charset="utf-8">
-
-  <p>
-    <?php echo lang('login_identity_label', 'identity');?>
-    <?php echo form_input($identity);?>
-  </p>
-
-  <p>
-    <?php echo lang('login_password_label', 'password');?>
-    <?php echo form_input($password);?>
-  </p>
-
-  <p>
-    <?php echo lang('login_remember_label', 'remember');?>
-    <?php echo form_checkbox('remember', '1', FALSE, 'id="remember"');?>
-  </p>
-
-
-  <p><?php echo form_submit('submit', lang('login_submit_btn'));?></p>
-
-</form>
-
-<p><a href="forgot_password"><?php echo lang('login_forgot_password');?></a></p>
+<section>
+	<div class="container">
+		<form action="" method="post" id="entrar-sistema" accept-charset="utf-8">
+			<h1>Sistema de Gestão de Cargas</h1>
+			<p>Entre com seu endereço de email e senha</p>
+			<div class="custom-error"><?php echo $message;?></div>
+			<div class="form-group">
+				<label for="identity" class="control-label sr-only">Email</label>
+				<input type="text" id="identity" name="identity" class="form-control input-lg" value="<?php echo set_value('identity'); ?>" placeholder="Email" autofocus />
+				<label for="password" class="control-label sr-only">Senha</label>
+				<input type="password" id="password" name="password" class="form-control input-lg" placeholder="Senha" />
+			</div>
+			
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="remember" name="remember" value="1" />
+					Lembre-me
+				</label>
+			</div>
+			
+			<button type="submit" name="submit" class="btn btn-lg btn-primary btn-block">Entrar</button>
+			
+			<p class="form-control-static">
+				<a href="forgot_password">Esqueceu sua senha?</a>
+			</p>
+		</form>
+	</div>
+</section>

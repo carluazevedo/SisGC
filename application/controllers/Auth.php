@@ -12,7 +12,7 @@ class Auth extends CI_Controller {
 		$this->load->library(array('ion_auth','form_validation'));
 		$this->load->helper(array('url','language'));
 
-		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
+		$this->form_validation->set_error_delimiters('<p class="form-control-static">', '</p>');
 
 		$this->lang->load('auth');
 	}
@@ -54,11 +54,10 @@ class Auth extends CI_Controller {
 		$data['titulo']            = $this->titulo;
 		$data['incluir_cabecalho'] = array(link_tag('styles/custom.css'));
 		$data['view']              = 'auth/login';
-		$data['title'] = $this->lang->line('login_heading');
 
 		//validate form input
-		$this->form_validation->set_rules('identity', str_replace(':', '', $this->lang->line('login_identity_label')), 'required');
-		$this->form_validation->set_rules('password', str_replace(':', '', $this->lang->line('login_password_label')), 'required');
+		$this->form_validation->set_rules('identity', 'Email', 'required|valid_email');
+		$this->form_validation->set_rules('password', 'Senha', 'required');
 
 		if ($this->form_validation->run() == true)
 		{
@@ -86,16 +85,6 @@ class Auth extends CI_Controller {
 			// the user is not logging in so display the login page
 			// set the flash data error message if there is one
 			$data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-
-			$data['identity'] = array('name' => 'identity',
-				'id'    => 'identity',
-				'type'  => 'text',
-				'value' => $this->form_validation->set_value('identity'),
-			);
-			$data['password'] = array('name' => 'password',
-				'id'   => 'password',
-				'type' => 'password',
-			);
 
 			$this->load->view('modelos/cabecalho', $data);
 			$this->load->view('modelos/rodape', $data);
