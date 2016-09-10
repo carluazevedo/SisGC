@@ -16,7 +16,7 @@ class Viagens extends CI_Controller {
 	{
 		/* Informações para 'cabecalho.php' */
 		$data['titulo']            = $this->titulo;
-		$data['incluir_cabecalho'] = array(link_tag('styles/custom.css'));
+		$data['incluir_cabecalho'] = array(link_tag('styles/geral.css'));
 		$data['view']              = 'viagens/painel';
 		/* Informações para 'view' */
 		$data['titulo_pagina'] = 'Viagens registradas';
@@ -51,7 +51,7 @@ class Viagens extends CI_Controller {
 	{
 		/* Informações para 'cabecalho.php' */
 		$data['titulo']         = $this->titulo.' - Registrar';
-		$data['incluir_cabecalho'] = array(link_tag('styles/custom.css'));
+		$data['incluir_cabecalho'] = array(link_tag('styles/geral.css'));
 		/* Informações para 'view' */
 		$data['titulo_pagina'] = 'Registrar viagem';
 		$data['nav_registrar'] = true;
@@ -126,7 +126,7 @@ class Viagens extends CI_Controller {
 	{
 		/* Informações para 'cabecalho.php' */
 		$data['titulo']         = $this->titulo.' - Editar';
-		$data['incluir_cabecalho'] = array(link_tag('styles/custom.css'));
+		$data['incluir_cabecalho'] = array(link_tag('styles/geral.css'));
 		$data['view']           = 'viagens/formulario';
 		/* Informações para 'view' */
 		$data['titulo_pagina'] = 'Editar viagem';
@@ -249,11 +249,11 @@ class Viagens extends CI_Controller {
 
 	public function remover($id)
 	{
-		if ($this->input->post('remover') == 'ok' && $this->viagens_model->remover('reg_viagens', $id) == true) :
+		if ($this->input->post('remover') == 'ok' && $this->viagens_model->remover('reg_viagens', $id) == true) {
 			$this->session->set_flashdata('sucesso', 'Viagem removida com sucesso.');
 			redirect('viagens');
-		else :
-			show_404('', false);
-		endif;
+		} else {
+			exit(show_error('Acesso não permitido.', 403, '403 Forbidden'));
+		}
 	}
 }

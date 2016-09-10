@@ -15,7 +15,7 @@ class Admin extends CI_Controller {
 	public function index() {
 		/* Informações para 'cabecalho.php' */
 		$data['titulo']  = $this->titulo.'- Administração';
-		$data['incluir'] = array(link_tag('styles/custom.css'));
+		$data['incluir'] = array(link_tag('styles/geral.css'));
 		$data['view']    = 'admin/painel';
 
 		/* Informações para 'view' */

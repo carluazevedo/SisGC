@@ -52,7 +52,10 @@ class Auth extends CI_Controller {
 	{
 		/* Informações para 'cabecalho.php' */
 		$data['titulo']            = $this->titulo;
-		$data['incluir_cabecalho'] = array(link_tag('styles/custom.css'));
+		$data['incluir_cabecalho'] = array(
+				link_tag('styles/geral.css'),
+				link_tag('styles/login.css')
+		);
 		$data['view']              = 'auth/login';
 
 		//validate form input

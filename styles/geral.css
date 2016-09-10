@@ -3,28 +3,6 @@
   margin-bottom: 10px;
 }
 
-/* < Formulário de login > */
-#entrar-sistema {
-  max-width: 515px;
-  padding: 15px;
-  margin: 0 auto;
-}
-
-#entrar-sistema .form-control:focus {
-  z-index: 2;
-}
-
-#entrar-sistema #identity {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-#entrar-sistema #password {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
 /* < Painel inicial > */
 .table tbody>tr>td {
   vertical-align: middle;
