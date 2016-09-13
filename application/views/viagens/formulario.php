@@ -1,4 +1,10 @@
-<?php $this->load->view('templates/navbar.php'); ?>
+<?php $this->load->view('modelos/barra_nav'); ?>
+
+<?php $this->load->view('modelos/modal/formulario_editar'); ?>
+<?php $this->load->view('modelos/modal/formulario_ajuda'); ?>
+<?php $this->load->view('modelos/modal/formulario_finalizar'); ?>
+<?php $this->load->view('modelos/modal/formulario_buscar_motorista'); ?>
+
 <section>
 	<div class="container-fluid">
 		<div class="row">
@@ -68,28 +74,32 @@
 				<div class="alert alert-success alert-dismissible fade in" role="alert">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
 					<span class="glyphicon glyphicon-ok-sign"></span> <?php echo $this->session->flashdata('sucesso'); ?>
+					<?php if ($this->session->flashdata('sem_opcao_voltar') != 'ok') : ?>
 					<button class="btn btn-xs btn-success" onclick="location.href='<?php echo site_url('viagens'); ?>'">
-						<small><span class="glyphicon glyphicon-arrow-left"></span></small> Voltar
+						<span class="glyphicon glyphicon-arrow-left small"></span> Voltar
 					</button>
+					<?php endif; ?>
 				</div>
 				<?php elseif ($this->session->flashdata('erro') != null) : ?>
 				<div class="alert alert-warning alert-dismissible fade in" role="alert">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
 					<span class="glyphicon glyphicon-alert"></span> <?php echo $this->session->flashdata('erro'); ?>
+					<?php if ($this->session->flashdata('sem_opcao_voltar') != 'ok') : ?>
 					<button class="btn btn-xs btn-warning" onclick="location.href='<?php echo site_url('viagens'); ?>'">
-						<small><span class="glyphicon glyphicon-arrow-left"></span></small> Voltar
+						<span class="glyphicon glyphicon-arrow-left small"></span> Voltar
 					</button>
+					<?php endif; ?>
 				</div>
 				<?php endif; ?>
 
 				<!-- Formulário de registro -->
-				<?php echo form_open('', array('class' => 'form-horizontal','id' => 'registro' ,'onsubmit' => 'converterCaixaAlta()')); ?>
+				<form action="" method="post" class="form-horizontal" id="registrar-viagem" accept-charset="utf-8" onsubmit="converterCaixaAlta()">
 					<fieldset id="dt">
 						<legend>DT</legend>
 						<div class="form-group">
 							<label for="dt_num" class="col-sm-2 control-label">Número DT</label>
 							<div class="col-sm-3">
-								<input type="text" name="dt_num" id="dt_num" class="form-control input-sm" value="<?php echo set_value('dt_num', $dt_num); ?>" />
+								<input type="text" name="dt_num" id="dt_num" class="form-control input-sm" value="<?php echo set_value('dt_num', $dt_num); ?>" <?php echo (isset($operacao) && $operacao == 'registrar') ? 'autofocus' : '' ; ?> />
 							</div>
 							<div class="col-sm-5 col-md-4 custom-error">
 								<?php echo form_error('dt_num'),PHP_EOL; ?>
@@ -101,13 +111,19 @@
 						<legend>Motorista</legend>
 							<div class="form-group row">
 								<label for="motorista_cpf" class="col-sm-2 control-label">CPF</label>
-								<div class="col-sm-3">
-									<input type="text" name="motorista_cpf" id="motorista_cpf" class="form-control input-sm" maxlength="14" value="<?php echo set_value('motorista_cpf', $motorista_cpf); ?>" />
+								<div class="col-sm-4 col-md-3">
+									<div class="input-group input-group-sm">
+										<input type="text" name="motorista_cpf" id="motorista_cpf" class="form-control" maxlength="14" value="<?php echo set_value('motorista_cpf', $motorista_cpf); ?>" readonly />
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="button" title="Buscar cadastro" id="buscar_motorista"><span class="glyphicon glyphicon-search"></span></button>
+											<button class="btn btn-default" type="button" title="Editar cadastro" disabled><span class="glyphicon glyphicon-edit"></span></button>
+										</span>
+									</div>
 								</div>
 
 								<label for="motorista_nome" class="control-label sr-only">Nome</label>
-								<div class="col-sm-3">
-									<input type="text" name="motorista_nome" id="motorista_nome" class="form-control input-sm" placeholder="Nome" value="<?php echo set_value('motorista_nome', $motorista_nome); ?>" /><!-- readonly -->
+								<div class="col-sm-4 col-md-3">
+									<input type="text" name="motorista_nome" id="motorista_nome" class="form-control input-sm" placeholder="Nome" value="<?php echo set_value('motorista_nome', $motorista_nome); ?>" readonly />
 								</div>
 								<div class="col-sm-4 col-md-3 custom-error">
 									<?php echo form_error('motorista_cpf'),PHP_EOL; ?>
@@ -137,7 +153,13 @@
 							</div>
 						</div><!-- /.form-group -->
 
-						<div class="form-group">
+						<div class="form-group" id="informar-reboque-2">
+							<div class="col-sm-offset-2 col-sm-3 col-md-2">
+								<button type="button" class="btn btn-primary btn-sm btn-block" id="botao-reboque-2">Informar reboque 2</button>
+							</div>
+						</div><!-- /.form-group -->
+
+						<div class="form-group" id="reboque-2" hidden>
 							<label for="placa_reboque_2" class="col-sm-2 control-label">Reboque 2</label>
 							<div class="col-sm-3">
 								<input type="text" name="placa_reboque_2" id="placa_reboque_2" class="form-control input-sm" value="<?php echo set_value('placa_reboque_2', $placa_reboque_2); ?>" />
@@ -216,7 +238,7 @@
 						<div class="form-group">
 							<label for="entrega_tipo" class="col-sm-2 control-label">Tipo de entrega</label>
 							<div class="col-sm-3">
-								<select name="entrega_tipo" class="form-control input-sm">
+								<select name="entrega_tipo" id="entrega_tipo" class="form-control input-sm">
 									<option value=""></option>
 									<option value="ent_unic" <?php echo set_select('entrega_tipo', 'ent_unic', $ent_unic); ?>>ENTREGA ÚNICA</option>
 									<option value="ent_frac" <?php echo set_select('entrega_tipo', 'ent_frac', $ent_frac); ?>>ENTREGA FRACIONADA</option>
@@ -232,7 +254,7 @@
 						<div class="form-group">
 							<label for="mercadoria_tipo" class="col-sm-2 control-label">Tipo de mercadoria</label>
 							<div class="col-sm-3">
-								<select name="mercadoria_tipo" class="form-control input-sm">
+								<select name="mercadoria_tipo" id="mercadoria_tipo" class="form-control input-sm">
 									<option value=""></option>
 									<option value="hpc" <?php echo set_select('mercadoria_tipo', 'hpc', $hpc); ?>>HPC</option>
 									<option value="foods" <?php echo set_select('mercadoria_tipo', 'foods', $foods); ?>>FOODS</option>
@@ -289,16 +311,16 @@
 						<label class="control-label sr-only">Registrar</label>
 						<div class="col-sm-offset-2 col-sm-3 col-md-2">
 							<button type="submit" name="registrar" value="ok" class="btn btn-success form-control">
-								<small><span class="glyphicon glyphicon-plus"></span></small> Registrar
+								<span class="glyphicon glyphicon-plus small"></span> Registrar
 							</button>
 						</div>
 						<div class="col-sm-3 col-md-2">
 							<button type="button" class="btn btn-primary form-control" onclick="location.href='<?php #echo site_url('viagens'); ?>'">
-								<small><span class="glyphicon glyphicon-arrow-left"></span></small> Voltar
+								<span class="glyphicon glyphicon-arrow-left small"></span> Voltar
 							</button>
 						</div>
 					</div><!-- /.form-group -->
-				<?php echo form_close('<!-- .form-horizontal -->').PHP_EOL; ?>
+				</form><!-- .form-horizontal -->
 			</div><!-- /.col-sm-12 -->
 		</div><!-- /.row -->
 	</div><!-- /.container-fluid -->
@@ -306,20 +328,15 @@
 <nav id="navbar-bottom" class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-form navbar-left">
-			<button type="submit" class="btn btn-success form-control" id="registro" form="registro" name="registrar" value="ok">
-				<?php if (isset($operacao) && $operacao == 'editar') : ?>
-				<small><span class="glyphicon glyphicon-ok"></span></small> Gravar
-				<?php else : ?>
-				<small><span class="glyphicon glyphicon-plus"></span></small> Registrar
-				<?php endif; ?>
-			</button>
+			<button type="submit" class="btn btn-success form-control" id="registrar" name="registrar" value="ok" form="registrar-viagem">
 			<?php if (isset($operacao) && $operacao == 'editar') : ?>
-			<button type="submit" class="btn btn-success form-control" form="registro" name="finalizar" value="ok">
-				<small><span class="glyphicon glyphicon-save"></span></small> Finalizar
-			</button>
+				<span class="glyphicon glyphicon-save small"></span> Finalizar
+			<?php else : ?>
+				<span class="glyphicon glyphicon-plus small"></span> Registrar
 			<?php endif; ?>
+			</button>
 			<button type="button" class="btn btn-primary form-control" onclick="location.href='<?php echo site_url('viagens'); ?>'">
-				<small><span class="glyphicon glyphicon-arrow-left"></span></small> Voltar
+				<span class="glyphicon glyphicon-arrow-left small"></span> Voltar
 			</button>
 		</div>
 	</div>

@@ -1,7 +1,7 @@
 <?php echo PHP_EOL; ?>
-<!-- START FOOTER -->
 		</main>
 
+<!-- START FOOTER -->
 		<footer>
 			<span id="end"></span>
 		</footer>
@@ -11,14 +11,14 @@
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="<?php echo base_url('bootstrap/js/bootstrap.min.js'); ?>"></script>
 		<?php
-		if (isset($incluir_footer)) :
-			foreach ($incluir_footer as $i) : echo $i.PHP_EOL; endforeach;
+		if (isset($incluir_rodape)) :
+			foreach ($incluir_rodape as $i) : echo $i.PHP_EOL; endforeach;
 		else :
 			echo PHP_EOL;
 		endif;
 
-		if (isset($scripts_footer)) :
-			$this->load->view($scripts_footer);
+		if (isset($scripts_rodape)) :
+			$this->load->view($scripts_rodape);
 			echo PHP_EOL;
 		else :
 			echo PHP_EOL;

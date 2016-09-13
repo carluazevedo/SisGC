@@ -1,28 +1,32 @@
-<h1><?php echo lang('login_heading');?></h1>
-<p><?php echo lang('login_subheading');?></p>
+<header>
+	<nav class="navbar navbar-inverse navbar-static-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="<?php echo site_url(); ?>">SisGC</a>
+			</div>
+		</div>
+	</nav>
+</header>
+<section>
+	<div class="container" id="login">
+		<h1>Sistema de Gestão de Cargas</h1>
+		<form action="" method="post" accept-charset="utf-8">
+			<label for="identity" class="control-label sr-only">Email</label>
+			<input type="text" id="identity" name="identity" class="form-control" value="<?php echo set_value('identity'); ?>" placeholder="Email" autofocus />
+			<label for="password" class="control-label sr-only">Senha</label>
+			<input type="password" id="password" name="password" class="form-control" placeholder="Senha" />
 
-<div id="infoMessage"><?php echo $message;?></div>
+			<div class="custom-error"><?php echo $message; ?></div>
+			
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="remember" name="remember" value="1" />
+					Continuar conectado
+				</label>
+			</div>
 
-<?php echo form_open("auth/login");?>
-
-  <p>
-    <?php echo lang('login_identity_label', 'identity');?>
-    <?php echo form_input($identity);?>
-  </p>
-
-  <p>
-    <?php echo lang('login_password_label', 'password');?>
-    <?php echo form_input($password);?>
-  </p>
-
-  <p>
-    <?php echo lang('login_remember_label', 'remember');?>
-    <?php echo form_checkbox('remember', '1', FALSE, 'id="remember"');?>
-  </p>
-
-
-  <p><?php echo form_submit('submit', lang('login_submit_btn'));?></p>
-
-<?php echo form_close();?>
-
-<p><a href="forgot_password"><?php echo lang('login_forgot_password');?></a></p>
+			<button type="submit" name="submit" class="btn btn-lg btn-primary btn-block">Entrar</button>
+		</form>
+		<p><a href="<?php echo site_url('auth/forgot_password'); ?>">Esqueceu sua senha?</a></p>
+	</div>
+</section>

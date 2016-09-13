@@ -13,15 +13,15 @@ class Admin extends CI_Controller {
 	}
 
 	public function index() {
-		/* Informações para 'header.php' */
+		/* Informações para 'cabecalho.php' */
 		$data['titulo']  = $this->titulo.'- Administração';
-		$data['incluir'] = array(link_tag('styles/custom.css'));
+		$data['incluir'] = array(link_tag('styles/geral.css'));
 		$data['view']    = 'admin/painel';
 
 		/* Informações para 'view' */
 		$data['titulo_pagina'] = 'Painel do Administrador';
 
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/footer');
+		$this->load->view('modelos/cabecalho', $data);
+		$this->load->view('modelos/rodape');
 	}
 }

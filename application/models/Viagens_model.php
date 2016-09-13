@@ -3,12 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Viagens_model extends CI_Model {
 
-	public function __construct() {
+	public function __construct()
+	{
 		parent::__construct();
 		$this->load->database();
 	}
 
-	public function registrar($tabela, $dados) {
+	public function registrar($tabela, $dados)
+	{
 		$this->db->insert($tabela, $dados);
 		if ($this->db->affected_rows() == '1') {
 			return true;
@@ -16,21 +18,60 @@ class Viagens_model extends CI_Model {
 		return false;
 	}
 
-	public function listar_registros($tabela, $campos = '') {
-		$this->db->select($campos);
+	/**
+	 * Listar Registros
+	 *
+	 * Lista registros com base nos parâmetros informados e retorna os resultados
+	 * em 'array' ou, por padrão, em 'object'.
+	 *
+	 * @param    string   $tabela             Nome da tabela
+	 * @param    mixed    $colunas            Pode ser string ou array
+	 * @param    string   $criterio_where     Se informado, critério da cláusula 'WHERE'
+	 * @param    mixed    $condicao_where     Se informado, condição da cláusula 'WHERE'
+	 * @param    bool     $resultado_matriz   Se falso 'object', se verdadeiro 'array'
+	 * @return   Retorna os resultados em 'array' ou, por padrão, em 'object'
+	 */
+	public function listar_registros($tabela, $colunas = '', $criterio_where = '', $condicao_where = '', $resultado_matriz = false)
+	{
+		$this->db->select($colunas);
+		if ($criterio_where != '' && $condicao_where != '') {
+			$this->db->where($criterio_where, $condicao_where);
+		}
 		$query = $this->db->get($tabela);
-		return $query->result();
-		#return $query->result_array();
+		if ($resultado_matriz == false) {
+			return $query->result();
+		} elseif ($resultado_matriz == true) {
+			return $query->result_array();
+		}
 	}
 
-	public function buscar_registro($tabela, $id, $campos = '') {
-		$this->db->select($campos);
-		$this->db->where('id', $id);
+	/**
+	 * Buscar Registro
+	 *
+	 * Busca um registro com base nos parâmetros informados e retorna o resultado
+	 * em 'array' ou, por padrão, em 'object'.
+	 *
+	 * @param    string   $tabela             Nome da tabela
+	 * @param    string   $criterio_where     Critério da cláusula 'WHERE'
+	 * @param    mixed    $condicao_where     Condição da cláusula 'WHERE'
+	 * @param    mixed    $colunas            Pode ser string ou array
+	 * @param    bool     $resultado_matriz   Se falso 'object', se verdadeiro 'array'
+	 * @return   Retorna o resultado em 'array' ou, por padrão, em 'object'
+	 */
+	public function buscar_registro($tabela, $criterio_where, $condicao_where, $colunas = '', $resultado_matriz = false)
+	{
+		$this->db->select($colunas);
+		$this->db->where($criterio_where, $condicao_where);
 		$query = $this->db->get($tabela);
-		return $query->row();
+		if ($resultado_matriz == false) {
+			return $query->row();
+		} elseif ($resultado_matriz == true) {
+			return $query->row_array();
+		}
 	}
 
-	public function editar_registro($tabela, $id, $dados) {
+	public function editar_registro($tabela, $id, $dados)
+	{
 		$this->db->where('id', $id);
 		$this->db->update($tabela, $dados);
 		if ($this->db->affected_rows() == '1') {
@@ -39,7 +80,8 @@ class Viagens_model extends CI_Model {
 		return false;
 	}
 
-	public function remover($tabela, $id) {
+	public function remover($tabela, $id)
+	{
 		$this->db->where('id', $id);
 		$this->db->delete($tabela);
 		if ($this->db->affected_rows() == '1') {
@@ -49,14 +91,16 @@ class Viagens_model extends CI_Model {
 	}
 
 	/* Funções para tratamento de exibição de dados */
-	public function usuario_atual() {
+	public function usuario_atual()
+	{
 		$string = $this->session->userdata('identity');
 		$exploded = explode('@', $string);
 		$identidade = array_shift($exploded);
 		return $identidade;
 	}
 
-	public function formata_data_mysql($data_mysql) {
+	public function formata_data_mysql($data_mysql)
+	{
 		if ($data_mysql == 0) {
 			return '-';
 		} else {
@@ -65,14 +109,16 @@ class Viagens_model extends CI_Model {
 		}
 	}
 
-	public function status_viagem_tb($status) {
+	public function status_viagem_tb($status)
+	{
 		$status_contexto = array('info','warning','success','danger');
 		$status_texto    = array('NOVA VIAGEM','EM PÁTIO','FINALIZADA','CANCELADA');
-		$status_retorno = sprintf('<td class="%s">%s</td>', $status_contexto[$status], $status_texto[$status]);
+		$status_retorno  = sprintf('<td class="%s">%s</td>', $status_contexto[$status], $status_texto[$status]);
 		return $status_retorno.PHP_EOL;
 	}
 
-	public function status_viagem_pn($status, $elemento) {
+	public function status_viagem_pn($status, $elemento)
+	{
 		$status_contexto = array('label-info','label-warning','label-success','label-danger');
 		$status_texto    = array('NOVA VIAGEM','EM PÁTIO','FINALIZADA','CANCELADA');
 		switch ($elemento) {
@@ -85,7 +131,8 @@ class Viagens_model extends CI_Model {
 		}
 	}
 
-	public function ultimo_id() {
+	public function ultimo_id()
+	{
 		if ($this->db->insert_id() != 0) {
 			return $this->db->insert_id();
 		} else {
@@ -96,7 +143,8 @@ class Viagens_model extends CI_Model {
 	}
 
 	/* Funções para exibição dos dados no formulário */
-	public function inicializar_valores() {
+	public function inicializar_valores()
+	{
 		$valores_em_branco = array(
 			'dt_num'               => '',
 			'motorista_cpf'        => '',
@@ -127,8 +175,9 @@ class Viagens_model extends CI_Model {
 		return $valores_em_branco;
 	}
 
-	public function preencher_valores($tabela, $id) {
-		$valores = $this->buscar_registro($tabela, $id);
+	public function preencher_valores($tabela, $criterio_where, $condicao_where, $colunas = '', $resultado_matriz = false)
+	{
+		$valores = $this->buscar_registro($tabela, $criterio_where, $condicao_where, $colunas, $resultado_matriz);
 		if (isset($valores)) {
 			$valores_preenchidos['id']                   = $valores->id;
 			$valores_preenchidos['status_viagem']        = $valores->status_viagem;

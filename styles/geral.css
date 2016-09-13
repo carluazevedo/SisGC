@@ -3,6 +3,16 @@
   margin-bottom: 10px;
 }
 
+/* < Painel inicial > */
+.table tbody>tr>td {
+  vertical-align: middle;
+}
+
+.table tbody>tr>td.acoes {
+  padding-right: 0;
+  padding-left: 0;
+}
+
 /* < Decoração das legendas do formulário > */
 legend {
   border-bottom-color: #999;
@@ -69,20 +79,21 @@ legend {
   }
 }
 
-/* < Painel inicial > */
-.modal .glyphicon-eye-open {
-  color: #5cb85c;
-}
-
-.modal .glyphicon-remove-sign {
+/* < Modais > */
+#modal-remover .modal-header .glyphicon-remove-sign {
   color: #d9534f;
 }
 
-.table tbody>tr>td {
-  vertical-align: middle;
+#modal-visualizar .modal-header .glyphicon-eye-open,
+#modal-editar .modal-header .glyphicon-edit,
+#modal-finalizar .modal-header .glyphicon-save {
+	color: #5cb85c;
 }
 
-.table tbody>tr>td.acoes {
-  padding-right: 0;
-  padding-left: 0;
+#modal-ajuda .modal-header .glyphicon-question-sign {
+	color: #5bc0de;
+}
+
+#modal-buscar-motorista .modal-header .glyphicon-search {
+  color: #337ab7;
 }
