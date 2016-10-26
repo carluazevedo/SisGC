@@ -142,6 +142,18 @@ class Viagens_model extends CI_Model {
 		}
 	}
 
+	public function permanencia($hora_inicial, $hora_final)
+	{
+		if ($hora_final == 0) {
+			$hora_atual = date('Y-m-d H:i:s');
+			$perm = $this->db->query('SELECT TIMEDIFF("'.$hora_atual.'","'.$hora_inicial.'") as horas')->row();
+			return $perm->horas;
+		} else {
+			$perm = $this->db->query('SELECT TIMEDIFF("'.$hora_final.'","'.$hora_inicial.'") as horas')->row();
+			return $perm->horas;
+		}
+	}
+
 	/* Funções para exibição dos dados no formulário */
 	public function inicializar_valores()
 	{
