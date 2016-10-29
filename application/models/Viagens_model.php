@@ -7,6 +7,7 @@ class Viagens_model extends CI_Model {
 	{
 		parent::__construct();
 		$this->load->database();
+		$this->load->config('ion_auth', true);
 	}
 
 	public function registrar($tabela, $dados)
@@ -93,10 +94,14 @@ class Viagens_model extends CI_Model {
 	/* Funções para tratamento de exibição de dados */
 	public function usuario_atual()
 	{
-		$string = $this->session->userdata('identity');
-		$exploded = explode('@', $string);
-		$identidade = array_shift($exploded);
-		return $identidade;
+		if ($this->config->item('identity', 'ion_auth') == 'email') {
+			$string = $this->session->userdata('identity');
+			$exploded = explode('@', $string);
+			$identidade = array_shift($exploded);
+			return $identidade;
+		} elseif ($this->config->item('identity', 'ion_auth') == 'username') {
+			return $this->session->userdata('identity');
+		}
 	}
 
 	public function formata_data_mysql($data_mysql)
@@ -146,10 +151,10 @@ class Viagens_model extends CI_Model {
 	{
 		if ($hora_final == 0) {
 			$hora_atual = date('Y-m-d H:i:s');
-			$perm = $this->db->query('SELECT TIMEDIFF("'.$hora_atual.'","'.$hora_inicial.'") as horas')->row();
+			$perm = $this->db->query('SELECT TIMEDIFF("'.$hora_atual.'","'.$hora_inicial.'") AS horas')->row();
 			return $perm->horas;
 		} else {
-			$perm = $this->db->query('SELECT TIMEDIFF("'.$hora_final.'","'.$hora_inicial.'") as horas')->row();
+			$perm = $this->db->query('SELECT TIMEDIFF("'.$hora_final.'","'.$hora_inicial.'") AS horas')->row();
 			return $perm->horas;
 		}
 	}

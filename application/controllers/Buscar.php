@@ -21,9 +21,9 @@ class Buscar extends CI_Controller {
 		$this->input->post('valor') OR exit(show_error('Acesso não permitido.', 403, '403 Forbidden'));
 		$valor = $this->input->post('valor');
 		if (preg_match('/\d{3}\.\d{3}\.\d{3}-\d{2}/', $valor)) {
-			$motorista = $this->buscar_model->listar_registros('cad_motorista', 'id,cpf,nome', 'cpf', $valor, true);
+			$motorista = $this->buscar_model->listar_registros('cad_motoristas', 'id,cpf,nome', 'cpf', $valor, true);
 		} elseif (preg_match('/[^\d-]+/i', $valor)) {
-			$motorista = $this->buscar_model->pesquisar_registros('cad_motorista', 'nome', $valor, 'id,cpf,nome', true);
+			$motorista = $this->buscar_model->pesquisar_registros('cad_motoristas', 'nome', $valor, 'id,cpf,nome', true);
 		}
 		header("Content-Type: application/json; charset=UTF-8");
 		if (isset($motorista)) {
