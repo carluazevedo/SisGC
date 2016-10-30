@@ -50,7 +50,7 @@ class Viagens extends CI_Controller {
 	public function registrar()
 	{
 		/* Informações para 'cabecalho.php' */
-		$data['titulo']         = $this->titulo.' - Registrar';
+		$data['titulo']            = $this->titulo.' - Registrar';
 		$data['incluir_cabecalho'] = array(link_tag('styles/geral.css'));
 		/* Informações para 'view' */
 		$data['titulo_pagina'] = 'Registrar viagem';
