@@ -16,13 +16,6 @@
 		else :
 			echo PHP_EOL;
 		endif;
-
-		if (isset($scripts_rodape)) :
-			$this->load->view($scripts_rodape);
-			echo PHP_EOL;
-		else :
-			echo PHP_EOL;
-		endif;
 		?>
 	</body>
 </html>

@@ -58,11 +58,11 @@ class Viagens extends CI_Controller {
 		$data['operacao']      = 'registrar';
 		/* Informações para 'rodape.php' */
 		$data['incluir_rodape'] = array(
+			$this->load->view('viagens/formulario_scripts', '', true),
 			'<script src="'.base_url('scripts/jquery-mask/jquery.mask.min.js').'"></script>',
 			'<script src="'.base_url('scripts/ajax_lib.js').'"></script>',
 			'<script src="'.base_url('scripts/formulario.js').'"></script>'
 		);
-		$data['scripts_rodape'] = 'viagens/formulario_scripts';
 		/* Lógica do controlador */
 		/* ->Inicialização dos valores dos campos */
 		$dados = $this->viagens_model->inicializar_valores();
