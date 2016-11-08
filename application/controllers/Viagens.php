@@ -249,11 +249,10 @@ class Viagens extends CI_Controller {
 
 	public function remover($id)
 	{
+		$this->input->post('remover') OR exit(show_error('Acesso não permitido.', 403, '403 Forbidden'));
 		if ($this->input->post('remover') == 'ok' && $this->viagens_model->remover('reg_viagens', $id) == true) {
 			$this->session->set_flashdata('sucesso', 'Viagem removida com sucesso.');
 			redirect('viagens');
-		} else {
-			exit(show_error('Acesso não permitido.', 403, '403 Forbidden'));
 		}
 	}
 }
